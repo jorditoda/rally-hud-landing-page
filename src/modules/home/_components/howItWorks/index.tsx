@@ -1,12 +1,23 @@
 import AnimatedText from "../../../../components/animatedText";
-import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ConfigContext } from "../../../../utils/configContext";
-import SwirlArrowBottomLeft from "./svg/swirlArrowBottomLeft";
-import SwirlArrowBottomRight from "./svg/swirlArrowBottomRight";
-import SwirlArrowBottom from "./svg/swirlArrowBottom";
 
+/**
+ * "How it works" — ROADMAP.md E2.4
+ *
+ * Antes usaba fotos de banco de iOS (una mujer tejiendo, otra mirando una
+ * planta). Ahora usa capturas reales del producto, renderizadas de los
+ * tableros de diseño con `scripts/render-boards.py`.
+ *
+ * Layout: alterna imagen/texto como antes, pero el ritmo vertical se controla
+ * con `gap-*` en vez del `gap-52` que dejaba bloques de 13rem de vacío, y ya no
+ * hay flechas decorativas: la numeración 01/02/03 en tipografía condensada guía
+ * la lectura por sí sola.
+ *
+ * Las capturas mezcla formatos (844x390 apaisado y 390x844 vertical), así que
+ * `aspect-[16/10]` con `object-contain` las-normaliza sin recortarlas.
+ */
 function HowItWorks() {
   const {
     home: { howItWorks },
@@ -15,14 +26,11 @@ function HowItWorks() {
   if (!howItWorks) return null;
 
   return (
-    <section
-      id={howItWorks.id}
-      className="overflow-hidden max-w-screen-lg mx-auto px-4 py-12"
-    >
-      <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
-        <h1 className="mb-3">
+    <section id={howItWorks.id} className="section-y max-w-screen-lg mx-auto px-4">
+      <div className="section-head max-w-none flex flex-col items-center prose prose-lg text-center">
+        <h2 className="mb-3">
           <AnimatedText text={howItWorks.title} />
-        </h1>
+        </h2>
         {howItWorks.subtitle && (
           <motion.p
             initial={{ y: "100%", opacity: 0 }}
@@ -34,84 +42,56 @@ function HowItWorks() {
           </motion.p>
         )}
       </div>
-      <div className="flex flex-col gap-52">
+
+      <ol className="list-none p-0 m-0 flex flex-col gap-12 md:gap-16">
         {howItWorks.steps.map((step, index) => (
-          <motion.div
-            key={index}
+          <motion.li
+            key={step.title}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            className={clsx(
-              "text-primary relative flex flex-col rounded-md md:flex-row",
-              {
-                "md:flex-row-reverse": index % 2 === 0,
-              }
-            )}
+            viewport={{ once: true, amount: 0.3 }}
+            className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12"
           >
-            {index < howItWorks!.steps.length - 1 && (
-              <>
-                <motion.div
-                  variants={{
-                    hidden: {
-                      scale: 0,
-                      translateX: "-50%",
-                    },
-                    visible: { scale: 1, translateX: "-50%" },
-                  }}
-                  transition={{ stiffness: 150, type: "spring" }}
-                  className="hidden w-48 absolute -bottom-44 left-1/2 md:block"
-                >
-                  {index % 2 === 0 ? (
-                    <SwirlArrowBottomLeft />
-                  ) : (
-                    <SwirlArrowBottomRight />
-                  )}
-                </motion.div>
-                <motion.div
-                  variants={{
-                    hidden: {
-                      scale: 0,
-                      translateX: "-50%",
-                    },
-                    visible: { scale: 1, translateX: "-50%" },
-                  }}
-                  transition={{ stiffness: 150, type: "spring" }}
-                  className="w-16 absolute -bottom-48 left-1/2 md:hidden md:-bottom-36"
-                >
-                  <SwirlArrowBottom />
-                </motion.div>
-              </>
-            )}
             <motion.div
               variants={{
-                hidden: { x: index % 2 === 0 ? "100%" : "-100%", opacity: 0 },
-                visible: { x: "0%", opacity: 1 },
+                hidden: { x: index % 2 === 0 ? "-40px" : "40px", opacity: 0 },
+                visible: { x: "0px", opacity: 1 },
               }}
-              className="mb-8 flex flex-col text-center justify-center prose flex-1"
+              transition={{ type: "spring", stiffness: 120, mass: 0.6 }}
+              className="flex-1 order-2 md:order-1 text-center md:text-left"
             >
-              <div className="pb-0 font-sketch text-8xl text-primary">
-                {index < 10 && 0}
-                {index + 1}
+              <div className="font-condensed font-bold text-6xl text-primary leading-none tabular-nums">
+                {String(index + 1).padStart(2, "0")}
               </div>
-              <h4 className="mt-0 text-2xl font-bold">{step.title}</h4>
-              <p className="mx-auto max-w-sm opacity-[.7]">{step.subtitle}</p>
+              <h3 className="mt-3 mb-2 text-2xl font-condensed font-bold">
+                {step.title}
+              </h3>
+              <p className="opacity-70 max-w-md mx-auto md:mx-0 leading-relaxed">
+                {step.subtitle}
+              </p>
             </motion.div>
-            <motion.div
+
+            <motion.figure
               variants={{
-                hidden: { x: index % 2 === 1 ? "100%" : "-100%", opacity: 0 },
-                visible: { x: "0%", opacity: 1 },
+                hidden: { x: index % 2 === 0 ? "40px" : "-40px", opacity: 0 },
+                visible: { x: "0px", opacity: 1 },
               }}
-              className="flex-1 flex justify-center"
+              transition={{ type: "spring", stiffness: 120, mass: 0.6 }}
+              className="flex-1 order-1 md:order-2 m-0"
             >
-              <img
-                className="rounded-3xl lg:w-[75%]"
-                src={step.image}
-                alt={`step ${index}`}
-              />
-            </motion.div>
-          </motion.div>
+              <div className="surface-card bg-base-200 aspect-[16/10] overflow-hidden flex items-center justify-center">
+                <img
+                  src={step.image}
+                  alt={`${step.title} — Rally Hud`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </motion.figure>
+          </motion.li>
         ))}
-      </div>
+      </ol>
     </section>
   );
 }

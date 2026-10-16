@@ -1,5 +1,7 @@
 import defaultTheme from "tailwindcss/defaultTheme";
-import config from "./src/utils/config";
+import daisyui from "daisyui";
+import typography from "@tailwindcss/typography";
+import { themes } from "./src/utils/theme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -13,8 +15,23 @@ export default {
     },
     extend: {
       fontFamily: {
-        sketch: ["CabinSketch", ...defaultTheme.fontFamily.mono],
-        sans: ["Rowdies", ...defaultTheme.fontFamily.sans],
+        // Fuente del sistema de diseño (Sistema-Base.dc.html):
+        // "Tipografía · Barlow Condensed y Barlow".
+        //   Barlow          -> texto  · 17px/1.45, secundario 15px, etiquetas 12-13px
+        //   Barlow Condensed -> cifras y títulos, siempre tabulares
+        // "Cifras: siempre tabulares, para que no bailen al cambiar".
+        condensed: [
+          "Barlow Condensed",
+          "Barlow",
+          ...defaultTheme.fontFamily.sans,
+        ],
+        sans: ["Barlow", ...defaultTheme.fontFamily.sans],
+        // Tabulares para todo lo numérico: velocidad, tiempos, distancias, KPIs.
+        numeric: [
+          "Barlow Condensed",
+          "Barlow",
+          ...defaultTheme.fontFamily.mono,
+        ],
       },
       animation: {
         "meteor-effect": "meteor 5s linear infinite",
@@ -31,8 +48,8 @@ export default {
       },
     },
   },
-  plugins: [require("daisyui"), require("@tailwindcss/typography")],
+  plugins: [daisyui, typography],
   daisyui: {
-    themes: ["dark", config.theme],
+    themes: [themes],
   },
 };

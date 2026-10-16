@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Crear · Trazar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}a:focus-visible{outline:2px solid #3DD6FF;outline-offset:2px}</style>
+</helmet>
+<div style="--bg:#070B16;--s1:#0E1526;--s2:#151E36;--ln:#243050;--tx:#EAF0FF;--t2:#A3B0D0;--t3:#8190B5;--cy:#3DD6FF;--cyi:#031520;--gr:#4ADE80;--or:#FF7A45;--vi:#B794FF;--am:#FFC247;position:relative;width:390px;height:844px;background:var(--bg);color:var(--tx);font-family:'Barlow',sans-serif;overflow:hidden">
+
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" role="img" aria-label="Mapa con la salida A y la meta B ya marcadas" style="position:absolute;left:0;top:0;display:block">
+<rect width="390" height="844" fill="#0A1020"/>
+<ellipse cx="250" cy="300" rx="44" ry="32" stroke="#243050" stroke-width="2" opacity=".6"/>
+<ellipse cx="250" cy="300" rx="84" ry="62" stroke="#243050" stroke-width="2" opacity=".5"/>
+<ellipse cx="250" cy="300" rx="130" ry="96" stroke="#243050" stroke-width="2" opacity=".4"/>
+<path d="M0 190C90 170 150 230 240 200S350 150 390 170" stroke="#243050" stroke-width="8" opacity=".8"/>
+<path d="M60 90C80 220 40 340 110 560" stroke="#243050" stroke-width="8" opacity=".8"/>
+<path d="M0 420C100 400 200 470 390 380" stroke="#243050" stroke-width="8" opacity=".8"/>
+<path d="M330 90C320 220 350 320 330 560" stroke="#243050" stroke-width="8" opacity=".8"/>
+<path d="M0 520C120 500 220 540 390 500" stroke="#243050" stroke-width="8" opacity=".6"/>
+<path d="M100 470C130 440 170 450 200 410S260 380 245 320S295 290 300 230" stroke="#070B16" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M100 470C130 440 170 450 200 410S260 380 245 320S295 290 300 230" stroke="#3DD6FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="100" cy="470" r="17" fill="#4ADE80" stroke="#070B16" stroke-width="4"/>
+<text x="100" y="476" text-anchor="middle" fill="#031520" font-family="Barlow Condensed, sans-serif" font-size="20" font-weight="700">A</text>
+<circle cx="300" cy="230" r="17" fill="#FF7A45" stroke="#070B16" stroke-width="4"/>
+<text x="300" y="236" text-anchor="middle" fill="#031520" font-family="Barlow Condensed, sans-serif" font-size="20" font-weight="700">B</text>
+<rect x="124" y="456" width="70" height="28" rx="14" fill="#0E1526" stroke="#243050"/>
+<text x="159" y="475" text-anchor="middle" fill="#EAF0FF" font-family="Barlow, sans-serif" font-size="14" font-weight="600">Salida</text>
+<rect x="212" y="216" width="62" height="28" rx="14" fill="#0E1526" stroke="#243050"/>
+<text x="243" y="235" text-anchor="middle" fill="#EAF0FF" font-family="Barlow, sans-serif" font-size="14" font-weight="600">Meta</text>
+</svg>
+
+<div style="position:absolute;left:20px;right:20px;top:58px;display:flex;align-items:center;gap:10px">
+<a href="App-Explorar.dc.html" aria-label="Cancelar y volver" style="flex:none;width:44px;height:44px;border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;background:var(--s1);border:1px solid var(--ln);color:var(--tx);text-decoration:none">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
+<div style="flex:1;height:44px;box-sizing:border-box;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-radius:999px;background:var(--s1);border:1px solid var(--ln)">
+<span style="font-size:16px;font-weight:600">Trazar segmento</span>
+<span style="font-size:14px;font-weight:600;color:var(--t2)">Paso 1 de 2</span>
+</div>
+</div>
+
+<div style="position:absolute;right:20px;top:130px;display:flex;flex-direction:column;gap:8px">
+<button type="button" aria-label="Acercar" style="width:44px;height:44px;border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;background:var(--s1);border:1px solid var(--ln);color:var(--tx);cursor:pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+<button type="button" aria-label="Alejar" style="width:44px;height:44px;border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;background:var(--s1);border:1px solid var(--ln);color:var(--tx);cursor:pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+<button type="button" aria-label="Centrar en mi ubicación" style="width:44px;height:44px;border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;background:var(--s1);border:1px solid var(--ln);color:var(--cy);cursor:pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></button>
+</div>
+
+<section aria-label="Resumen del trazado" style="position:absolute;left:0;right:0;bottom:0;box-sizing:border-box;padding:18px 20px 34px;background:var(--s1);border-top:1px solid var(--ln);border-radius:24px 24px 0 0;box-shadow:0 -12px 32px rgba(0,0,0,.45)">
+
+<div style="display:flex;align-items:flex-end;justify-content:space-between">
+<div>
+<div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--t3)">Distancia del trazado</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:56px;line-height:1;font-variant-numeric:tabular-nums">4,2 km</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+<span style="height:30px;box-sizing:border-box;padding:0 12px;display:flex;align-items:center;gap:6px;border-radius:999px;background:rgba(74,222,128,.12);border:1px solid var(--gr);color:var(--gr);font-size:14px;font-weight:700"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>A · Salida</span>
+<span style="height:30px;box-sizing:border-box;padding:0 12px;display:flex;align-items:center;gap:6px;border-radius:999px;background:rgba(255,122,69,.12);border:1px solid var(--or);color:var(--or);font-size:14px;font-weight:700"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>B · Meta</span>
+</div>
+</div>
+
+<p style="margin:10px 0 0;font-size:15px;line-height:1.4;color:var(--t2)">Toca el mapa para mover la meta. Mantén pulsado un punto para arrastrarlo.</p>
+
+<div style="margin-top:12px;height:52px;box-sizing:border-box;padding:0 4px 0 0;display:flex;align-items:center;gap:12px">
+<span style="flex:1;line-height:1.25">
+<span style="display:block;font-size:17px;font-weight:600">Ajustar a carretera</span>
+<span style="display:block;font-size:14px;color:var(--t2)">Sigue la ruta real entre A y B</span>
+</span>
+<span role="switch" aria-checked="true" aria-label="Ajustar a carretera" style="flex:none;width:52px;height:30px;box-sizing:border-box;padding:3px;border-radius:999px;background:var(--cy);display:flex;justify-content:flex-end"><span style="width:24px;height:24px;border-radius:50%;background:var(--cyi)"></span></span>
+</div>
+
+<div style="margin-top:12px;display:flex;gap:10px">
+<button type="button" style="flex:1;height:56px;box-sizing:border-box;border-radius:16px;background:transparent;border:1.5px solid var(--ln);color:var(--tx);font-family:'Barlow',sans-serif;font-size:17px;font-weight:600;cursor:pointer">Deshacer</button>
+<a href="App-CrearGuardar.dc.html" style="flex:2;height:56px;box-sizing:border-box;border-radius:16px;background:var(--cy);display:flex;align-items:center;justify-content:center;gap:8px;color:var(--cyi);text-decoration:none;font-size:19px;font-weight:700">Siguiente
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

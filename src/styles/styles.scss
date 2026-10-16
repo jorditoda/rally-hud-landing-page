@@ -1,43 +1,149 @@
-@font-face {
-  font-family: "CabinSketch";
-  src: url("/fonts/CabinSketch.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Rowdies";
-  src: url("/fonts/Rowdies-Light.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Rowdies";
-  src: url("/fonts/Rowdies-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+@import "./fonts.css";
+
 html {
   scroll-behavior: smooth;
 }
+
+/* ── Ritmo vertical (ROADMAP.md E2.10) ─────────────────────────────────
+   Una sola escala de espaciado entre secciones, para que no se alternen
+   py-12 / py-16 / mb-12 segun quien escribio cada bloque. Tambien fija el
+   ritmo dentro de cada seccion: cabecera -> contenido -> cabecera. */
+:root {
+  --rally-section-y: 4rem; /* 64 px entre secciones */
+  --rally-gap-title: 2.5rem; /* separacion entre el titulo y el contenido */
+}
+
+.section-y {
+  padding-top: var(--rally-section-y);
+  padding-bottom: var(--rally-section-y);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --rally-section-y: 5rem;
+    --rally-gap-title: 3rem;
+  }
+}
+
+.section-head {
+  margin-bottom: var(--rally-gap-title);
+}
+
+/* Alterna el fondo de las secciones para marcar el ritmo sin meterse de
+   espacio en blanco, que es lo que hacia la pagina tan larga antes. */
+.section-alt {
+  background-color: oklch(var(--b2));
+}
+
+/* El sistema de diseño (Sistema-Base.dc.html) marca estas reglas:
+     · "El cian es lo que se toca" -> el foco visible va en `primary`.
+     · "Nunca solo color" -> los estados llevan además texto o icono.
+     · "Las líneas son decorativas" (ln = 1,5:1) -> no se usan para separar
+       bloques de texto; para controles pulsables sí hace falta más contraste,
+       por eso se usa t3 (6,2:1), que es color del propio sistema. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid oklch(var(--p));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.toggle,
+.input,
+.select,
+.textarea,
+.checkbox,
+.radio,
+.range {
+  border-color: var(--rally-control-border, currentColor);
+}
+
+/* Tarjeta del sistema: "CardTheme con radio 16, sin elevación y borde ln"
+   (Sistema-Componentes). El borde NO puede ser `base-300`, porque base-300 es
+   s2 (superficie de campos y chips) y sobre base-100 da 1,19:1, demasiado
+   tenue; la línea del sistema `ln` da 1,51:1, que es justo lo que declara el
+   tablero y es deliberado ("Las líneas son decorativas").
+
+   El fondo NO se fija aquí a propósito: daisyUI v4 emite los tokens en OKLCH
+   (`--b2: 19.8% .036 266.2`), no en canales HSL, así que `oklch(var(--b2))`
+   es inválido y dejaba la tarjeta transparente. Quien use la clase debe
+   añadir `bg-base-200`. */
+.surface-card {
+  border: 1px solid var(--rally-line, currentColor);
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.text-2 {
+  color: var(--rally-text-2, currentColor);
+}
+
+.text-3 {
+  color: var(--rally-text-3, currentColor);
+}
+
+/* Arco del logo. El negro de marca (#1a1a1a) da 1,13:1 sobre el navy del tema
+   oscuro, o sea invisible; el gris azulado da 3,4:1 en oscuro y 5,9:1 en claro,
+   así que sirve para los dos. El SVG del navbar es inline y usa esta variable. */
+:root {
+  --rally-logo-arc: #5a6484;
+}
+
+[data-theme="rally-light"] {
+  --rally-logo-arc: #1a1a1a;
+}
+
 .backgroundGrid {
   width: 100%;
   height: 100%;
   position: absolute;
   z-index: -9;
-  background-size: 50px 50px;
+  background-size: 48px 48px;
+  /* Usa la línea del sistema (ln) a muy baja opacidad: se ve la textura sin
+     competir con el texto ni con los bordes de las tarjetas. */
   background-image: linear-gradient(
-      rgba(200, 200, 200, 0.1) 1px,
+      color-mix(in srgb, var(--rally-line) 70%, transparent) 1px,
       transparent 1px
     ),
-    linear-gradient(to right, rgba(200, 200, 200, 0.1) 1px, transparent 1px);
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--rally-line) 70%, transparent) 1px,
+      transparent 1px
+    );
+  mask-image: linear-gradient(to bottom, black 0%, transparent 70%);
 }
-[data-theme="dark"] .backgroundGrid {
+
+/* Halo muy tenue detrás del hero. El sistema pide "fondo casi negro azulado"
+   y un solo acento; esto solo evita que la parte alta de la página quede plana.
+   Cero Animation, cero JS. */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 45% at 50% 0%,
+    color-mix(in srgb, oklch(var(--p)) 9%, transparent),
+    transparent 70%
+  );
+}
+
+/* El modo día apenas necesita la textura. */
+[data-theme="rally-light"] .backgroundGrid {
   background-image: linear-gradient(
-      rgba(200, 200, 200, 0.03) 1px,
+      color-mix(in srgb, var(--rally-line) 90%, transparent) 1px,
       transparent 1px
     ),
-    linear-gradient(to right, rgba(200, 200, 200, 0.03) 1px, transparent 1px);
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--rally-line) 90%, transparent) 1px,
+      transparent 1px
+    );
+}
+
+[data-theme="rally-light"] .hero-glow {
+  background: radial-gradient(
+    60% 45% at 50% 0%,
+    color-mix(in srgb, oklch(var(--p)) 7%, transparent),
+    transparent 70%
+  );
 }

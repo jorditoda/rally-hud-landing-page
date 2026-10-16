@@ -1,114 +1,105 @@
 import AnimatedText from "../../../../components/animatedText";
-import clsx from "clsx";
+import { Icon } from "../../../../components/icons";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ConfigContext } from "../../../../utils/configContext";
 
-const planImages = [
-  "/misc/wallet-front-color.webp",
-  "/misc/money-front-color.webp",
-  "/misc/locker-front-color.webp",
-];
-
-const planBGs = ["bg-primary/80", "bg-secondary/80", "bg-accent/80"];
-
+/**
+ * Bloque "Free forever" — ROADMAP.md E2.6
+ *
+ * Antes era una tabla de precios con un unico plan "Free Plan": una tarjeta
+ * huerfana de 1/3 de ancho perdida en un mar de blanco, con un `animate-ping`
+ * infinito en cada bullet y un monedero 3D de la plantilla.
+ *
+ * El precio real es 0 en las dos stores (verificado contra la API de iTunes y
+ * la ficha de Google Play), asi que una tabla de comparativa no dice nada que
+ * el titulo no diga ya. Ahora son las tres garantias que hacen que "gratis"
+ * signifique algo, que es el argumento de venta real.
+ *
+ * De paso desaparece el bug de E9.0: `planImages` y `planBGs` estaban
+ * hardcodeados fuera de la config, asi que anadir un cuarto plan rompia.
+ */
 function Pricing() {
   const {
     home: { pricing },
+    googlePlayLink,
+    appStoreLink,
   } = useContext(ConfigContext)!;
   if (!pricing) return null;
 
   return (
     <section
       id={pricing.id}
-      className="overflow-hidden max-w-screen-lg mx-auto px-4 py-12"
+      className="section-y max-w-screen-lg mx-auto px-4"
     >
-      <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
-        <h1 className="mb-0">
+      <div className="section-head max-w-none flex flex-col items-center prose prose-lg text-center">
+        <h2 className="mb-3">
           <AnimatedText text={pricing.title} />
-        </h1>
-        <motion.p
-          initial={{ y: "100%", opacity: 0 }}
-          whileInView={{ y: "0%", opacity: 0.7 }}
-          viewport={{ once: true }}
-          className="text-xl max-w-lg"
-        >
-          {pricing.subtitle}
-        </motion.p>
-      </div>
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="flex flex-col max-w-none gap-8 md:flex-row md:justify-center"
-      >
-        {pricing.plans?.map((plan, index) => (
-          <motion.div
-            key={index}
-            transition={{ delay: 0.25 + index * 0.25 }}
-            className="md:w-1/3 flex relative"
-            variants={{
-              hidden: { x: "-100%", opacity: 0 },
-              visible: { x: 0, opacity: 1 },
-            }}
+        </h2>
+        {pricing.subtitle && (
+          <motion.p
+            initial={{ y: "100%", opacity: 0 }}
+            whileInView={{ y: "0%", opacity: 0.7 }}
+            viewport={{ once: true }}
+            className="text-md max-w-lg"
           >
-            {plan.featured && (
-              <div className="absolute top-0 bottom-1 right-1 left-0 bg-secondary -z-10 rounded-[var(--rounded-box)]" />
-            )}
-            <div
-              className={clsx(
-                "border-2 border-primary/10 flex-1 card p-0 shadow-md bg-base-100 z-10 overflow-hidden",
-                {
-                  "-translate-x-3 -translate-y-3 transition-transform hover:translate-x-0 hover:translate-y-0":
-                    plan.featured,
-                }
-              )}
-            >
-              <div className="card-body p-0 text-center">
-                <div className="flex relative">
-                  {plan.featured && (
-                    <div className="rounded-none badge badge-info top-0 right-0 absolute">
-                      Best Price
-                    </div>
-                  )}
-                  <div className={clsx("h-32 w-[40%] p-4", planBGs[index])}>
-                    <img
-                      src={planImages[index]}
-                      alt="pricing plan"
-                      className="m-0 h-full w-full object-contain"
-                    />
-                  </div>
-                  <div className="mt-8 flex-1 font-bold">
-                    <h4 className="text-xl my-1">{plan.title}</h4>
-                    <p className="my-1">{plan.price}</p>
-                  </div>
-                </div>
-                <div className="w-full flex-1 flex flex-col mb-4">
-                  {plan.rows.map((row, index) => (
-                    <div key={index} className="flex relative items-center">
-                      <span className="relative flex h-3 w-3 mx-6">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                      </span>
-                      <p className="flex-1 text-left my-2">{row}</p>
-                    </div>
-                  ))}
-                </div>
-                {pricing.actionText && (
-                  <div className="w-full">
-                    <a
-                      href="/app"
-                      className="btn btn-primary btn-square no-animation rounded-none w-full text-lg h-auto py-4"
-                    >
-                      {pricing.actionText}
-                    </a>
-                  </div>
-                )}
-              </div>
-            </div>
-          </motion.div>
+            {pricing.subtitle}
+          </motion.p>
+        )}
+      </div>
+
+      <ul className="list-none p-0 m-0 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        {pricing.promises?.map((promise, index) => (
+          <motion.li
+            key={promise.title}
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ delay: index * 0.08 }}
+            className="surface-card bg-base-200 p-6 flex flex-col items-center text-center"
+          >
+            <Icon name={promise.icon} className="w-6 h-6 text-primary mb-3" />
+            <h3 className="font-condensed font-bold text-xl m-0 mb-1">
+              {promise.title}
+            </h3>
+            <p className="m-0 opacity-70 leading-relaxed">{promise.subtitle}</p>
+          </motion.li>
         ))}
-      </motion.div>
+      </ul>
+
+      {pricing.actionText && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-8"
+        >
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {googlePlayLink && (
+              <a href={googlePlayLink} target="_blank" rel="noopener">
+                <img
+                  className="h-14"
+                  alt="Get it on Google Play"
+                  src="/stores/google-play.svg"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            )}
+            {appStoreLink && (
+              <a href={appStoreLink} target="_blank" rel="noopener">
+                <img
+                  className="h-14"
+                  alt="Download on the App Store"
+                  src="/stores/app-store.svg"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            )}
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 }

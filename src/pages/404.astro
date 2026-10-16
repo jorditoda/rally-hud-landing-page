@@ -1,0 +1,16 @@
+---
+import Layout from "Layout.astro";
+import NotFoundPage from "@modules/notFound";
+import defaultTemplateConfig from "utils/config";
+---
+
+<Layout
+  {...defaultTemplateConfig}
+  seo={{
+    title: "Page not found — Rally Hud",
+    description: "That page does not exist. Head back to the Rally Hud home page.",
+  }}
+  noindex
+>
+  <NotFoundPage client:load config={defaultTemplateConfig} />
+</Layout>

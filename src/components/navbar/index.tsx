@@ -1,15 +1,28 @@
 import AnimatedList from "../../components/animatedList";
 import MenuToggle from "../../components/menuToggle";
 import clsx from "clsx";
-import { easeIn, motion, useScroll, useTransform } from "framer-motion";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ConfigContext } from "../../utils/configContext";
 import ThemeSwitcher from "./themeSwitcher";
 
+/**
+ * Navbar — ROADMAP.md E2.5
+ *
+ * Antes el contenedor se animaba de `width: 100%` a `80%` al hacer scroll. Eso
+ * comprimia el contenido hasta SOLAPAR los items: el logo se metia encima del
+ * switch de tema y el nav tapaba el titular del hero. Reproducible a 800px.
+ *
+ * Ahora el ancho es fijo y lo unico que cambia al hacer scroll es la sombra y el
+ * fondo, que es lo que aporta: separa la barra del contenido sin tocarla.
+ *
+ * El breakpoint del nav completo pasa de `md` (768px) a `lg` (1024px): a 800px
+ * se veia el nav entero y no cabia.
+ *
+ * Tambien se quito `opacity-0` + `animate`: sin JS el navbar quedaba invisible.
+ */
 function Navbar() {
   const {
     name,
-    logo,
     showThemeSwitch,
     topNavbar,
     googlePlayLink,
@@ -17,59 +30,93 @@ function Navbar() {
   } = useContext(ConfigContext)!;
 
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1 / 3], [0, 12], {
-    ease: easeIn,
-  });
-  const width = useTransform(scrollYProgress, [0, 1 / 3], ["100%", "80%"], {
-    ease: easeIn,
-  });
-  const opacity = useTransform(scrollYProgress, [0, 1 / 3], [0, 1], {
-    ease: easeIn,
-  });
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // El menu movil se cierra al pulsar Escape y al volver a desktop.
+  useEffect(() => {
+    if (!isMobileNavVisible) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMobileNavVisible(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isMobileNavVisible]);
 
   return (
-    <motion.nav
-      className="opacity-0 max-w-screen-lg mx-auto sticky top-0 z-50"
-      animate={{ opacity: 1 }}
-    >
-      <motion.div
-        style={{
-          width:
-            isMobileNavVisible || topNavbar.disableWidthAnimation
-              ? "100%"
-              : width,
-          translateY: isMobileNavVisible ? 0 : y,
-        }}
-        className="will-change-[width,transform] transition-all mx-auto navbar relative px-4 max-md:!w-full"
+    <nav className="max-w-screen-lg mx-auto sticky top-0 z-50 px-4">
+      <div
+        className={clsx(
+          "navbar relative rounded-2xl px-4 transition-shadow duration-200",
+          isScrolled
+            ? "bg-base-200/90 backdrop-blur shadow-lg border border-base-300"
+            : "bg-base-200/60 backdrop-blur-sm border border-transparent"
+        )}
       >
-        <motion.div
-          style={{ opacity: isMobileNavVisible ? 1 : opacity }}
-          className={clsx(
-            "will-change-[border-radius,opacity] transition-all z-[-1] rounded-full absolute left-0 right-0 top-0 bottom-0 bg-base-100 shadow-xl",
-            {
-              "rounded-none": isMobileNavVisible,
-            }
-          )}
-        />
         <div className="navbar-start">
-          <a href="/" className="flex items-center">
-            <img className="h-16" src={logo} alt="logo" />
-            <span className="font-bold mx-1 md:text-lg">{name}</span>
+          <a href="/" className="flex items-center gap-2">
+            {/*
+              Logo en línea, no <img>: el arco del logo necesita un color distinto
+              según el fondo (#1a1a1a daba 1,13:1 sobre el navy del tema oscuro y
+              quedaba invisible). Inline SVG hereda `currentColor`, así que un solo
+              componente sirve para los dos temas.
+              Generado por scripts/build-logo.py.
+            */}
+            <svg
+              viewBox="144 316 736 394"
+              className="h-8 w-auto"
+              role="img"
+              aria-label={`${name} logo`}
+            >
+              <title>{name}</title>
+              <path
+                d="M150.5 683 A361.5 361.5 0 0 1 873.5 683"
+                fill="none"
+                stroke="var(--rally-logo-arc, currentColor)"
+                strokeWidth="12"
+              />
+              <g fill="#ff0000">
+                <path d="M845.7 653.8 A335 335 0 0 1 792.2 641.1 L806.4 633.9 A335 335 0 0 0 845.7 653.8 Z" />
+                <path d="M773.1 635.3 A335 335 0 0 1 627.9 518.9 L650.9 521.9 A335 335 0 0 0 773.1 635.3 Z" />
+                <path d="M603.5 509.3 A335 335 0 0 1 377.2 494.0 L386.0 472.5 A335 335 0 0 0 603.5 509.3 Z" />
+                <path d="M357.4 485.4 A335 335 0 0 1 252.6 540.6 L272.3 552.6 A335 335 0 0 0 357.4 485.4 Z" />
+                <path d="M237.4 554.7 A335 335 0 0 1 191.6 631.2 L217.4 630.6 A335 335 0 0 0 237.4 554.7 Z" />
+                <path d="M190.0 642.5 A335 335 0 0 1 182.1 624.8 L184.0 625.2 A335 335 0 0 0 190.0 642.5 Z" />
+              </g>
+              <path d="M432 694 L601 520 L470 690 Z" fill="#ff0000" />
+              <circle cx="458.5" cy="679" r="31" fill="#ff0000" />
+            </svg>
+            <span className="font-condensed font-bold text-lg md:text-xl">
+              {name}
+            </span>
           </a>
         </div>
-        <div className="navbar-end md:hidden">
+
+        <div className="navbar-end lg:hidden">
           {showThemeSwitch && <ThemeSwitcher />}
-          <MenuToggle
-            toggle={() => setIsMobileNavVisible((current) => !current)}
-            isOpen={isMobileNavVisible}
-          />
+          <button
+            type="button"
+            onClick={() => setIsMobileNavVisible((v) => !v)}
+            aria-expanded={isMobileNavVisible}
+            aria-controls="mobile-menu"
+            aria-label={isMobileNavVisible ? "Cerrar menú" : "Abrir menú"}
+            className="btn btn-ghost btn-sm px-2"
+          >
+            <MenuToggle isOpen={isMobileNavVisible} />
+          </button>
         </div>
-        <div className="navbar-end hidden font-semibold md:flex">
-          <ul className="flex gap-4 px-1 items-center">
+
+        <div className="navbar-end hidden font-semibold lg:flex">
+          <ul className="flex gap-5 px-1 items-center list-none m-0">
             {showThemeSwitch && <ThemeSwitcher />}
-            {topNavbar.links.map(({ title, href }, index) => (
-              <li key={index}>
+            {topNavbar.links.map(({ title, href }) => (
+              <li key={href} className="m-0">
                 <a
                   className="text-sm whitespace-nowrap link link-hover"
                   href={href}
@@ -80,54 +127,62 @@ function Navbar() {
             ))}
           </ul>
           {topNavbar.cta && (
-            <a href="/app" className="ml-3 btn btn-primary btn-outline py-4">
+            <a
+              href="/app"
+              className="ml-4 btn btn-primary btn-outline py-4 font-condensed"
+            >
               {topNavbar.cta}
             </a>
           )}
         </div>
-      </motion.div>
+      </div>
+
       <AnimatedList
         listKey="mobile-navbar"
-        listClassName="absolute bg-base-100 top-20 shadow-lg rounded-b-lg w-full px-4 flex flex-col gap-2 md:hidden"
+        listClassName="absolute bg-base-200 left-4 right-4 top-full mt-2 shadow-lg rounded-2xl border border-base-300 px-4 py-3 flex flex-col gap-2 lg:hidden"
         isVisible={isMobileNavVisible}
       >
-        {topNavbar.links.map(({ title, href }, index) => (
-          <motion.a
-            key={index}
-            className="btn btn-ghost w-full"
-            href={href}
-            variants={{
-              show: { x: 0 },
-              hidden: { x: "-100%" },
-            }}
-          >
-            {title}
-          </motion.a>
-        ))}
-        <motion.ul
-          variants={{
-            show: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: "100%" },
-          }}
-          className="menu menu-horizontal justify-center py-0 px-1"
-        >
+        <div id="mobile-menu">
+        <ul className="list-none p-0 m-0 flex flex-col gap-1">
+          {topNavbar.links.map(({ title, href }) => (
+            <li key={href} className="m-0 w-full">
+              <a
+                className="btn btn-ghost w-full justify-start"
+                href={href}
+                onClick={() => setIsMobileNavVisible(false)}
+              >
+                {title}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <ul className="menu menu-horizontal justify-center py-0 px-1 list-none">
           {googlePlayLink && (
             <li className="mb-2">
-              <a href={googlePlayLink} target="_blank">
-                <img className="h-12" src="/stores/google-play.svg" />
+              <a href={googlePlayLink} target="_blank" rel="noopener">
+                <img
+                  className="h-12"
+                  src="/stores/google-play.svg"
+                  alt="Get it on Google Play"
+                />
               </a>
             </li>
           )}
           {appStoreLink && (
             <li className="mb-2">
-              <a href={appStoreLink} target="_blank">
-                <img className="h-12" src="/stores/app-store.svg" />
+              <a href={appStoreLink} target="_blank" rel="noopener">
+                <img
+                  className="h-12"
+                  src="/stores/app-store.svg"
+                  alt="Download on the App Store"
+                />
               </a>
             </li>
           )}
-        </motion.ul>
+        </ul>
+        </div>
       </AnimatedList>
-    </motion.nav>
+    </nav>
   );
 }
 

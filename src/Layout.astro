@@ -2,9 +2,46 @@
 import "swiper/css";
 import "@styles/styles.scss";
 import type { TemplateConfig } from "utils/configType";
+import defaultConfig from "utils/config";
+import { buildJsonLd } from "utils/seo";
 
-const { backgroundGrid, seo, logo, theme, forceTheme } =
-  Astro.props as TemplateConfig;
+type Seo = TemplateConfig["seo"];
+
+interface Props extends Pick<
+  TemplateConfig,
+  "backgroundGrid" | "logo" | "ogImage" | "theme" | "forceTheme" | "name"
+> {
+  seo: Seo;
+  /** Marca la pagina como no indexable (paginas de redireccion, etc.). */
+  noindex?: boolean;
+  /** La pagina lleva el FAQ: se anade el bloque FAQPage al JSON-LD. */
+  withFaq?: boolean;
+  /** Politica legal, para el BreadcrumbList. */
+  breadcrumb?: { name: string };
+}
+
+const {
+  backgroundGrid,
+  seo,
+  ogImage,
+  theme,
+  forceTheme,
+  name,
+  noindex = false,
+  withFaq = false,
+  breadcrumb,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const socialImage = new URL(ogImage, Astro.site ?? Astro.url);
+
+// ROADMAP.md E2.0
+const jsonLd = buildJsonLd({
+  config: defaultConfig,
+  url: canonical.href,
+  faq: withFaq ? defaultConfig.home.faq : undefined,
+  breadcrumb: breadcrumb ? [breadcrumb] : undefined,
+});
 ---
 
 <!doctype html>
@@ -14,43 +51,72 @@ const { backgroundGrid, seo, logo, theme, forceTheme } =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0a0c10"
+      media="(prefers-color-scheme: dark)"
+    />
 
     <!-- Primary Meta Tags -->
     <title>{seo.title}</title>
-    <meta name="title" content={seo.title} />
     <meta name="description" content={seo.description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:site_name" content={name} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
-    <meta property="og:image" content={new URL(logo, Astro.url)} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Rally Hud — speed and G-force HUD for Android and iOS" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={seo.title} />
-    <meta property="twitter:description" content={seo.description} />
-    <meta property="twitter:image" content={new URL(logo, Astro.url)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={socialImage} />
+
+    <!-- Datos estructurados (ROADMAP.md E2.0). aggregateRating NO se incluye:
+         ambas stores devuelven 0 ratings y marcarlos sería invención. -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 
     <script is:inline define:vars={{ forceTheme }}>
-      function getPreferredColorScheme() {
-        if (!window.matchMedia) {
-          return;
+      // El HTML ya ships con el tema por defecto (rally-dark). Este script solo
+      // aplica la eleccion explicita del usuario, guardada en localStorage.
+      // Antes solo sabia escribir "dark", que era un nombre de tema de daisyUI
+      // y ya no existe en el sistema de diseño propio.
+      try {
+        const stored = localStorage.getItem("rally-theme");
+        if (stored && !forceTheme) {
+          document.documentElement.setAttribute("data-theme", stored);
         }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
+      } catch (e) {
+        // localStorage puede estar bloqueado (modo privado, iframes).
+        // En ese caso se mantiene el tema por defecto.
       }
-      const theme = localStorage.getItem("theme") ?? getPreferredColorScheme();
-      if (theme === "dark" && !forceTheme)
-        document.documentElement.setAttribute("data-theme", theme);
     </script>
   </head>
-  <body class="relative">
-    {backgroundGrid && <div class="backgroundGrid" />}
+  <!-- Fondo base explicito: sin esto el `body` queda transparente y el color
+     depende de lo que daisyUI aplique a `html`. ROADMAP.md E2.2 -->
+  <body class="relative bg-base-100 text-base-content">
+    <!-- ROADMAP.md E2.12: el grid tecnico y el halo del hero son decoracion,
+         por eso van con aria-hidden para no announcing nada al lector. -->
+    {backgroundGrid && <div class="backgroundGrid" aria-hidden="true" />}
+    <div class="hero-glow" aria-hidden="true" />
     <slot />
   </body>
 </html>

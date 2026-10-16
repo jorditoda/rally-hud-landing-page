@@ -1,72 +1,77 @@
 import { useContext, useEffect, useState } from "react";
 import { ConfigContext } from "../../utils/configContext";
 
+const STORAGE_KEY = "rally-theme";
+
 function ThemeSwitcher() {
   const config = useContext(ConfigContext);
-  const [mode, setMode] = useState<string>();
+  const darkTheme = config?.theme ?? "rally-dark";
+  const lightTheme = config?.alternateTheme ?? "rally-light";
+
+  // El tema activo se lee del DOM: es la unica fuente fiable, porque lo puede
+  // haber cambiado el script inline del Layout antes de hidratar React.
+  const [activeTheme, setActiveTheme] = useState(darkTheme);
 
   useEffect(() => {
-    function getPreferredColorScheme() {
-      if (!window.matchMedia) {
-        return;
-      }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
-    }
-    const theme = localStorage.getItem("theme") ?? getPreferredColorScheme();
-    if (!theme) return;
-    setMode(theme);
+    setActiveTheme(document.documentElement.getAttribute("data-theme") ?? darkTheme);
   }, []);
 
+  const isDark = activeTheme === darkTheme;
+
+  function toggle() {
+    const next = isDark ? lightTheme : darkTheme;
+    document.documentElement.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      // Sin persistencia, el cambio sigue siendo valido durante la sesion.
+    }
+    setActiveTheme(next);
+  }
+
   return (
-    <label className="flex cursor-pointer gap-2 items-center mr-4 md:mr-0">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="5" />
-        <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-      </svg>
-      <input
-        type="checkbox"
-        autoComplete="off"
-        checked={mode === "dark"}
-        className="toggle toggle-sm"
-        onChange={(event) => {
-          let mode: string | undefined;
-          if (event.currentTarget.checked) {
-            mode = "dark";
-          } else {
-            mode = config?.theme;
-          }
-          if (!mode) return;
-          document.documentElement.setAttribute("data-theme", mode);
-          localStorage.setItem("theme", mode);
-          setMode(mode);
-        }}
-      />
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-      </svg>
-    </label>
+    <button
+      type="button"
+      onClick={toggle}
+      aria-pressed={isDark}
+      className="btn btn-ghost btn-sm px-2 gap-2"
+    >
+      {isDark ? (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="5" />
+          <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+        </svg>
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      )}
+      <span className="sr-only">
+        {isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
+      </span>
+    </button>
   );
 }
 

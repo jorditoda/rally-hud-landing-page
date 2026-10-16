@@ -1,5 +1,5 @@
 import AnimatedText from "../../../../components/animatedText";
-import clsx from "clsx";
+import { Icon } from "../../../../components/icons";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ConfigContext } from "../../../../utils/configContext";
@@ -11,16 +11,11 @@ function Features() {
   if (!features) return null;
 
   return (
-    <section id={features.id} className="max-w-screen-lg mx-auto px-4 py-12">
-      <div className="mb-12 max-w-none flex flex-col items-center prose prose-lg text-center">
-        <h1 className="mb-3">
+    <section id={features.id} className="section-y max-w-screen-lg mx-auto px-4">
+      <div className="section-head max-w-none flex flex-col items-center prose prose-lg text-center">
+        <h2 className="mb-3">
           <AnimatedText text={features.title} />
-        </h1>
-        <motion.div
-          className="h-2 bg-gradient-to-r from-primary to-secondary rounded-full overflow-hidden [--w:200px] md:[--w:350px]"
-          whileInView={{ width: "var(--w)" }}
-          viewport={{ amount: 1, once: true, margin: "0px 0px -100px 0px" }}
-        />
+        </h2>
         {features.subtitle && (
           <motion.p
             initial={{ y: "100%", opacity: 0 }}
@@ -32,51 +27,36 @@ function Features() {
           </motion.p>
         )}
       </div>
-      <motion.div
+      <motion.ul
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6"
+        viewport={{ once: true, amount: 0.2 }}
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 list-none p-0 m-0"
       >
         {features.cards.map((feat, index) => (
-          <motion.div
-            key={index}
+          <motion.li
+            key={feat.title}
             variants={{
-              hidden: { x: "-100%", opacity: 0 },
-              visible: { x: 0, opacity: 1 },
+              hidden: { y: 24, opacity: 0 },
+              visible: { y: 0, opacity: 1 },
             }}
-            transition={{ delay: 0.25 + index * 0.25 }}
-            className={clsx(
-              "shadow-md border-primary/10 border-2 card relative overflow-hidden group px-12",
-              {
-                "col-span-2":
-                  index === features!.cards.length - 1 &&
-                  features!.cards.length % 2 === 1,
-              }
-            )}
+            transition={{ delay: (index % 2) * 0.08 }}
+            className="surface-card bg-base-200 card p-6 flex gap-4 items-start"
           >
-            <div className="relative mb-4 mt-4">
-              <div
-                className={clsx(
-                  "absolute left-0 right-0 top-0 bottom-0 bg-secondary/50 -z-10 rounded-lg"
-                )}
-              />
-              <figure className="py-4">
-                <img
-                  src={feat.icon}
-                  alt="feature icon"
-                  className="w-40 transition-transform group-hover:scale-90"
-                />
-              </figure>
+            {/* Icono de 24px y trazo 2, segun el sistema de diseno. */}
+            <Icon
+              name={feat.icon}
+              className="w-6 h-6 shrink-0 text-primary mt-0.5"
+            />
+            <div className="min-w-0">
+              <h3 className="card-title text-xl font-condensed font-bold m-0 p-0">
+                {feat.title}
+              </h3>
+              <p className="opacity-70 my-2 leading-relaxed">{feat.subtitle}</p>
             </div>
-            <div className="w-full pt-0 px-0 card-body items-center text-center transition-transform max-w-none group-hover:scale-95">
-              <h2 className="card-title text-2xl font-bold">{feat.title}</h2>
-              <div className="h-0.5 w-full bg-primary/10" />
-              <p className="opacity-[.7]">{feat.subtitle}</p>
-            </div>
-          </motion.div>
+          </motion.li>
         ))}
-      </motion.div>
+      </motion.ul>
     </section>
   );
 }

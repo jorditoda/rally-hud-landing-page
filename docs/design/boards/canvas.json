@@ -1,0 +1,276 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-14T19:40:00Z"
+  },
+  "title": "Rally HUD — Rediseño de pantallas",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1240,
+      "h": 2060,
+      "title": "00 · Análisis · pantallas actuales"
+    },
+    "Problemas.dc.html": {
+      "x": 1320,
+      "y": 0,
+      "w": 1240,
+      "h": 1700,
+      "title": "00 · Análisis · problemas y huecos"
+    },
+    "Sistema-Base.dc.html": {
+      "x": 0,
+      "y": 2480,
+      "w": 1240,
+      "h": 1480,
+      "title": "01 · Sistema · color y tipografía"
+    },
+    "Sistema-Componentes.dc.html": {
+      "x": 1320,
+      "y": 2480,
+      "w": 1240,
+      "h": 1700,
+      "title": "01 · Sistema · componentes y Flutter"
+    },
+    "HUD-Conduccion.dc.html": {
+      "x": 0,
+      "y": 4600,
+      "w": 844,
+      "h": 390,
+      "title": "02 · HUD · Conducción (mejora)",
+      "is_interactive": true
+    },
+    "HUD-Preparado.dc.html": {
+      "x": 924,
+      "y": 4600,
+      "w": 844,
+      "h": 390,
+      "title": "03 · HUD · Segmento cerca (nueva)"
+    },
+    "HUD-EnCurso.dc.html": {
+      "x": 1848,
+      "y": 4600,
+      "w": 844,
+      "h": 390,
+      "title": "04 · HUD · Segmento en curso (mejora)"
+    },
+    "HUD-Resultado.dc.html": {
+      "x": 0,
+      "y": 5110,
+      "w": 844,
+      "h": 390,
+      "title": "05 · HUD · Resultado (nueva)"
+    },
+    "HUD-Dia.dc.html": {
+      "x": 924,
+      "y": 5110,
+      "w": 844,
+      "h": 390,
+      "title": "06 · HUD · Modo día (mejora)"
+    },
+    "HUD-Instrumentos.dc.html": {
+      "x": 1848,
+      "y": 5110,
+      "w": 844,
+      "h": 390,
+      "title": "07 · HUD · Instrumentos (mejora)"
+    },
+    "HUD-SinGPS.dc.html": {
+      "x": 0,
+      "y": 5620,
+      "w": 844,
+      "h": 390,
+      "title": "08 · HUD · Sin ubicación (nueva)"
+    },
+    "HUD-Menu.dc.html": {
+      "x": 924,
+      "y": 5620,
+      "w": 844,
+      "h": 390,
+      "title": "09 · HUD · Menú (mejora)",
+      "is_interactive": true
+    },
+    "HUD-Notas.dc.html": {
+      "x": 1848,
+      "y": 5620,
+      "w": 844,
+      "h": 390,
+      "title": "10 · HUD · Notas de ruta (mejora)"
+    },
+    "App-Bienvenida.dc.html": {
+      "x": 0,
+      "y": 6430,
+      "w": 390,
+      "h": 844,
+      "title": "11 · Antes de conducir (nueva)",
+      "is_interactive": true
+    },
+    "App-Acceso.dc.html": {
+      "x": 470,
+      "y": 6430,
+      "w": 390,
+      "h": 844,
+      "title": "12 · Acceso (mejora)",
+      "is_interactive": true
+    },
+    "App-Explorar.dc.html": {
+      "x": 940,
+      "y": 6430,
+      "w": 390,
+      "h": 844,
+      "title": "13 · Segmentos (nueva)",
+      "is_interactive": true
+    },
+    "App-Segmento.dc.html": {
+      "x": 1410,
+      "y": 6430,
+      "w": 390,
+      "h": 844,
+      "title": "14 · Detalle de segmento (nueva)",
+      "is_interactive": true
+    },
+    "App-CrearTrazar.dc.html": {
+      "x": 1880,
+      "y": 6430,
+      "w": 390,
+      "h": 844,
+      "title": "15 · Crear segmento · trazar (mejora)",
+      "is_interactive": true
+    },
+    "App-CrearGuardar.dc.html": {
+      "x": 2350,
+      "y": 6430,
+      "w": 390,
+      "h": 844,
+      "title": "16 · Crear segmento · guardar (mejora)",
+      "is_interactive": true
+    },
+    "App-Ranking.dc.html": {
+      "x": 0,
+      "y": 7394,
+      "w": 390,
+      "h": 844,
+      "title": "17 · Ranking (mejora)",
+      "is_interactive": true
+    },
+    "App-MisTiempos.dc.html": {
+      "x": 470,
+      "y": 7394,
+      "w": 390,
+      "h": 844,
+      "title": "18 · Mis tiempos (mejora)",
+      "is_interactive": true
+    },
+    "App-Tiempo.dc.html": {
+      "x": 940,
+      "y": 7394,
+      "w": 390,
+      "h": 844,
+      "title": "19 · Detalle de un tiempo (nueva)",
+      "is_interactive": true
+    },
+    "App-Garaje.dc.html": {
+      "x": 1410,
+      "y": 7394,
+      "w": 390,
+      "h": 844,
+      "title": "20 · Garaje (mejora)",
+      "is_interactive": true
+    },
+    "App-Vehiculo.dc.html": {
+      "x": 1880,
+      "y": 7394,
+      "w": 390,
+      "h": 844,
+      "title": "21 · Vehículo (mejora)",
+      "is_interactive": true
+    },
+    "App-Perfil.dc.html": {
+      "x": 2350,
+      "y": 7394,
+      "w": 390,
+      "h": 844,
+      "title": "22 · Perfil y ajustes (mejora)",
+      "is_interactive": true
+    },
+    "App-Estados.dc.html": {
+      "x": 0,
+      "y": 8658,
+      "w": 1240,
+      "h": 600,
+      "title": "23 · Estados vacíos y errores (nueva)"
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Problemas.dc.html",
+    "Sistema-Base.dc.html",
+    "Sistema-Componentes.dc.html",
+    "HUD-Conduccion.dc.html",
+    "HUD-Preparado.dc.html",
+    "HUD-EnCurso.dc.html",
+    "HUD-Resultado.dc.html",
+    "HUD-Dia.dc.html",
+    "HUD-Instrumentos.dc.html",
+    "HUD-SinGPS.dc.html",
+    "HUD-Menu.dc.html",
+    "HUD-Notas.dc.html",
+    "App-Bienvenida.dc.html",
+    "App-Acceso.dc.html",
+    "App-Explorar.dc.html",
+    "App-Segmento.dc.html",
+    "App-CrearTrazar.dc.html",
+    "App-CrearGuardar.dc.html",
+    "App-Ranking.dc.html",
+    "App-MisTiempos.dc.html",
+    "App-Tiempo.dc.html",
+    "App-Garaje.dc.html",
+    "App-Vehiculo.dc.html",
+    "App-Perfil.dc.html",
+    "App-Estados.dc.html"
+  ],
+  "notes": {
+    "t-analisis": {
+      "x": 0,
+      "y": -300,
+      "text": "Análisis: lo que hay y lo que falta",
+      "kind": "title1",
+      "maxW": 2560
+    },
+    "t-sistema": {
+      "x": 0,
+      "y": 2180,
+      "text": "Sistema de diseño",
+      "kind": "title1",
+      "maxW": 2560
+    },
+    "t-hud": {
+      "x": 0,
+      "y": 4300,
+      "text": "HUD en conducción · pantalla apaisada",
+      "kind": "title1",
+      "maxW": 2692
+    },
+    "t-app": {
+      "x": 0,
+      "y": 6130,
+      "text": "App fuera de la conducción · vertical",
+      "kind": "title1",
+      "maxW": 2740
+    },
+    "t-estados": {
+      "x": 0,
+      "y": 8358,
+      "text": "Estados vacíos y errores",
+      "kind": "title1",
+      "maxW": 1240
+    }
+  },
+  "designSystems": []
+}

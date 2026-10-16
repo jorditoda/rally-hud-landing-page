@@ -39,7 +39,8 @@ function Header() {
                   </motion.div>
                 ))}
               </div>
-              <motion.h2
+              {/* Unico <h1> de la pagina. Las secciones van en <h2>. */}
+              <motion.h1
                 initial={{ opacity: 0, rotateZ: -10 }}
                 animate={{ opacity: 1, rotateZ: 0 }}
                 className="mt-0 mb-4 text-4xl md:text-6xl"
@@ -63,7 +64,7 @@ function Header() {
                           height: "100%",
                         }}
                         transition={{ duration: 0.6, delay: 1 }}
-                        className="w-0 h-full top-0 left-0 z-[-1] absolute inline-block bg-gradient-to-r from-primary/80 to-secondary/40 rounded-lg"
+                        className="w-0 h-full top-0 left-0 z-[-1] absolute inline-block bg-primary/25 rounded-lg"
                       />
                     </span>{" "}
                     {header.headline
@@ -74,7 +75,7 @@ function Header() {
                 ) : (
                   header.headline
                 )}
-              </motion.h2>
+              </motion.h1>
               <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 0.7, x: 0 }}
@@ -112,36 +113,6 @@ function Header() {
                   </li>
                 )}
               </motion.ul>
-              {header.usersDescription && (
-                <div className="not-prose flex items-center gap-2 my-1">
-                  <ul className="avatar-group -space-x-4">
-                    {Array.from(Array(5)).map((_, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.3 + index * 0.2 }}
-                        className="avatar"
-                      >
-                        <div className="w-8">
-                          <img
-                            src={`/avatars/${index + 1}.webp`}
-                            alt={`app user ${index + 1}`}
-                          />
-                        </div>
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <motion.p
-                    className="text-sm"
-                    initial={{ scale: 0, opacity: 0, y: "100%" }}
-                    animate={{ scale: 1, opacity: 1, y: 0 }}
-                    transition={{ delay: 1.1 }}
-                  >
-                    {header.usersDescription}
-                  </motion.p>
-                </div>
-              )}
             </div>
           </div>
           <div className="min-h-[300vh] z-[-1]" ref={ref}>

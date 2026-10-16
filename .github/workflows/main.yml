@@ -1,8 +1,15 @@
-name: Deploy pnpm to GitHub pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ master]
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+# Evita despliegues concurrentes que compitan por el mismo environment.
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -10,35 +17,69 @@ permissions:
   id-token: write
 
 jobs:
-    build:
-      environment:
-        name: github-pages
-      runs-on: ubuntu-latest
+  # Verificación: corre en pushes a master y en todos los PRs.
+  # Si esto falla, no se despliega nada.
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
 
-      strategy:
-        matrix:
-          node-version: [latest]
-      steps:
-        - uses: actions/checkout@v6
-        - uses: pnpm/action-setup@v4
-          with:
-            version: 7
-        - name: Use Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v6
-          with:
-            node-version: ${{ matrix.node-version }}
-            cache: pnpm
-        - name: Install dependencies
-          run: pnpm install
-        - name: Build
-          run: pnpm run build
-        - name: Setup Pages
-          uses: actions/configure-pages@v5
-        - name: Upload artifact
-          uses: actions/upload-pages-artifact@v4
-          with:
-            # Upload dist repository
-            path: ./dist
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v4
+      # pnpm 9: el lockfile del repo es lockfileVersion 9.0. Con pnpm 7 el
+      # lockfile se ignora en silencio y se resuelven versiones flotantes.
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm run check
+
+  # Despliegue: solo cuando verify pasa en un push a master.
+  deploy:
+    name: Deploy
+    needs: verify
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          # Upload dist repository
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

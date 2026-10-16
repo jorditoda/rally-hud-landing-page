@@ -1,130 +1,128 @@
 import { useContext } from "react";
 import { ConfigContext } from "../../utils/configContext";
-import Spill from "./svgs/spill";
 import IphoneFrame from "../../components/iphoneFrame";
 import { motion } from "framer-motion";
-import clsx from "clsx";
 
+/**
+ * Banner de descarga.
+ *
+ * Antes era un bloque macizo `bg-primary text-primary-content` con un "Spill"
+ * SVG encima, un degradado cian→violeta que el sistema de diseño no permite:
+ * "un solo acento para lo que se toca y color únicamente cuando significa algo"
+ * (Sistema-Base). Una mancha decorativa de ese tamaño no significa nada.
+ *
+ * Ahora es una superficie del sistema (s1 con borde ln, radio 16) y el cian
+ * queda reservado a lo accionable, como manda el sistema.
+ */
 function AppBanner() {
-  const { googlePlayLink, appStoreLink, appBanner } =
-    useContext(ConfigContext)!;
+  const { googlePlayLink, appStoreLink, appBanner } = useContext(ConfigContext)!;
 
   if (!appBanner) return null;
   return (
-    <motion.section
+    <section
       id={appBanner.id}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.4 }}
       className="relative max-w-screen-lg mx-auto px-4 -mb-6 z-10 md:-mb-10 lg:-mb-14"
     >
       <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
         variants={{
-          hidden: {
-            opacity: 0,
-            scale: 0.9,
-          },
-          visible: {
-            opacity: 1,
-            scale: 1,
-          },
+          hidden: { opacity: 0, y: 16 },
+          visible: { opacity: 1, y: 0 },
         }}
-        transition={{
-          mass: 0.4,
-          type: "spring",
-          duration: 0.2,
-        }}
+        transition={{ duration: 0.25 }}
+        className="surface-card bg-base-200 p-6 md:p-10 flex flex-col items-center gap-8 md:flex-row"
       >
-        <div className="p-4 bg-primary text-primary-content rounded-t-[var(--rounded-box)] flex flex-col items-center md:flex-row">
-          <div className="flex-1 flex flex-col items-center justify-center min-h-full">
-            <motion.h2
-              initial={{ opacity: 0, y: "-100%" }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mt-0 mb-4 text-4xl md:text-6xl"
-            >
-              {appBanner.title}
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: "100%" }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-primary-content/70 whitespace-pre-wrap text-left m-0 mt-1 md:text-lg"
-            >
-              {appBanner.subtitle}
-            </motion.p>
-            <motion.ul
-              initial={{ opacity: 0, y: "100%" }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="list-none flex gap-4 my-6 p-0 w-full"
-            >
-              {googlePlayLink && (
-                <li className="m-0 p-0">
-                  <a href={googlePlayLink}>
-                    <img
-                      className="h-14"
-                      alt="google play logo"
-                      src="/stores/google-play.svg"
-                    />
-                  </a>
-                </li>
-              )}
-              {appStoreLink && (
-                <li className="m-0 p-0">
-                  <a href={appStoreLink}>
-                    <img
-                      className="h-14"
-                      alt="app store logo"
-                      src="/stores/app-store.svg"
-                    />
-                  </a>
-                </li>
-              )}
-            </motion.ul>
-          </div>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            className="relative flex-1 flex justify-center"
+        <div className="flex-1 flex flex-col items-center justify-center text-center md:text-left w-full">
+          <motion.h2
+            initial={{ opacity: 0, y: "-100%" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="mt-0 mb-3 font-condensed font-bold text-4xl md:text-5xl"
           >
-            {appBanner.screenshots.map((src, index) => (
-              <motion.div
-                key={index}
-                variants={{
-                  hidden: {
-                    scale: index > 0 ? 0.9 : 1,
-                    opacity: 0,
-                    rotate: 0,
-                  },
-                  visible: {
-                    scale: index > 0 ? 0.9 : 1,
-                    opacity: 1,
-                    rotate: index === 0 ? 0 : index === 1 ? "-30deg" : "30deg",
-                  },
-                }}
-                transition={{
-                  stiffness: 150,
-                  mass: 0.5,
-                  type: "spring",
-                  delay: index > 0 ? 0.8 : 0.5,
-                }}
-                className={clsx(
-                  "h-[30rem]",
-                  index === 0 && "relative z-20 block",
-                  index === 1 && "absolute origin-bottom-left hidden xl:block",
-                  index === 2 && "absolute origin-bottom-right hidden xl:block"
-                )}
-              >
-                <IphoneFrame src={src} />
-              </motion.div>
-            ))}
-          </motion.div>
+            {appBanner.title}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: "100%" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="whitespace-pre-wrap text-left m-0 max-w-md opacity-70 md:text-lg"
+          >
+            {appBanner.subtitle}
+          </motion.p>
+          <motion.ul
+            initial={{ opacity: 0, y: "100%" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.45 }}
+            className="list-none flex gap-4 my-6 p-0"
+          >
+            {googlePlayLink && (
+              <li className="m-0 p-0">
+                <a href={googlePlayLink} target="_blank" rel="noopener">
+                  <img
+                    className="h-14"
+                    alt="Get it on Google Play"
+                    src="/stores/google-play.svg"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              </li>
+            )}
+            {appStoreLink && (
+              <li className="m-0 p-0">
+                <a href={appStoreLink} target="_blank" rel="noopener">
+                  <img
+                    className="h-14"
+                    alt="Download on the App Store"
+                    src="/stores/app-store.svg"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              </li>
+            )}
+          </motion.ul>
         </div>
-        <Spill className="-translate-y-1"/>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative flex-1 flex justify-center w-full"
+        >
+          {appBanner.screenshots.map((src, index) => (
+            <motion.div
+              key={src}
+              variants={{
+                hidden: { scale: 0.94, opacity: 0 },
+                visible: { scale: 1, opacity: 1 },
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 150,
+                mass: 0.5,
+                delay: 0.3 + index * 0.08,
+              }}
+              className={
+                index === 0
+                  ? "relative z-20 h-[24rem]"
+                  : "absolute origin-bottom hidden h-[24rem] xl:block " +
+                    (index === 1
+                      ? "left-0 -rotate-[30deg] z-10"
+                      : "right-0 rotate-[30deg]")
+              }
+            >
+              <IphoneFrame src={src} />
+            </motion.div>
+          ))}
+        </motion.div>
       </motion.div>
-    </motion.section>
+    </section>
   );
 }
 

@@ -4,6 +4,6 @@ import Layout from "Layout.astro";
 import defaultTemplateConfig from "utils/config";
 ---
 
-<Layout {...defaultTemplateConfig}>
+<Layout {...defaultTemplateConfig} seo={defaultTemplateConfig.app.seo} noindex>
   <AppRedirectionPage client:load config={defaultTemplateConfig} />
 </Layout>

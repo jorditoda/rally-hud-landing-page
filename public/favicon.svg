@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Rally Hud">
+  <!--
+    Favicon de Rally Hud: velocímetro (arco negro + arco rojo cónico + aguja roja).
+    Geometría trazada desde public/logo.png (1024x1024):
+      centro del arco (512,683) · radio arco negro 367 (grosor 12)
+      radio exterior del arco rojo 335 · cubo (458.5,679) r31
+      aguja a 46° con longitud 178
+    Escalado a un viewBox de 64 y engordado ópticamente para que siga
+    siendo legible a 16px (ver ROADMAP.md E0.1).
+  -->
+  <g fill="none" stroke-linecap="butt">
+    <!-- arco exterior negro -->
+    <path d="M9.52 41.91 A22.5 22.5 0 0 1 54.48 41.91" stroke="#1a1a1a" stroke-width="2.6" />
+  </g>
+
+  <!-- arco rojo: grosor cónico (grueso a la derecha, fino a la izquierda) -->
+  <path
+    d="M12.05 41.31
+       A20 20 0 0 1 51.89 40.61
+       L47.53 41.07
+       Q31.65 22.9 11.35 41.26
+       Z"
+    fill="#ff0000"
+  />
+
+  <!-- aguja -->
+  <path d="M27.9 42.7 L36.7 34.1 L29.5 43.2 Z" fill="#ff0000" />
+
+  <!-- cubo central -->
+  <circle cx="28.7" cy="42.4" r="2.3" fill="#ff0000" />
+</svg>

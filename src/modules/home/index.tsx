@@ -9,6 +9,8 @@ import Partners from "./_components/partners";
 import Faq from "./_components/faq";
 import HowItWorks from "./_components/howItWorks";
 import Pricing from "./_components/pricing";
+import Proof from "./_components/proof";
+import Showcase from "./_components/showcase";
 import Testimonials from "./_components/testimonials";
 
 interface Props {
@@ -24,7 +26,11 @@ function Home({ config }: Props) {
         <Partners />
         <Features />
         <HowItWorks />
+        <div className="section-alt">
+          <Showcase />
+        </div>
         <Pricing />
+        <Proof />
         <Testimonials />
         <Faq />
         <AppBanner />

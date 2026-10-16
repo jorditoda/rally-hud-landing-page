@@ -1,0 +1,8 @@
+Tableros del rediseño de Rally HUD (fase 1) · 26 ficheros .dc.html
+Copiar a: docs/design/boards/ dentro del repo.
+
+- Se abren con doble clic en cualquier navegador (HTML con estilos en línea; las medidas exactas están ahí).
+- Cargan Barlow y Barlow Condensed desde Google Fonts: con conexión se ven con la tipografía real; sin conexión, con una fuente de sustitución más ancha.
+- Tamaños de referencia: HUD 844 x 390 (apaisado), app 390 x 844 (vertical).
+- canvas.json indica el título y el orden de cada tablero.
+- El plan que las usa: PLAN_AGENTE_PANTALLAS.md (sección 2.5, mapa tablero -> fichero).

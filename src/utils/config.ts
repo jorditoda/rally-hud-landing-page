@@ -1,15 +1,26 @@
 import type { TemplateConfig } from "./configType";
+import { THEME_ALTERNATE, THEME_DEFAULT } from "./theme";
 
 const templateConfig: TemplateConfig = {
   name: "Rally Hud",
   seo: {
-    title: "Download Rally Hud",
-    description: "Rally Hud",
+    title: "Rally Hud — Real-Time Speed & G-Force HUD App",
+    description:
+      "Project your speed, G-forces and lap data onto your windscreen. Works fully offline on Android and iOS. Free, no subscription.",
   },
-  // Draws grid behind main container
-  backgroundGrid: false,
-  logo: "/logo.png",
-  theme: "corporate",
+  // Grid tecnico de fondo, muy tenue (usa el token ln del sistema). ROADMAP.md E2.12
+  backgroundGrid: true,
+  // SVG: el PNG arrastraba fondo blanco y en tema oscuro salia un cuadrado.
+  // Generado por scripts/build-logo.py a partir de la geometria medida.
+  logo: "/logo.svg",
+  // Las plataformas sociales no aceptan SVG en og:image, asi que va aparte.
+  // Generada por scripts/build-og-image.py: 1200x630 con los tokens del tema.
+  ogImage: "/og.png",
+  // Tema por defecto: oscuro y primero, porque la app se usa conduciendo de
+  // noche y su UI es navy. Debe coincidir con una clave de src/utils/theme.ts.
+  theme: THEME_DEFAULT,
+  // Tema al que salta el switch de tema. Mismo origen.
+  alternateTheme: THEME_ALTERNATE,
   // Forces theme to be chosen above, no matter what user prefers
   forceTheme: false,
   // Shows switch to toggle between dark and light modes
@@ -31,147 +42,132 @@ const templateConfig: TemplateConfig = {
     links: [
       { href: "/#features", title: "Features" },
       { href: "/#how-it-works", title: "How it works" },
-      { href: "/#pricing", title: "Pricing" },
+      { href: "/#pricing", title: "Free" },
       { href: "/#faq", title: "FAQ" },
     ],
   },
   topNavbar: {
     cta: "Get the app",
-    disableWidthAnimation: false,
     hideAppStore: false,
     hideGooglePlay: false,
     links: [
       { href: "/#features", title: "Features" },
       { href: "/#how-it-works", title: "How it works" },
-      { href: "/#pricing", title: "Pricing" },
+      { href: "/#pricing", title: "Free" },
       { href: "/#faq", title: "FAQ" },
     ],
   },
   appBanner: {
     id: "app-banner",
-    title: "Download Rally Hud Today!",
+    title: "Start timing your first segment",
     subtitle:
-      "Use it for your nocturnal driving with your project car",
+      "Free on Android and iOS. No subscription, no ads and no account needed.",
     screenshots: [
-      "/screenshots/1.png",
-      "/screenshots/2.png",
-      "/screenshots/3.png",
+      "/screens/board/App-Explorar.png",
+      "/screens/board/App-Tiempo.png",
+      "/screens/board/App-Garaje.png",
     ],
   },
   home: {
     seo: {
-      title: "Download Rally Hud Mobile App",
-      description: "Download Rally Hud Mobile App",
+      title: "Rally Hud — Speed & G-Force HUD for Android and iOS",
+      description:
+        "Real-time speed, G-force and telemetry projected onto your windscreen. Built for rally, track and night driving. Free on Android and iOS.",
     },
     testimonials: {
       id: "testimonials",
-      title: "Testimonials",
-      subtitle: "Check out a few of our customer stories",
+      title: "From the beta testers",
+      subtitle:
+        "Rally Hud is still early. These are the people driving the pre-release build, telling us what works and what does not.",
       cards: [
         {
           name: "Marta G.",
+          role: "Hillclimb competitor",
           comment:
-            "Esta app es exactamente lo que necesitaba. El diseño es elegante y las funcionalidades son perfectas para los que nos gusta estar al tanto de todos los detalles mientras conducimos. ¡Un 10!",
+            "Being able to compare my times between runs is what I was missing with the plain speedometer apps. Tracing my own segments took me two tries.",
         },
         {
           name: "Carlos H.",
+          role: "Track day regular",
           comment:
-            "Una app muy innovadora. Es perfecta para viajes largos y para los que nos gusta tener todo bajo control en el coche. Solo echo en falta la integración con más dispositivos externos.",
+            "What convinced me was the GPS accuracy in metres. When the signal drops it tells me instead of quietly showing me a speed that is not true.",
         },
         {
           name: "Juan P.",
+          role: "Rally navigator",
           comment:
-            "Como piloto de rally, necesito una herramienta confiable y precisa para monitorizar mi rendimiento en tiempo real. Esta app de HUD ha superado todas mis expectativas. La visualización de la velocidad y las fuerzas G es esencial durante las carreras, y me permite ajustar mi conducción al instante. La interfaz es intuitiva y no distrae durante la conducción, lo cual es crucial en los tramos más complicados. ¡Altamente recomendada para cualquier apasionado del rally!",
+            "The G-force trace next to the speed line is the part I did not know I needed. It shows me where I actually lost time, not just where I was slow.",
         },
-//         {
-//           name: "Jose R.",
-//           comment:
-// "Esta app es perfecta para mantener entretenidos a mis hijos durante las salidas. Les encanta buscar los ítems que agregamos en el juego. La nueva función de Bingo añade una competencia sana y mucha diversión.",
-//  },
-//         {
-//           name: "Laura M.",
-//           comment:
-// "La simplicidad y el ingenio de ‘Like This’ me han sorprendido gratamente. Crear mis propias tarjetas de Bingo con ítems originales ha sido una experiencia única. ¡Gran trabajo con esta app!",
-// },
       ],
     },
-//     partners: {
-//       title: "As seen on",
-//       logos: [
-//         "/misc/companies/apple.svg",
-//         "/misc/companies/aws.svg",
-//         "/misc/companies/google.svg",
-//         "/misc/companies/tumblr.svg",
-//       ],
-//     },
     howItWorks: {
       id: "how-it-works",
-      title: "How it works",
+      title: "From the road to your best time",
       subtitle:
-        "Explore our comprehensive step-by-step guide to understand how our process ensures seamless and effective results",
+        "Choose a segment, drive it with the HUD on the windscreen, and see exactly where you gained or lost time.",
       steps: [
         {
-          title: "Install the App",
+          title: "Pick or trace a segment",
           subtitle:
-            "Download and install the app on your device to get started quickly and easily.",
-          image: "/stock/01.webp",
+            "Search near you, browse popular ones, or trace your own between two points. Rally Hud snaps the route to the real road.",
+          image: "/screens/board/App-CrearTrazar.png",
         },
         {
-          title: "Give location permission",
+          title: "Drive with the HUD",
           subtitle:
-            "Give Rally Hud location permissions in order to get the velocity more precise",
-          image: "/stock/02.webp",
+            "Mount the phone, open the HUD and keep your eyes on the road. Speed, lap time, next segment and G-force in a glance.",
+          image: "/screens/board/HUD-Conduccion.png",
         },
         {
-          title: "Start driving",
+          title: "Read your time",
           subtitle:
-            "You can start driving and checking all the information of the journey",
-          image: "/stock/03.webp",
+            "Get the speed trace, the G-forces and the delta against your best. Keep the run, or try again.",
+          image: "/screens/board/App-Tiempo.png",
         },
-//         {
-//           title: "Have fun",
-//           subtitle:
-//             "Play with your friends in a single game and beat them all",
-//           image: "/stock/04.webp",
-//         },
-//         {
-//           title: "Connect with Others",
-//           subtitle:
-//             "Start connecting with friends, colleagues, and like-minded individuals to expand your network and collaborate efficiently.",
-//           image: "/stock/05.webp",
-//         },
       ],
     },
     features: {
       id: "features",
-      title: "All the information you need",
+      title: "Instruments, not a game",
       subtitle:
-        "Elevate your lifestyle with our innovative mobile app, designed for seamless living",
+        "Everything is designed to be read at a glance while driving, and never to ask for your attention when it should stay on the road.",
       cards: [
         {
-          title: "Speed 🎨",
+          icon: "speedometer",
+          title: "Speed",
           subtitle:
-            "Current speed of the vehicle projected onto the windshield, allowing drivers to monitor their speed without taking their eyes off the road.",
-          icon: "/3D/rocket-front-color.webp",
+            "Current speed with a bar showing how far you are from your maximum, plus average and top speed for the run.",
         },
         {
-          title: "G Forces 🎲",
+          icon: "gforce",
+          title: "G-force",
           subtitle:
-            "real-time data on the G-forces experienced during driving, helping drivers better understand their vehicle's dynamics and performance.",
-          icon: "/3D/trophy-front-color.webp",
+            "Lateral, braking and acceleration forces on a single ring, with the peaks of the run and the option to reset them.",
         },
-//         {
-//           title: "Play and Discover 🔍",
-//           subtitle:
-//             "We encourage to explore your surroundings in a fun and exciting way. Every game is a unique adventure that turns everyday activities into thrilling treasure hunts.",
-//           icon: "/3D/notify-heart-front-color.webp",
-//         },
-//         {
-//           title: "Festive Experience ❄️🎄",
-//           subtitle:
-//             "Check the seasonal animations and themes, like the new falling snow animation, which add a magical and festive touch to the gaming experience, making every session special.",
-//           icon: "/3D/gift-front-color.webp",
-//         },
+        {
+          icon: "segment",
+          title: "Segments",
+          subtitle:
+            "Trace your own between two points, snapping to the real road, or browse the segments other drivers have shared near you.",
+        },
+        {
+          icon: "timer",
+          title: "Timing",
+          subtitle:
+            "Lap and trip timer with the distance covered, so every run is measured on the same basis.",
+        },
+        {
+          icon: "trophy",
+          title: "Ranking",
+          subtitle:
+            "See where you stand on each segment and how far you are from your own best time.",
+        },
+        {
+          icon: "noSignal",
+          title: "Honest GPS",
+          subtitle:
+            "Accuracy in metres, always visible. When the signal drops the HUD tells you instead of showing you stale data.",
+        },
       ],
     },
     faq: {
@@ -179,87 +175,150 @@ const templateConfig: TemplateConfig = {
       title: "Frequently Asked Questions",
       qa: [
         {
-          question: "What is the HUD app and how does it work?",
+          question: "What is Rally Hud?",
           answer:
-            "Our HUD (Heads-Up Display) app projects crucial information such as speed and G-forces onto your car’s windshield, allowing for safer, distraction-free driving.",
-            },
-        {
-          question: "Is the app difficult to install and set up?",
-          answer:
-            "No, our app is very easy to install and set up. You just need to download it from the app store and accept location permissions.",
+            "A heads-up display for your phone: it shows speed, lap time and G-force on the windscreen while you drive, and keeps the times you set on the segments you choose.",
         },
         {
-          question: "What devices are compatible with the app?",
+          question: "Do I have to look at the phone while driving?",
           answer:
-            "The app is compatible with most smartphones running iOS and Android operating systems. Make sure you have the latest version of the OS for optimal performance.",
+            "No. The HUD is designed to be read in glances from a mounted phone. Rally Hud is not a game and is not meant to be touched while the car is moving.",
         },
         {
-          question: "Does the app affect my smartphone's performance?",
+          question: "How do I create a segment?",
           answer:
-            "No, our app is designed to be efficient and does not significantly impact your smartphone's performance.",
+            "Trace it on the map between a start and a finish. Rally Hud snaps the line to the real road so your times stay comparable between runs.",
         },
-         {
-           question: "Do I need a special windshield to use the app?",
-           answer:
-             "No, you can use any standard windshield. Just make sure to position your smartphone properly for a clear view.",
-         },
-         {
-           question: "How can I report a problem or give feedback?",
-           answer:
-             "You can contact our technical support team through the contact form on our website or by emailing info@yapplic.com. We’re happy to help.",
-         },
-          {
-            question: "Does the app consume a lot of mobile data?",
-            answer:
-              "he app uses minimal mobile data for certain functions. We recommend using a Wi-Fi connection for updates and initial setup.",
-          },
+        {
+          question: "Does it need an internet connection?",
+          answer:
+            "The HUD uses your phone's GPS and works without a connection. You only need data to download maps and to look at the ranking.",
+        },
+        {
+          question: "What if the GPS signal is lost?",
+          answer:
+            "The HUD shows the accuracy in metres and warns you when the signal is not reliable, instead of quietly showing you wrong numbers.",
+        },
+        {
+          question: "Is it free?",
+          answer:
+            "Yes. Rally Hud is free and has no subscription. Your vehicle and your times stay on your device.",
+        },
+        {
+          question: "Which devices are supported?",
+          answer:
+            "Any recent iPhone or Android phone. You need Android 8 or later, or iOS 15.6 or later, and a mount that holds the phone firmly.",
+        },
+        {
+          question: "How can I report a problem?",
+          answer:
+            "Write to info@yapplic.com. Feedback about a segment, a route or the app itself is always welcome.",
+        },
       ],
     },
     header: {
-      headline: "Enhance Your Driving Experience with Rally Hud",
+      headline: "Your driving, measured",
       subtitle:
-        "Real-Time Speed and G-Force Monitoring for Safer, More Informed Driving",
+        "A HUD for the windscreen and a full timing tool for your favourite roads.",
+      // El mockup de movil del hero es vertical (292x632), asi que aqui solo
+      // pueden ir pantallas de app 390x844. Meter una captura de HUD (844x390)
+      // la deformaba: object-fit fill la estiraba a un hueco vertical.
       screenshots: [
-        "/screenshots/3.png",
-        "/screenshots/2.png",
-        "/screenshots/1.png",
+        "/screens/board/App-Explorar.png",
+        "/screens/board/App-Tiempo.png",
+        "/screens/board/App-Ranking.png",
       ],
-//       rewards: ["App of the year \n 1st", "Product of the day"],
-      usersDescription: "100+ people already using the app",
-      headlineMark: [0, 2],
+      usersDescription: "Join the early adopters",
+      headlineMark: [2, 3],
+    },
+    showcase: {
+      id: "showcase",
+      title: "See it in action",
+      subtitle: "The HUD while you drive, and the screens you use around it.",
+      items: [
+        {
+          image: "/screens/board/HUD-Conduccion.png",
+          caption: "HUD · Driving",
+          note: "Speed, trip timer, next segment and G-force in a single glance.",
+        },
+        {
+          image: "/screens/board/App-Tiempo.png",
+          caption: "Times · Detail",
+          note: "Speed trace, G-forces and your delta against your best run.",
+        },
+        {
+          image: "/screens/board/App-Ranking.png",
+          caption: "Ranking",
+          note: "Your position on the segment and the gap to the times around you.",
+        },
+        {
+          image: "/screens/board/HUD-Instrumentos.png",
+          caption: "HUD · Instruments",
+          note: "Heading, altitude and the last 60 seconds of speed.",
+        },
+      ],
+    },
+    proof: {
+      id: "proof",
+      title: "Built for the road, not for the store",
+      subtitle:
+        "Rally Hud is still early, so instead of a star rating here are the things it actually does.",
+      items: [
+        {
+          icon: "instruments",
+          title: "One screen, everything",
+          text: "Speed, G-force, heading, altitude and the last 60 seconds, without leaving the HUD.",
+        },
+        {
+          icon: "segment",
+          title: "Your roads, not a fixed list",
+          text: "Trace any segment between two points and Rally Hud snaps the line to the real road.",
+        },
+        {
+          icon: "trophy",
+          title: "You race yourself first",
+          text: "Every run is measured against your own best, with the gap shown in tenths.",
+        },
+        {
+          icon: "noSignal",
+          title: "Honest when it cannot know",
+          text: "GPS accuracy is shown in metres, and the HUD warns you when the signal is not reliable.",
+        },
+      ],
     },
     pricing: {
       id: "pricing",
-      title: "Pricing",
-      subtitle: "Free to use",
-      actionText: "Download the app",
-      plans: [
+      title: "Free forever",
+      subtitle:
+        "No subscription, no ads and no account. Your vehicle and your times stay on your device.",
+      promises: [
         {
-          title: "Free Plan",
-          price: "Free",
-          rows: ["Access all gauges"],
+          icon: "timer",
+          title: "Every segment, unlimited",
+          subtitle:
+            "Trace as many segments as you want and run each of them as many times as you like.",
         },
-//         {
-//           title: "Pro",
-//           price: "5.99€/month",
-//           featured: true,
-//           rows: [
-//             "Limitless games",
-//             "Extra functionalities",
-//             "Remove Ads",
-//           ],
-//         },
-//         {
-//           title: "Premium Plan",
-//           price: "22.99€/month",
-//           rows: [
-//             "Customized UI Games",
-//             "Public Games",
-//             "Personalized App",
-//             "Exclusive content",
-//           ],
-//         },
+        {
+          icon: "noSignal",
+          title: "Works offline",
+          subtitle:
+            "The HUD reads your phone's GPS, so a stretch with no coverage does not stop the timing.",
+        },
+        {
+          icon: "phone",
+          title: "No account, no ads",
+          subtitle:
+            "Nothing to sign up for and nothing to watch over your shoulder. Download it and drive.",
+        },
       ],
+      actionText: "Download the app",
+    },
+  },
+  app: {
+    seo: {
+      title: "Download Rally Hud",
+      description:
+        "Taking you to the right store for your device. Rally Hud is free on the App Store and Google Play.",
     },
   },
   privacyPolicy: {
@@ -267,7 +326,7 @@ const templateConfig: TemplateConfig = {
       title: "Privacy Policy - Rally Hud",
       description: "Privacy Policy",
     },
-    content: `**Privacy Policy**
+    content: `# Privacy Policy
 
 This privacy policy applies to the Rally Hud app (hereby referred to as "Application") for mobile devices that was created by Jordi Toda (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
 
@@ -356,7 +415,7 @@ This privacy policy page was generated by [App Privacy Policy Generator](https:/
 
 ## Introduction
 
-This Cookies Policy explains how Yapplic ("we," "our," or "us") uses cookies and similar technologies to recognize you when you visit our app, Like This (the "App"). It explains what these technologies are and why we use them, as well as your rights to control their use.
+This Cookies Policy explains how Yapplic ("we," "our," or "us") uses cookies and similar technologies to recognize you when you visit our app, Rally Hud (the "App"). It explains what these technologies are and why we use them, as well as your rights to control their use.
 
 ## What Are Cookies?
 
@@ -421,7 +480,7 @@ info@yapplic.com
       title: "Terms and conditions - Rally Hud",
       description: "Terms and conditions",
     },
-    content: `**Terms & Conditions**  
+    content: `# Terms and Conditions
 
 These terms and conditions apply to the Rally Hud app (hereby referred to as "Application") for mobile devices that was created by Jordi Toda (hereby referred to as "Service Provider") as a Free service.
 

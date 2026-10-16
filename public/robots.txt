@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Pagina de redireccion a las stores: sin valor para el indice.
+Disallow: /app
+
+Sitemap: https://rallyhud.yapplic.com/sitemap-index.xml
