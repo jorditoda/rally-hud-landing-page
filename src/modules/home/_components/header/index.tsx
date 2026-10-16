@@ -1,6 +1,6 @@
-import { motion, useScroll } from "framer-motion";
-import { useContext, useRef } from "react";
-import { ConfigContext } from "../../../../utils/configContext";
+import {motion, useScroll} from "framer-motion";
+import {useContext, useRef} from "react";
+import {ConfigContext} from "../../../../utils/configContext";
 import SingleScreenshot from "./singleScreenshot";
 import SVGWave from "./svg/wave";
 import SVGBlob from "./svg/blob";
@@ -115,7 +115,7 @@ function Header() {
               </motion.ul>
             </div>
           </div>
-          <div className="min-h-[300vh] z-[-1]" ref={ref}>
+          <div className="min-h-[80vh] z-[-1]" ref={ref}>
             <div className="flex justify-center sticky top-28 md:top-40">
               <SVGBlob
                 scrollYProgress={scrollYProgress}
