@@ -1,22 +1,22 @@
 import AnimatedText from "../../../../components/animatedText";
-import { motion } from "framer-motion";
-import { useContext } from "react";
-import { ConfigContext } from "../../../../utils/configContext";
+import {motion} from "framer-motion";
+import {useContext} from "react";
+import {ConfigContext} from "../../../../utils/configContext";
 
 /**
  * "How it works" — ROADMAP.md E2.4
  *
- * Antes usaba fotos de banco de iOS (una mujer tejiendo, otra mirando una
- * planta). Ahora usa capturas reales del producto, renderizadas de los
- * tableros de diseño con `scripts/render-boards.py`.
+ * Before it used iOS stock photos (a woman knitting, another looking at a
+ * plant). Now it uses real product screenshots, rendered from the design
+ * boards with `scripts/render-boards.py`.
  *
- * Layout: alterna imagen/texto como antes, pero el ritmo vertical se controla
- * con `gap-*` en vez del `gap-52` que dejaba bloques de 13rem de vacío, y ya no
- * hay flechas decorativas: la numeración 01/02/03 en tipografía condensada guía
- * la lectura por sí sola.
+ * Layout: alternates image/text as before, but the vertical rhythm is
+ * controlled with `gap-*` instead of the `gap-52` that left 13rem blocks of
+ * empty space, and there are no more decorative arrows: the 01/02/03 numbering
+ * in condensed type guides the reading on its own.
  *
- * Las capturas mezcla formatos (844x390 apaisado y 390x844 vertical), así que
- * `aspect-[16/10]` con `object-contain` las-normaliza sin recortarlas.
+ * The screenshots mix formats (844x390 landscape and 390x844 portrait), so
+ * `aspect-[16/10]` with `object-contain` normalizes them without cropping.
  */
 function HowItWorks() {
   const {

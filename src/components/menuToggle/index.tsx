@@ -1,19 +1,19 @@
-import { motion, type SVGMotionProps } from "framer-motion";
+import {motion, type SVGMotionProps} from "framer-motion";
 
 interface Props {
   isOpen: boolean;
 }
 
 /**
- * Icono del menú hamburguesa.
+ * Hamburger menu icon.
  *
- * Antes este componente renderizaba su propio `<button>`. Al añadirle
- * `aria-expanded` al navbar, quedó envuelto en OTRO `<button>`, lo que es HTML
- * inválido (`<button>` dentro de `<button>`). React lanzaba en hidratación y la
- * isla entera pasaba a client-rendering, rompiendo cualquier `useEffect`.
+ * Before, this component rendered its own `<button>`. When `aria-expanded` was
+ * added to the navbar, it ended up wrapped in ANOTHER `<button>`, which is
+ * invalid HTML (`<button>` inside `<button>`). React threw during hydration
+ * and the entire island switched to client-rendering, breaking any `useEffect`.
  *
- * Ahora solo pinta el icono. Quien lo usa aporta el `<button>` real, que es
- * donde deben vivir `aria-expanded`, `aria-controls` y `aria-label`.
+ * Now it only draws the icon. The consumer provides the real `<button>`, which
+ * is where `aria-expanded`, `aria-controls` and `aria-label` should live.
  */
 const Path = (props: SVGMotionProps<SVGElement>) => (
   <motion.path

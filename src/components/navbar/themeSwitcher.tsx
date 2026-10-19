@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { ConfigContext } from "../../utils/configContext";
+import {useContext, useEffect, useState} from "react";
+import {ConfigContext} from "../../utils/configContext";
 
 const STORAGE_KEY = "rally-theme";
 
@@ -8,8 +8,8 @@ function ThemeSwitcher() {
   const darkTheme = config?.theme ?? "rally-dark";
   const lightTheme = config?.alternateTheme ?? "rally-light";
 
-  // El tema activo se lee del DOM: es la unica fuente fiable, porque lo puede
-  // haber cambiado el script inline del Layout antes de hidratar React.
+    // The active theme is read from the DOM: it's the only reliable source because it can
+// have changed the inline script before React hydrated.
   const [activeTheme, setActiveTheme] = useState(darkTheme);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function ThemeSwitcher() {
     try {
       localStorage.setItem(STORAGE_KEY, next);
     } catch {
-      // Sin persistencia, el cambio sigue siendo valido durante la sesion.
+        // Without persistence, the change remains valid during the session.
     }
     setActiveTheme(next);
   }

@@ -1,25 +1,25 @@
 /**
- * Datos estructurados JSON-LD — ROADMAP.md E2.0
+ * JSON-LD structured data — ROADMAP.md E2.0
  *
- * Datos verificados contra las fichas reales, NO estimados:
- *   · version y minOS   -> API de iTunes (lookup?id=6739874068)
- *   · precio            -> `price: 0` en App Store y Google Play
- *   · genero            -> "Sports" / "Navigation"
+ * Data verified against the real store listings, NOT estimated:
+ *   · version and minOS -> iTunes API (lookup?id=6739874068)
+ *   · price             -> `price: 0` on App Store and Google Play
+ *   · genre             -> "Sports" / "Navigation"
  *
- * ⚠️ `aggregateRating` NO se incluye a proposito: ambas stores devuelven
- * `userRatingCount: 0`. Marcar un rating inventado es una violacion de las
- * directrices de Google y puede penalizar la pagina. Cuando existan reseñas
- * reales, hay que añadir aqui el valor exacto.
+ * ⚠️ `aggregateRating` is NOT included on purpose: both stores return
+ * `userRatingCount: 0`. Marking an invented rating is a violation of Google's
+ * guidelines and can penalize the page. When real reviews exist, the exact
+ * value must be added here.
  */
 
-import type { TemplateConfig } from "./configType";
+import type {TemplateConfig} from "./configType";
 
 export const APP = {
   name: "Rally Hud",
   version: "1.2.0",
-  /** De la ficha de la App Store. */
+    /** From the App Store listing. */
   iosMin: "15.6",
-  /** De la ficha de Google Play. */
+    /** From the Google Play listing. */
   androidMin: "8",
   price: "0",
   category: "SportsApplication",
@@ -28,11 +28,11 @@ export const APP = {
 
 interface JsonLdOptions {
   config: TemplateConfig;
-  /** URL canonica de la pagina, ya absoluta. */
+    /** Canonical URL of the page, already absolute. */
   url: string;
-  /** FAQ de la home; solo se incluye en esa pagina. */
+    /** FAQ from the home page; only included on that page. */
   faq?: TemplateConfig["home"]["faq"];
-  /** Marca si la pagina es una politica legal, para el BreadcrumbList. */
+    /** Marks if the page is a legal policy, for the BreadcrumbList. */
   breadcrumb?: { name: string }[];
 }
 

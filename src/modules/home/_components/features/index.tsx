@@ -1,8 +1,8 @@
 import AnimatedText from "../../../../components/animatedText";
-import { Icon } from "../../../../components/icons";
-import { motion } from "framer-motion";
-import { useContext } from "react";
-import { ConfigContext } from "../../../../utils/configContext";
+import {Icon} from "../../../../components/icons";
+import {motion} from "framer-motion";
+import {useContext} from "react";
+import {ConfigContext} from "../../../../utils/configContext";
 
 function Features() {
   const {
@@ -43,7 +43,7 @@ function Features() {
             transition={{ delay: (index % 2) * 0.08 }}
             className="surface-card bg-base-200 card p-6 flex gap-4 items-start"
           >
-            {/* Icono de 24px y trazo 2, segun el sistema de diseno. */}
+              {/* 24px icon with 2px stroke, per the design system. */}
             <Icon
               name={feat.icon}
               className="w-6 h-6 shrink-0 text-primary mt-0.5"

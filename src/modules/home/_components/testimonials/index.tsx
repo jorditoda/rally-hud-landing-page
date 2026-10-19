@@ -1,22 +1,22 @@
-import { A11y, Autoplay } from "swiper/modules";
-import type { Swiper as SwiperClass } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {A11y, Autoplay} from "swiper/modules";
+import type {Swiper as SwiperClass} from "swiper";
+import {Swiper, SwiperSlide} from "swiper/react";
 
 import AnimatedText from "../../../../components/animatedText";
-import { motion } from "framer-motion";
-import { useContext, useRef, useState } from "react";
-import { ConfigContext } from "../../../../utils/configContext";
+import {motion} from "framer-motion";
+import {useContext, useRef, useState} from "react";
+import {ConfigContext} from "../../../../utils/configContext";
 
 /**
- * Testimonios — ROADMAP.md E2.7
+ * Testimonials — ROADMAP.md E2.7
  *
- * Antes: tarjetas `bg-primary` azul saturado con estrellas en
- * `bg-primary-content` (negro sobre azul, contraste roto), altura fija
- * `!h-[22rem]` que dejaba huecos con los textos cortos, texto en español en un
- * sitio en inglés y sin avatar ni rol, que es justo lo que da credibilidad.
+ * Before: saturated blue `bg-primary` cards with stars in `bg-primary-content`
+ * (black on blue, broken contrast), fixed height `!h-[22rem]` that left gaps
+ * with short texts, Spanish text on an English site, and no avatar or role,
+ * which is exactly what gives credibility.
  *
- * Decisión del usuario: son **beta testers**, y se etiquetan como tales. No se
- * presentan como reseñas de clientes porque en las stores no hay ninguna.
+ * User decision: they are **beta testers**, and they are labeled as such. They
+ * are not presented as customer reviews because there are none in the stores.
  *
  * El autoplay lleva un control de pausa porque el movimiento automático de más
  * de 5 s incumple WCAG 2.2.2. Se pausa con la API real de Swiper

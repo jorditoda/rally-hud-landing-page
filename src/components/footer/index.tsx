@@ -1,18 +1,18 @@
-import { useContext } from "react";
-import { ConfigContext } from "../../utils/configContext";
+import {useContext} from "react";
+import {ConfigContext} from "../../utils/configContext";
 import InstagramLogo from "./svgs/instagram";
 import FacebookLogo from "./svgs/facebook";
 import TwitterLogo from "./svgs/twitter";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 
 /**
  * Footer.
  *
- * Antes: `text-primary` en los enlaces y el copyright. Con la paleta anterior
- * (primary azul saturado) ya era mucho; con el cian del sistema es peor, porque
- * el cian esta reservado a lo que se toca ("El cian es lo que se toca",
- * Sistema-Base). Aqui ahora el texto va en base-content y el cian solo aparece
- * al pasar por encima o al enfocar.
+ * Before: `text-primary` on links and copyright. With the previous palette
+ * (saturated blue primary) it was already too much; with the system cyan it's
+ * worse, because cyan is reserved for what gets touched ("Cyan is what gets
+ * touched", Sistema-Base). Here the text now uses base-content and cyan only
+ * appears on hover or focus.
  */
 function Footer() {
   const {

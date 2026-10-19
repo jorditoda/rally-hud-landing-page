@@ -1,16 +1,16 @@
 import Footer from "@components/footer";
-import type { TemplateConfig } from "utils/configType";
-import { ConfigContext } from "utils/configContext";
+import type {TemplateConfig} from "utils/configType";
+import {ConfigContext} from "utils/configContext";
 
 /**
- * Página 404 — ROADMAP.md E2.14
+ * 404 page — ROADMAP.md E2.14
  *
- * Es un módulo como los demás porque el Footer consume `ConfigContext`, y en
- * Astro eso solo se puede Satisfacer desde dentro de la isla React: un
- * `<ConfigContext.Provider>` escrito directamente en el `.astro` no se
- * renderiza, porque Astro solo monta islas de componentes, no de providers.
+ * It is a module like the others because the Footer consumes `ConfigContext`,
+ * and in Astro that can only be satisfied from within the React island: a
+ * `<ConfigContext.Provider>` written directly in the `.astro` does not render,
+ * because Astro only mounts component islands, not providers.
  *
- * El `noindex` y el `seo` los pone el `Layout` de `pages/404.astro`.
+ * `noindex` and `seo` are set by the `Layout` of `pages/404.astro`.
  */
 interface Props {
   config: TemplateConfig;

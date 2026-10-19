@@ -1,23 +1,23 @@
-import { Icon } from "../../../../components/icons";
+import {Icon} from "../../../../components/icons";
 import AnimatedText from "../../../../components/animatedText";
-import { motion } from "framer-motion";
-import { useContext } from "react";
-import { ConfigContext } from "../../../../utils/configContext";
+import {motion} from "framer-motion";
+import {useContext} from "react";
+import {ConfigContext} from "../../../../utils/configContext";
 
 /**
- * Bloque de prueba tecnica — ROADMAP.md E2.9
+ * Technical proof block — ROADMAP.md E2.9
  *
- * La intencion original era "prueba social", pero en las stores hay **0
- * ratings** y ningun dato de instalaciones, asi que cualquier cifra de usuarios
- * seria inventada. La version honesta son hechos verificables del producto.
+ * The original intention was "social proof", but the stores have **0
+ * ratings** and no installation data, so any user number would be invented.
+ * The honest version is verifiable product facts.
  *
- * Por eso el hero ya no muestra los cinco avatares de stock: con 0 usuarios
- * registrados, cinco caras al lado de "Join early adopters" siguen insinuando
- * gente que usa la app.
+ * That's why the hero no longer shows the five stock avatars: with 0
+ * registered users, five faces next to "Join early adopters" still imply
+ * people using the app.
  *
- * Los cuatro bloques usan el color semantico que les corresponde (Sistema-Base:
- * "color únicamente cuando significa algo"): `info` para lo que es estado,
- * `success` para lo que es capacidad confirmada.
+ * The four blocks use the semantic color that corresponds to them
+ * (Sistema-Base: "color only when it means something"): `info` for what is
+ * status, `success` for what is confirmed capability.
  */
 function Proof() {
   const {
@@ -25,7 +25,7 @@ function Proof() {
   } = useContext(ConfigContext)!;
   if (!proof) return null;
 
-  // Cada bloque con su color, segun el papel que cumple.
+    // Each block with its color, according to its role.
   const tone = [
     "text-info",
     "text-primary",
@@ -60,9 +60,9 @@ function Proof() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: index * 0.06 }}
             className="flex flex-col items-start gap-2 border-t-2 pt-4"
-            // daisyUI v4 emite los tokens en OKLCH (`--in: 74% .15 297`), no en
-            // canales HSL: usar hsl() aqui los haria invalidos y la regla
-            // saldria en el color de texto por defecto.
+              // daisyUI v4 emits tokens in OKLCH (`--in: 74% .15 297`), not in
+              // HSL channels: using hsl() here would make the rules invalid
+              // and the rule would end up in the default text color.
             style={{ borderColor: `oklch(var(--${["in", "p", "su", "wa"][index]}))` }}
           >
             <Icon name={item.icon} className={`w-6 h-6 ${tone[index]}`} />

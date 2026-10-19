@@ -1,19 +1,19 @@
 import AnimatedText from "../../../../components/animatedText";
-import { motion } from "framer-motion";
-import { useContext } from "react";
-import { ConfigContext } from "../../../../utils/configContext";
+import {motion} from "framer-motion";
+import {useContext} from "react";
+import {ConfigContext} from "../../../../utils/configContext";
 
 /**
- * Bloque de capturas anotadas — ROADMAP.md E2.8
+ * Annotated screenshots block — ROADMAP.md E2.8
  *
- * El mayor untapped de conversión que quedaba en una landing de app: enseñar
- * el producto real en lugar de un mockup genérico. Las capturas se renderizan
- * de los tableros de diseño con `scripts/render-boards.py`.
+ * The biggest untapped conversion lever left in an app landing: showing the
+ * real product instead of a generic mockup. Screenshots are rendered from the
+ * design boards with `scripts/render-boards.py`.
  *
- * Mezcla formatos a propósito: la HUD apaisada (844x390) es lo que ve el
- * conductor y la app vertical (390x844) lo que ve al preparar la salida. La
- * retícula `md:grid-cols-2` los-normaliza; dentro de cada tarjeta la imagen usa
- * `object-contain` para no recortar el HUD.
+ * Mixes formats on purpose: the landscape HUD (844x390) is what the driver
+ * sees and the portrait app (390x844) is what they see when preparing the
+ * start. The `md:grid-cols-2` grid normalizes them; inside each card the
+ * image uses `object-contain` to avoid cropping the HUD.
  */
 function Showcase() {
   const {

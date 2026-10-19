@@ -1,5 +1,5 @@
-import { motion, transform, useTransform } from "framer-motion";
-import type { MotionValue } from "framer-motion";
+import type {MotionValue} from "framer-motion";
+import {motion, transform, useTransform} from "framer-motion";
 
 interface Props {
   index: number;
@@ -9,12 +9,12 @@ interface Props {
 }
 
 /**
- * Captura dentro del mockup de movil del hero.
+ * Screenshot inside the hero mobile mockup.
  *
- * El hueco es vertical (292x632). Con `object-fit: fill` una captura apaisada
- * se deformaba, asi que se usa `cover`: recorta lo que sobra en vez de
- * estirar. Se combina con el aviso de config.ts de que aqui solo deben ir
- * pantallas verticales.
+ * The slot is vertical (292x632). With `object-fit: fill` a landscape
+ * screenshot deformed, so `cover` is used: it crops the excess instead of
+ * stretching. Combined with the config.ts note that only vertical screens
+ * should go here.
  */
 function SingleScreenshot({ scrollYProgress, index, totalCount, src }: Props) {
   const x = useTransform(scrollYProgress, (y) => {

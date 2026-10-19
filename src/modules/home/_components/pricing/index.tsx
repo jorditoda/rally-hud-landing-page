@@ -1,23 +1,23 @@
 import AnimatedText from "../../../../components/animatedText";
-import { Icon } from "../../../../components/icons";
-import { motion } from "framer-motion";
-import { useContext } from "react";
-import { ConfigContext } from "../../../../utils/configContext";
+import {Icon} from "../../../../components/icons";
+import {motion} from "framer-motion";
+import {useContext} from "react";
+import {ConfigContext} from "../../../../utils/configContext";
 
 /**
- * Bloque "Free forever" — ROADMAP.md E2.6
+ * "Free forever" block — ROADMAP.md E2.6
  *
- * Antes era una tabla de precios con un unico plan "Free Plan": una tarjeta
- * huerfana de 1/3 de ancho perdida en un mar de blanco, con un `animate-ping`
- * infinito en cada bullet y un monedero 3D de la plantilla.
+ * Before it was a price table with a single "Free Plan": an orphan card 1/3
+ * wide lost in a sea of white, with an infinite `animate-ping` on each bullet
+ * and a 3D wallet from the template.
  *
- * El precio real es 0 en las dos stores (verificado contra la API de iTunes y
- * la ficha de Google Play), asi que una tabla de comparativa no dice nada que
- * el titulo no diga ya. Ahora son las tres garantias que hacen que "gratis"
- * signifique algo, que es el argumento de venta real.
+ * The real price is 0 on both stores (verified against the iTunes API and the
+ * Google Play listing), so a comparison table says nothing the title doesn't
+ * already say. Now it is the three guarantees that make "free" mean something,
+ * which is the real sales pitch.
  *
- * De paso desaparece el bug de E9.0: `planImages` y `planBGs` estaban
- * hardcodeados fuera de la config, asi que anadir un cuarto plan rompia.
+ * This also fixes the E9.0 bug: `planImages` and `planBGs` were hardcoded
+ * outside the config, so adding a fourth plan broke.
  */
 function Pricing() {
   const {

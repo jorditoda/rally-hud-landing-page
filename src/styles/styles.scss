@@ -4,13 +4,13 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ── Ritmo vertical (ROADMAP.md E2.10) ─────────────────────────────────
-   Una sola escala de espaciado entre secciones, para que no se alternen
-   py-12 / py-16 / mb-12 segun quien escribio cada bloque. Tambien fija el
-   ritmo dentro de cada seccion: cabecera -> contenido -> cabecera. */
+/* ── Vertical rhythm (ROADMAP.md E2.10) ─────────────────────────────────
+   A single spacing scale between sections, so py-12 / py-16 / mb-12 don't
+   alternate depending on who wrote each block. Also fixes the rhythm
+   within each section: header -> content -> header. */
 :root {
-  --rally-section-y: 4rem; /* 64 px entre secciones */
-  --rally-gap-title: 2.5rem; /* separacion entre el titulo y el contenido */
+  --rally-section-y: 4rem; /* 64 px between sections */
+  --rally-gap-title: 2.5rem; /* gap between title and content */
 }
 
 .section-y {
@@ -29,18 +29,18 @@ html {
   margin-bottom: var(--rally-gap-title);
 }
 
-/* Alterna el fondo de las secciones para marcar el ritmo sin meterse de
-   espacio en blanco, que es lo que hacia la pagina tan larga antes. */
+/* Alternates the section background to mark the rhythm without adding white
+   space, which is what made the page so long before. */
 .section-alt {
   background-color: oklch(var(--b2));
 }
 
-/* El sistema de diseño (Sistema-Base.dc.html) marca estas reglas:
-     · "El cian es lo que se toca" -> el foco visible va en `primary`.
-     · "Nunca solo color" -> los estados llevan además texto o icono.
-     · "Las líneas son decorativas" (ln = 1,5:1) -> no se usan para separar
-       bloques de texto; para controles pulsables sí hace falta más contraste,
-       por eso se usa t3 (6,2:1), que es color del propio sistema. */
+/* The design system (Sistema-Base.dc.html) sets these rules:
+     · "Cyan is what gets touched" -> visible focus goes to `primary`.
+     · "Never color alone" -> states also carry text or icon.
+     · "Lines are decorative" (ln = 1.5:1) -> not used to separate text
+       blocks; for clickable controls more contrast is needed, so t3 (6.2:1)
+       is used, which is the system's own color. */
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
   outline: 2px solid oklch(var(--p));
   outline-offset: 2px;
@@ -57,16 +57,16 @@ html {
   border-color: var(--rally-control-border, currentColor);
 }
 
-/* Tarjeta del sistema: "CardTheme con radio 16, sin elevación y borde ln"
-   (Sistema-Componentes). El borde NO puede ser `base-300`, porque base-300 es
-   s2 (superficie de campos y chips) y sobre base-100 da 1,19:1, demasiado
-   tenue; la línea del sistema `ln` da 1,51:1, que es justo lo que declara el
-   tablero y es deliberado ("Las líneas son decorativas").
+/* System card: "CardTheme with radius 16, no elevation and ln border"
+   (Sistema-Componentes). The border CANNOT be `base-300`, because base-300 is
+   s2 (fields and chips surface) and on base-100 gives 1.19:1, too faint;
+   the system line `ln` gives 1.51:1, which is exactly what the board declares
+   and is deliberate ("Lines are decorative").
 
-   El fondo NO se fija aquí a propósito: daisyUI v4 emite los tokens en OKLCH
-   (`--b2: 19.8% .036 266.2`), no en canales HSL, así que `oklch(var(--b2))`
-   es inválido y dejaba la tarjeta transparente. Quien use la clase debe
-   añadir `bg-base-200`. */
+   The background is NOT set here on purpose: daisyUI v4 emits tokens in OKLCH
+   (`--b2: 19.8% .036 266.2`), not in HSL channels, so `oklch(var(--b2))`
+   is invalid and left the card transparent. Whoever uses the class must
+   add `bg-base-200`. */
 .surface-card {
   border: 1px solid var(--rally-line, currentColor);
   border-radius: 16px;
@@ -81,9 +81,9 @@ html {
   color: var(--rally-text-3, currentColor);
 }
 
-/* Arco del logo. El negro de marca (#1a1a1a) da 1,13:1 sobre el navy del tema
-   oscuro, o sea invisible; el gris azulado da 3,4:1 en oscuro y 5,9:1 en claro,
-   así que sirve para los dos. El SVG del navbar es inline y usa esta variable. */
+/* Logo arc. The brand black (#1a1a1a) gives 1.13:1 on the dark theme navy,
+   meaning invisible; the bluish gray gives 3.4:1 in dark and 5.9:1 in light,
+   so it works for both. The navbar SVG is inline and uses this variable. */
 :root {
   --rally-logo-arc: #5a6484;
 }
@@ -98,8 +98,8 @@ html {
   position: absolute;
   z-index: -9;
   background-size: 48px 48px;
-  /* Usa la línea del sistema (ln) a muy baja opacidad: se ve la textura sin
-     competir con el texto ni con los bordes de las tarjetas. */
+  /* Uses the system line (ln) at very low opacity: the texture is visible
+     without competing with the text or the card borders. */
   background-image: linear-gradient(
       color-mix(in srgb, var(--rally-line) 70%, transparent) 1px,
       transparent 1px
@@ -112,9 +112,9 @@ html {
   mask-image: linear-gradient(to bottom, black 0%, transparent 70%);
 }
 
-/* Halo muy tenue detrás del hero. El sistema pide "fondo casi negro azulado"
-   y un solo acento; esto solo evita que la parte alta de la página quede plana.
-   Cero Animation, cero JS. */
+/* Very faint halo behind the hero. The system asks for "almost black bluish
+   background" and a single accent; this just prevents the top of the page
+   from looking flat. Zero animation, zero JS. */
 .hero-glow {
   position: absolute;
   inset: 0;
@@ -127,7 +127,7 @@ html {
   );
 }
 
-/* El modo día apenas necesita la textura. */
+/* Day mode barely needs the texture. */
 [data-theme="rally-light"] .backgroundGrid {
   background-image: linear-gradient(
       color-mix(in srgb, var(--rally-line) 90%, transparent) 1px,

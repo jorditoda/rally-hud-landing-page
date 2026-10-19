@@ -1,18 +1,18 @@
 /**
- * Iconografía de Rally HUD — SVG en línea.
+ * Rally HUD iconography — inline SVGs.
  *
- * Reglas del sistema de diseño (Sistema-Base.dc.html, "Medidas"):
- *   "Iconos · Trazo de 2 px, de 22 a 26 px, sin emoji"
+ * Design system rules (Sistema-Base.dc.html, "Measures"):
+ *   "Icons · 2 px stroke, 22 to 26 px, no emoji"
  *
- * Por qué SVG y no PNG: heredan `currentColor`, así que cambian con el tema
- * sin tener dos versiones, y pesan ~200 bytes en vez de ~40 KB.
+ * Why SVG and not PNG: they inherit `currentColor`, so they change with the
+ * theme without needing two versions, and weigh ~200 bytes instead of ~40 KB.
  *
- * Todos los iconos usan viewBox 24x24 y stroke 2 salvo indicación contraria.
+ * All icons use viewBox 24x24 and stroke 2 unless otherwise indicated.
  */
 
 interface IconProps {
   className?: string;
-  /** Para que el lector de pantalla no lea un icono decorativo. */
+    /** So screen readers don't read a decorative icon. */
   title?: string;
 }
 
@@ -29,7 +29,6 @@ const base = (p: IconProps) => ({
   className: p.className,
 });
 
-/** Velocímetro. */
 export const SpeedometerIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M3.5 17a9 9 0 1 1 17 0" />
@@ -39,7 +38,6 @@ export const SpeedometerIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Vector de fuerzas G: el círculo con cruz y punto del panel HUD. */
 export const GForceIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <circle cx="12" cy="12" r="9" />
@@ -49,7 +47,6 @@ export const GForceIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Segmento de ruta: bandera de salida y meta unidas por un trazado. */
 export const SegmentIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M5 21V4" />
@@ -58,7 +55,6 @@ export const SegmentIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Cronómetro: el tiempo que se registra por segmento. */
 export const TimerIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <circle cx="12" cy="13.5" r="7.5" />
@@ -68,7 +64,6 @@ export const TimerIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Ranking: podio. */
 export const TrophyIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z" />
@@ -80,7 +75,6 @@ export const TrophyIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Vehículo: el garaje. */
 export const CarIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M4 15.5h16" />
@@ -92,7 +86,6 @@ export const CarIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Sin cobertura GPS: el estado que la app tiene que comunicar bien. */
 export const NoSignalIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M12 20.5v.01" />
@@ -104,7 +97,6 @@ export const NoSignalIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Rumbo / brújula. */
 export const CompassIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <circle cx="12" cy="12" r="9" />
@@ -112,7 +104,6 @@ export const CompassIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Altitud. */
 export const AltitudeIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M12 3.5 21 20H3l9-16.5Z" />
@@ -120,7 +111,6 @@ export const AltitudeIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Instrumentos: el panel secundario de la HUD. */
 export const InstrumentsIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M5.5 15.5a6.5 6.5 0 1 1 13 0" />
@@ -129,7 +119,6 @@ export const InstrumentsIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Notas de ruta. */
 export const NotesIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M5.5 4.5h13v15l-2.5-1.6-2.5 1.6-2.5-1.6-2.5 1.6-2.5-1.6V4.5Z" />
@@ -137,7 +126,6 @@ export const NotesIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Móvil: la app fuera del coche. */
 export const PhoneIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <rect x="6.5" y="2.5" width="11" height="19" rx="2.5" />
@@ -145,7 +133,6 @@ export const PhoneIcon = (p: IconProps) => (
   </svg>
 );
 
-/** Mapa con ruta: la pantalla de crear trazando. */
 export const MapTraceIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M9 4.5 3.5 6.8v13.2L9 17.7l6 2.3 5.5-2.3V4.5L15 6.8 9 4.5Z" />

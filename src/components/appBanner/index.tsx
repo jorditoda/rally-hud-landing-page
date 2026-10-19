@@ -1,18 +1,18 @@
-import { useContext } from "react";
-import { ConfigContext } from "../../utils/configContext";
+import {useContext} from "react";
+import {ConfigContext} from "../../utils/configContext";
 import IphoneFrame from "../../components/iphoneFrame";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 
 /**
- * Banner de descarga.
+ * Download banner.
  *
- * Antes era un bloque macizo `bg-primary text-primary-content` con un "Spill"
- * SVG encima, un degradado cian→violeta que el sistema de diseño no permite:
- * "un solo acento para lo que se toca y color únicamente cuando significa algo"
- * (Sistema-Base). Una mancha decorativa de ese tamaño no significa nada.
+ * Before it was a solid `bg-primary text-primary-content` block with a "Spill"
+ * SVG on top, a cyan→violet gradient that the design system does not allow:
+ * "a single accent for what gets touched and color only when it means something"
+ * (Sistema-Base). A decorative stain of that size means nothing.
  *
- * Ahora es una superficie del sistema (s1 con borde ln, radio 16) y el cian
- * queda reservado a lo accionable, como manda el sistema.
+ * Now it is a system surface (s1 with ln border, radius 16) and cyan is
+ * reserved for what is actionable, as the system mandates.
  */
 function AppBanner() {
   const { googlePlayLink, appStoreLink, appBanner } = useContext(ConfigContext)!;

@@ -39,7 +39,7 @@ function Header() {
                   </motion.div>
                 ))}
               </div>
-              {/* Unico <h1> de la pagina. Las secciones van en <h2>. */}
+              {/* Only <h1> on the page. Sections use <h2>. */}
               <motion.h1
                 initial={{ opacity: 0, rotateZ: -10 }}
                 animate={{ opacity: 1, rotateZ: 0 }}

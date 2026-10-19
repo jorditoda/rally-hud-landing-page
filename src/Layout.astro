@@ -12,11 +12,11 @@ interface Props extends Pick<
   "backgroundGrid" | "logo" | "ogImage" | "theme" | "forceTheme" | "name"
 > {
   seo: Seo;
-  /** Marca la pagina como no indexable (paginas de redireccion, etc.). */
+  /** Marks the page as no indexable (redirect pages, etc.). */
   noindex?: boolean;
-  /** La pagina lleva el FAQ: se anade el bloque FAQPage al JSON-LD. */
+  /** The page includes the FAQ: adds the FAQPage block to the JSON-LD. */
   withFaq?: boolean;
-  /** Politica legal, para el BreadcrumbList. */
+  /** Legal policy, for the BreadcrumbList. */
   breadcrumb?: { name: string };
 }
 
@@ -90,31 +90,31 @@ const jsonLd = buildJsonLd({
     <meta name="twitter:description" content={seo.description} />
     <meta name="twitter:image" content={socialImage} />
 
-    <!-- Datos estructurados (ROADMAP.md E2.0). aggregateRating NO se incluye:
-         ambas stores devuelven 0 ratings y marcarlos sería invención. -->
+    <!-- Structured data (ROADMAP.md E2.0). aggregateRating is NOT included:
+         both stores return 0 ratings and marking them would be invention. -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 
     <script is:inline define:vars={{ forceTheme }}>
-      // El HTML ya ships con el tema por defecto (rally-dark). Este script solo
-      // aplica la eleccion explicita del usuario, guardada en localStorage.
-      // Antes solo sabia escribir "dark", que era un nombre de tema de daisyUI
-      // y ya no existe en el sistema de diseño propio.
+      // The HTML ships with the default theme (rally-dark). This script only
+// applies the user's explicit choice, saved in localStorage.
+// Before only knew how to write "dark", which was a daisyUI theme name
+// and it no longer exists in the custom design system.
       try {
         const stored = localStorage.getItem("rally-theme");
         if (stored && !forceTheme) {
           document.documentElement.setAttribute("data-theme", stored);
         }
       } catch (e) {
-        // localStorage puede estar bloqueado (modo privado, iframes).
-        // En ese caso se mantiene el tema por defecto.
+        // localStorage can be blocked (private mode, iframes).
+// In that case the default theme is maintained.
       }
     </script>
   </head>
-  <!-- Fondo base explicito: sin esto el `body` queda transparente y el color
-     depende de lo que daisyUI aplique a `html`. ROADMAP.md E2.2 -->
+  <!-- Explicit base background: without it the `body` stays transparent and the
+     color depends on what daisyUI applies to `html`. ROADMAP.md E2.2 -->
   <body class="relative bg-base-100 text-base-content">
-    <!-- ROADMAP.md E2.12: el grid tecnico y el halo del hero son decoracion,
-         por eso van con aria-hidden para no announcing nada al lector. -->
+    <!-- ROADMAP.md E2.12: the technical grid and the hero halo are decoration,
+         so they use aria-hidden to avoid announcing anything to the reader. -->
     {backgroundGrid && <div class="backgroundGrid" aria-hidden="true" />}
     <div class="hero-glow" aria-hidden="true" />
     <slot />

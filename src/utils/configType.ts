@@ -5,10 +5,10 @@ export type TemplateConfig = {
         description: string;
     };
     logo: string;
-    /** Imagen para Open Graph. Debe ser raster (PNG/JPG), no SVG. */
+    /** Image for Open Graph. Must be raster (PNG/JPG), not SVG. */
     ogImage: string;
     theme: string;
-    /** Tema al que alterna el switch. Debe existir en src/utils/theme.ts. */
+    /** Theme the switch alternates to. Must exist in src/utils/theme.ts. */
     alternateTheme: string;
     backgroundGrid: boolean;
     forceTheme: boolean;
@@ -93,7 +93,7 @@ export type TemplateConfig = {
             subtitle?: string | undefined;
             cards: {
                 name: string;
-                /** Rol del piloto. Es lo que da credibilidad: "Piloto de rally". */
+                /** Driver role. It's what gives credibility: "Rally driver". */
                 role?: string | undefined;
                 comment: string;
             }[];
@@ -126,7 +126,7 @@ export type TemplateConfig = {
             title: string;
             subtitle?: string | undefined;
             cards: {
-                /** Clave de src/components/icons (no una ruta: son SVG en línea). */
+                /** Key from src/components/icons (not a path: they are inline SVGs). */
                 icon: import("../components/icons").IconName;
                 title: string;
                 subtitle: string;
@@ -143,11 +143,11 @@ export type TemplateConfig = {
             }[];
         } | undefined;
         /**
-         * Bloque de precio. La app es gratuita (precio 0 confirmado en ambas
-         * stores), asi que esto no es una comparativa de planes sino el
-         * argumento de venta de lo que incluye. ROADMAP.md E2.6.
+         * Price block. The app is free (price 0 confirmed in both stores),
+         * so this is not a plan comparison but the sales pitch for what's
+         * included. ROADMAP.md E2.6.
          */
-        /** Prueba tecnica: hechos verificables en vez de testimonios. */
+        /** Technical proof: verifiable facts instead of testimonials. */
         proof?: {
             id?: string | undefined;
             title: string;
