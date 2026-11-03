@@ -168,6 +168,17 @@ export type TemplateConfig = {
                 title: string;
                 subtitle: string;
             }[] | undefined;
+            /** Free vs Pro plans (v1.4). If present, rendered as two cards. */
+            plans?: {
+                name: string;
+                price: string;
+                priceNote?: string | undefined;
+                highlight?: boolean | undefined;
+                badge?: string | undefined;
+                features: { text: string; included: boolean }[];
+            }[] | undefined;
+            /** Small print under the plans (trial, cancellation, store billing). */
+            footnote?: string | undefined;
         } | undefined;
     };
 }

@@ -6,7 +6,7 @@ const templateConfig: TemplateConfig = {
   seo: {
     title: "Rally Hud — Real-Time Speed & G-Force HUD App",
     description:
-      "Project your speed, G-forces and lap data onto your windscreen. Works fully offline on Android and iOS. Free, no subscription.",
+      "Project your speed, G-forces and lap data onto your windscreen. Works offline on Android and iOS. Free to use, with an optional Pro plan.",
   },
   // Technical background grid, very thin (uses the ln system token). ROADMAP.md E2.12
   backgroundGrid: true,
@@ -37,7 +37,7 @@ const templateConfig: TemplateConfig = {
     links: [
       { href: "/#features", title: "Features" },
       { href: "/#how-it-works", title: "How it works" },
-      { href: "/#pricing", title: "Free" },
+      { href: "/#pricing", title: "Pricing" },
       { href: "/#faq", title: "FAQ" },
     ],
   },
@@ -48,7 +48,7 @@ const templateConfig: TemplateConfig = {
     links: [
       { href: "/#features", title: "Features" },
       { href: "/#how-it-works", title: "How it works" },
-      { href: "/#pricing", title: "Free" },
+      { href: "/#pricing", title: "Pricing" },
       { href: "/#faq", title: "FAQ" },
     ],
   },
@@ -56,7 +56,7 @@ const templateConfig: TemplateConfig = {
     id: "app-banner",
     title: "Start timing your first segment",
     subtitle:
-      "Free on Android and iOS. No subscription, no ads and no account needed.",
+      "Free on Android and iOS, with no ads. Go Pro when you want the full analysis.",
     screenshots: [
       "/screens/board/App-Explorar.png",
       "/screens/board/App-Tiempo.png",
@@ -67,13 +67,13 @@ const templateConfig: TemplateConfig = {
     seo: {
       title: "Rally Hud — Speed & G-Force HUD for Android and iOS",
       description:
-        "Real-time speed, G-force and telemetry projected onto your windscreen. Built for rally, track and night driving. Free on Android and iOS.",
+        "Real-time speed, G-force and telemetry projected onto your windscreen. Built for rally, track and night driving. Free on Android and iOS, with an optional Pro plan.",
     },
     testimonials: {
       id: "testimonials",
       title: "From the beta testers",
       subtitle:
-        "Rally Hud is still early. These are the people driving the pre-release build, telling us what works and what does not.",
+        "The first drivers who tested Rally Hud before launch, telling us what works and what does not.",
       cards: [
         {
           name: "Marta G.",
@@ -197,10 +197,15 @@ const templateConfig: TemplateConfig = {
         {
           question: "Is it free?",
           answer:
-            "Yes. Rally Hud is free and has no subscription. Your vehicle and your times stay on your device.",
+            "Yes. The HUD, timing, ranking and public segments are free, with no ads. Rally Hud Pro (2.99 € a month or 29.99 € a year, with a 7-day free trial) adds the run analysis, private segments, unlimited vehicles and your full history.",
         },
         {
-          question: "Which devices are supported?",
+          question: "What do I get with Pro, and how do I cancel?",
+          answer:
+            "Pro unlocks the analysis of each run (speed and G-force traces), private segments you can share with an invite link, more than 2 vehicles in the garage and your full history of times. It is billed by the App Store or Google Play, and you cancel from your store subscriptions at any time. Anyone you invite to a private segment can join without Pro.",
+        },
+        {
+      question: "Which devices are supported?",
           answer:
             "Any recent iPhone or Android phone. You need Android 8 or later, or iOS 15.6 or later, and a mount that holds the phone firmly.",
         },
@@ -255,7 +260,7 @@ const templateConfig: TemplateConfig = {
       id: "proof",
       title: "Built for the road, not for the store",
       subtitle:
-        "Rally Hud is still early, so instead of a star rating here are the things it actually does.",
+        "Instead of a star rating, here are the things it actually does.",
       items: [
         {
           icon: "instruments",
@@ -281,29 +286,43 @@ const templateConfig: TemplateConfig = {
     },
     pricing: {
       id: "pricing",
-      title: "Free forever",
+      title: "Free to drive. Pro to go deeper.",
       subtitle:
-        "No subscription, no ads and no account. Your vehicle and your times stay on your device.",
-      promises: [
+        "Everything you need on the road is free, with no ads. Pro adds the analysis and the extras for drivers who want more.",
+      plans: [
         {
-          icon: "timer",
-          title: "Every segment, unlimited",
-          subtitle:
-            "Trace as many segments as you want and run each of them as many times as you like.",
+          name: "Free",
+          price: "0 €",
+          priceNote: "forever",
+          features: [
+            { text: "HUD, instruments and segment timing", included: true },
+            { text: "Ranking on every segment", included: true },
+            { text: "Explore, drive and create public segments", included: true },
+            { text: "Share your ranking position", included: true },
+            { text: "Join private segments you are invited to", included: true },
+            { text: "Garage with 2 vehicles", included: true },
+            { text: "Your 5 latest runs", included: true },
+            { text: "Run analysis (speed and G-force traces)", included: false },
+            { text: "Create private segments", included: false },
+          ],
         },
         {
-          icon: "noSignal",
-          title: "Works offline",
-          subtitle:
-            "The HUD reads your phone's GPS, so a stretch with no coverage does not stop the timing.",
-        },
-        {
-          icon: "phone",
-          title: "No account, no ads",
-          subtitle:
-            "Nothing to sign up for and nothing to watch over your shoulder. Download it and drive.",
+          name: "Pro",
+          price: "2.99 €",
+          priceNote: "a month, or 29.99 € a year",
+          highlight: true,
+          badge: "7 days free",
+          features: [
+            { text: "Everything in Free", included: true },
+            { text: "Run analysis: speed and G-force traces for every run", included: true },
+            { text: "Private segments, shared by invite link with no member limit", included: true },
+            { text: "Unlimited vehicles in the garage", included: true },
+            { text: "Your full history of times", included: true },
+          ],
         },
       ],
+      footnote:
+        "Prices in euros; the store shows the price in your currency. The 7-day free trial is for new subscribers. Billed by the App Store or Google Play, renews automatically and can be cancelled at any time from your store subscriptions.",
       actionText: "Download the app",
     },
   },
@@ -311,7 +330,7 @@ const templateConfig: TemplateConfig = {
     seo: {
       title: "Download Rally Hud",
       description:
-        "Taking you to the right store for your device. Rally Hud is free on the App Store and Google Play.",
+        "Taking you to the right store for your device. Rally Hud is free to download on the App Store and Google Play.",
     },
   },
   privacyPolicy: {
