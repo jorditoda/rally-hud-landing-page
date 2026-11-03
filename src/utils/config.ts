@@ -340,80 +340,74 @@ const templateConfig: TemplateConfig = {
     },
     content: `# Privacy Policy
 
-This privacy policy applies to the Rally Hud app (hereby referred to as "Application") for mobile devices that was created by Jordi Toda (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
+**Last updated:** 3 November 2026
 
-**Information Collection and Use**
+This policy explains what personal data the Rally Hud app ("the App") and the website rallyhud.yapplic.com collect, why, and what you can do about it.
 
-The Application collects information when you download and use it. This information may include information such as
+## Who is responsible
 
-*   Your device's Internet Protocol address (e.g. IP address)
-*   The pages of the Application that you visit, the time and date of your visit, the time spent on those pages
-*   The time spent on the Application
-*   The operating system you use on your mobile device
+Rally Hud is developed by Jordi Toda (Yapplic), who is the data controller. Contact: [info@yapplic.com](mailto:info@yapplic.com).
 
-The Application does not gather precise information about the location of your mobile device.
+## What we collect and why
 
-The Application collects your device's location, which helps the Service Provider determine your approximate geographical location and make use of in below ways:
+**Account.** To save your times and use the online features you sign in with email and password, Google or Apple. We store your user ID, email address and the display name you choose. *Purpose:* to keep your data linked to you across devices. *Legal basis:* performance of the service you request.
 
-*   Geolocation Services: The Service Provider utilizes location data to provide features such as personalized content, relevant recommendations, and location-based services.
-*   Analytics and Improvements: Aggregated and anonymized location data helps the Service Provider to analyze user behavior, identify trends, and improve the overall performance and functionality of the Application.
-*   Third-Party Services: Periodically, the Service Provider may transmit anonymized location data to external services. These services assist them in enhancing the Application and optimizing their offerings.
+**Your vehicles.** Name and details of the vehicles in your garage and, if you add one, a photo. *Purpose:* to show which vehicle you used on each run.
 
-The Service Provider may use the information you provided to contact you from time to time to provide you with important information, required notices and marketing promotions.
+**Your runs.** For each timed run on a segment: segment, vehicle, date and time, total time, maximum and average speed, intermediate split times, and the speed and G-force series used for the run analysis. The GPS position track of the run is **not** uploaded: it is processed on your phone to detect segments and calculate speed.
 
-For a better experience, while using the Application, the Service Provider may require you to provide us with certain personally identifiable information. The information that the Service Provider request will be retained by them and used as described in this privacy policy.
+**Segments you create.** The route (start, finish and the points of the line), name, description and whether it is public or private. Public segments, their route and your display name as creator are visible to every user. Private segments are visible only to you and the people you invite.
 
-**Third Party Access**
+**Ranking.** Your best time on each segment, with your display name and vehicle name, is shown in the segment ranking to the other users who can see that segment.
 
-Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service. The Service Provider may share your information with third parties in the ways that are described in this privacy statement.
+**Location.** The App uses your phone's precise location while you use it, to measure speed, time segments and show the map. It does not track your location in the background and does not send your location history to our servers.
 
-Please note that the Application utilizes third-party services that have their own Privacy Policy about handling data. Below are the links to the Privacy Policy of the third-party service providers used by the Application:
+**Subscription (Rally Hud Pro).** Purchases are processed by the App Store or Google Play. We never see your card or payment details. We receive, through RevenueCat, the status of your subscription (plan, start, renewal and expiry dates) linked to your user ID, to unlock the Pro features.
 
-*   [Google Play Services](https://www.google.com/policies/privacy/)
-*   [Google Analytics for Firebase](https://firebase.google.com/support/privacy)
-*   [Firebase Crashlytics](https://firebase.google.com/support/privacy/)
+**Notifications.** If you allow them, OneSignal receives a device token and your user ID so we can send you notifications about the App.
 
-The Service Provider may disclose User Provided and Automatically Collected Information:
+**Usage and crash data.** Firebase Analytics and Firebase Crashlytics collect device model, operating system, app version, approximate usage events and crash reports. *Purpose:* to fix errors and improve the App. *Legal basis:* legitimate interest.
 
-*   as required by law, such as to comply with a subpoena, or similar legal process;
-*   when they believe in good faith that disclosure is necessary to protect their rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;
-*   with their trusted services providers who work on their behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.
+**Contact.** If you write to us, we keep your email and message to answer you.
 
-**Opt-Out Rights**
+## Service providers
 
-You can stop all collection of information by the Application easily by uninstalling it. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.
+We use these providers, who process data on our behalf:
 
-**Data Retention Policy**
+* Google Firebase (authentication, database, file storage, cloud functions, Analytics, Crashlytics) — [privacy](https://firebase.google.com/support/privacy)
+* RevenueCat (subscription status) — [privacy](https://www.revenuecat.com/privacy)
+* OneSignal (notifications) — [privacy](https://onesignal.com/privacy_policy)
+* Apple App Store and Google Play (downloads and payments) — under their own policies
+* OpenRouteService / HeiGIT (snapping a new segment to the road: receives the points you place on the map, without your identity) — [privacy](https://heigit.org/privacy/)
+* OpenStreetMap (map tiles: receives your IP address and the map area you look at) — [privacy](https://osmfoundation.org/wiki/Privacy_Policy)
 
-The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at info@yapplic.com and they will respond in a reasonable time.
+Some of these providers may process data outside the European Economic Area, under the safeguards provided by law (such as the European Commission's standard contractual clauses).
 
-**Children**
+We do not sell your data and the App has no ads.
 
-The Service Provider does not use the Application to knowingly solicit data from or market to children under the age of 13.
+## How long we keep it
 
-The Application does not address anyone under the age of 13. The Service Provider does not knowingly collect personally identifiable information from children under 13 years of age. In the case the Service Provider discover that a child under 13 has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider (info@yapplic.com) so that they will be able to take the necessary actions.
+We keep your data while you have an account. When you delete your account (see below), we delete your account, vehicles, vehicle photos and runs. Your best times stay in the rankings and your public segments stay available, but anonymised as "Deleted pilot", so they can no longer be linked to you. Crash and analytics data are kept for the period set by Firebase.
 
-**Security**
+## Deleting your account
 
-The Service Provider is concerned about safeguarding the confidentiality of your information. The Service Provider provides physical, electronic, and procedural safeguards to protect information the Service Provider processes and maintains.
+You can delete your account at any time from **Profile › Delete account** in the App. If you cannot access the App, write to [info@yapplic.com](mailto:info@yapplic.com) from the email of your account. Deleting the account does not cancel a store subscription: cancel it from your App Store or Google Play subscriptions.
 
-**Changes**
+## Your rights
 
-This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes to the Privacy Policy by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.
+You can ask to access, correct, delete or export your data, and to object to or restrict its processing, by writing to [info@yapplic.com](mailto:info@yapplic.com). If you think we have not handled your data correctly, you can complain to the Spanish Data Protection Agency ([aepd.es](https://www.aepd.es)).
 
-This privacy policy is effective as of 2025-01-02
+## Children
 
-**Your Consent**
+The App is not intended for children under 14 and we do not knowingly collect their data.
 
-By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us.
+## The website
 
-**Contact Us**
+rallyhud.yapplic.com does not use cookies or analytics. It only saves your light or dark theme choice in your browser. See the [Cookies Policy](/cookies-policy).
 
-If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at info@yapplic.com.
+## Changes
 
-* * *
-
-This privacy policy page was generated by [App Privacy Policy Generator](https://app-privacy-policy-generator.nisrulz.com/)
+If we change this policy, we will update this page and the date above. If the change is important, we will also tell you in the App.
 `,
   },
   cookiesPolicy: {
@@ -423,68 +417,23 @@ This privacy policy page was generated by [App Privacy Policy Generator](https:/
     },
     content: `# Cookies Policy
 
-**Effective Date:** 17/12/2024
+**Last updated:** 3 November 2026
 
-## Introduction
+## The website
 
-This Cookies Policy explains how Yapplic ("we," "our," or "us") uses cookies and similar technologies to recognize you when you visit our app, Rally Hud (the "App"). It explains what these technologies are and why we use them, as well as your rights to control their use.
+rallyhud.yapplic.com **does not use cookies**, analytics or advertising trackers.
 
-## What Are Cookies?
+It only stores one value in your browser's local storage, \`rally-theme\`, to remember whether you chose the light or dark theme. It is strictly necessary for that choice, is not sent to any server and you can delete it by clearing your browser's site data.
 
-Cookies are small data files that are placed on your device when you visit a website or use an app. Cookies are widely used by online service providers to facilitate and help to make the interaction between users and websites/apps faster and easier, as well as to provide reporting information.
+The app store buttons link to the App Store and Google Play, which apply their own cookie policies when you open them.
 
-### Types of Cookies We Use
+## The app
 
-We use the following types of cookies in our App:
+The Rally Hud app does not use cookies or show ads. The usage and crash data it collects are described in the [Privacy Policy](/privacy-policy).
 
-1. **Strictly Necessary Cookies:**  
-   These cookies are essential for you to use some of the features of our App. Without these cookies, some services cannot be provided.
+## Contact
 
-2. **Performance and Analytics Cookies:**  
-   These cookies collect information about how users interact with our App, including which pages are visited most often. We use this information to improve how our App works.
-
-3. **Functionality Cookies:**  
-   These cookies allow our App to remember choices you make when you use the App, such as remembering your login details or language preference.
-
-4. **Targeting and Advertising Cookies:**  
-   These cookies are used to deliver advertisements that are relevant to you. They also limit the number of times you see an ad and help measure the effectiveness of advertising campaigns.
-
-### Cookies From Third Parties
-
-In addition to our own cookies, we may also use various third-party cookies to report usage statistics of the App and to deliver advertisements on and through the App.
-
-## How We Use Cookies
-
-We use cookies to:
-
-- **Remember your login details and preferences.**
-- **Analyze usage patterns and improve the functionality of our App.**
-- **Deliver relevant content and advertisements.**
-- **Understand your preferences based on previous or current App activity.**
-
-## Your Choices Regarding Cookies
-
-You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences by adjusting the settings in your browser. Most browsers allow you to:
-
-- **View what cookies are stored on your device and delete them individually.**
-- **Block third-party cookies.**
-- **Block cookies from particular websites.**
-- **Block all cookies from being set.**
-- **Delete all cookies when you close your browser.**
-
-Please note that if you block or delete cookies, some features of the App may not function properly.
-
-## Changes to This Cookies Policy
-
-We may update this Cookies Policy from time to time. We will notify you of any changes by posting the new Cookies Policy on this page and updating the "Effective Date" above. Your continued use of the App after such changes signifies your acceptance of the revised Cookies Policy.
-
-## Contact Us
-
-If you have any questions or concerns about our use of cookies, please contact us at:
-
-Yapplic
-Jordi Toda
-info@yapplic.com
+[info@yapplic.com](mailto:info@yapplic.com)
 `,
   },
   termsAndConditions: {
@@ -494,43 +443,64 @@ info@yapplic.com
     },
     content: `# Terms and Conditions
 
-These terms and conditions apply to the Rally Hud app (hereby referred to as "Application") for mobile devices that was created by Jordi Toda (hereby referred to as "Service Provider") as a Free service.
+**Last updated:** 3 November 2026
 
-Upon downloading or utilizing the Application, you are automatically agreeing to the following terms. It is strongly advised that you thoroughly read and understand these terms prior to using the Application. Unauthorized copying, modification of the Application, any part of the Application, or our trademarks is strictly prohibited. Any attempts to extract the source code of the Application, translate the Application into other languages, or create derivative versions are not permitted. All trademarks, copyrights, database rights, and other intellectual property rights related to the Application remain the property of the Service Provider.
+These terms apply to the Rally Hud app ("the App"), developed by Jordi Toda (Yapplic), contact [info@yapplic.com](mailto:info@yapplic.com). By downloading or using the App you accept them.
 
-The Service Provider is dedicated to ensuring that the Application is as beneficial and efficient as possible. As such, they reserve the right to modify the Application or charge for their services at any time and for any reason. The Service Provider assures you that any charges for the Application or its services will be clearly communicated to you.
+## 1. Drive safely and legally
 
-The Application stores and processes personal data that you have provided to the Service Provider in order to provide the Service. It is your responsibility to maintain the security of your phone and access to the Application. The Service Provider strongly advise against jailbreaking or rooting your phone, which involves removing software restrictions and limitations imposed by the official operating system of your device. Such actions could expose your phone to malware, viruses, malicious programs, compromise your phone's security features, and may result in the Application not functioning correctly or at all.
+Rally Hud measures and times your driving. It is **not** an invitation to speed or to race on public roads.
 
-Please note that the Application utilizes third-party services that have their own Terms and Conditions. Below are the links to the Terms and Conditions of the third-party service providers used by the Application:
+* Always obey traffic laws and speed limits. Use timed segments only where it is legal and safe, such as closed roads, tracks or organised events.
+* Mount the phone firmly and do not handle it while driving. The App is designed to be read at a glance.
+* Speed, times and G-forces come from your phone's sensors and GPS and may be inaccurate. Do not rely on them for safety or for official timing.
 
-*   [Google Play Services](https://policies.google.com/terms)
-*   [Google Analytics for Firebase](https://www.google.com/analytics/terms/)
-*   [Firebase Crashlytics](https://firebase.google.com/terms/crashlytics)
+You are solely responsible for how you drive. To the extent allowed by law, the developer is not liable for accidents, fines or damage arising from the use of the App.
 
-Please be aware that the Service Provider does not assume responsibility for certain aspects. Some functions of the Application require an active internet connection, which can be Wi-Fi or provided by your mobile network provider. The Service Provider cannot be held responsible if the Application does not function at full capacity due to lack of access to Wi-Fi or if you have exhausted your data allowance.
+## 2. Your account
 
-If you are using the application outside of a Wi-Fi area, please be aware that your mobile network provider's agreement terms still apply. Consequently, you may incur charges from your mobile provider for data usage during the connection to the application, or other third-party charges. By using the application, you accept responsibility for any such charges, including roaming data charges if you use the application outside of your home territory (i.e., region or country) without disabling data roaming. If you are not the bill payer for the device on which you are using the application, they assume that you have obtained permission from the bill payer.
+You can use the HUD without an account, but you need one to save times, appear in rankings, create segments or subscribe to Pro. Keep your sign-in details secure; you are responsible for activity on your account. You can delete it at any time from **Profile › Delete account**.
 
-Similarly, the Service Provider cannot always assume responsibility for your usage of the application. For instance, it is your responsibility to ensure that your device remains charged. If your device runs out of battery and you are unable to access the Service, the Service Provider cannot be held responsible.
+## 3. Content you share
 
-In terms of the Service Provider's responsibility for your use of the application, it is important to note that while they strive to ensure that it is updated and accurate at all times, they do rely on third parties to provide information to them so that they can make it available to you. The Service Provider accepts no liability for any loss, direct or indirect, that you experience as a result of relying entirely on this functionality of the application.
+Segments you make public, and your display name, vehicle name and best times in rankings, are visible to other users. Do not publish segments or names that are offensive, infringe the rights of others or reveal private places. We may remove content or suspend accounts that break these terms or that manipulate the rankings.
 
-The Service Provider may wish to update the application at some point. The application is currently available as per the requirements for the operating system (and for any additional systems they decide to extend the availability of the application to) may change, and you will need to download the updates if you want to continue using the application. The Service Provider does not guarantee that it will always update the application so that it is relevant to you and/or compatible with the particular operating system version installed on your device. However, you agree to always accept updates to the application when offered to you. The Service Provider may also wish to cease providing the application and may terminate its use at any time without providing termination notice to you. Unless they inform you otherwise, upon any termination, (a) the rights and licenses granted to you in these terms will end; (b) you must cease using the application, and (if necessary) delete it from your device.
+## 4. Free version and Rally Hud Pro
 
-**Changes to These Terms and Conditions**
+The App is free to download and use. **Rally Hud Pro** is an optional auto-renewing subscription that unlocks extra features (currently: run analysis, private segments, unlimited vehicles and full history).
 
-The Service Provider may periodically update their Terms and Conditions. Therefore, you are advised to review this page regularly for any changes. The Service Provider will notify you of any changes by posting the new Terms and Conditions on this page.
+* **Plans:** monthly or yearly. The price is shown in the App and in the store before you buy, in your local currency.
+* **Free trial:** new subscribers can get a 7-day free trial. If you do not cancel at least 24 hours before it ends, the subscription starts and is charged.
+* **Billing and renewal:** payment is charged to your Apple ID or Google Play account. The subscription renews automatically for the same period unless you cancel at least 24 hours before the end of the current period.
+* **Cancelling:** manage or cancel it from your App Store or Google Play account settings. Cancelling stops future renewals; you keep Pro until the end of the period already paid. Deleting the App or your account does not cancel the subscription.
+* **Refunds:** handled by Apple or Google under their own policies. This does not affect your statutory rights as a consumer.
+* **If Pro ends:** you keep your data. Vehicles and private segments you already have remain, but you cannot add more vehicles than the free limit, create new private segments or invite new members, and the analysis and full history are hidden until you subscribe again.
 
-These terms and conditions are effective as of 2025-01-02
+We may change the features or prices of Pro. Price changes will not apply to a period you have already paid and will be communicated as required by the stores.
 
-**Contact Us**
+## 5. Intellectual property
 
-If you have any questions or suggestions about the Terms and Conditions, please do not hesitate to contact the Service Provider at info@yapplic.com.
+The App, its design and its brand belong to the developer. You may not copy, modify, reverse-engineer or redistribute the App. Map data © OpenStreetMap contributors.
 
-* * *
+## 6. Availability
 
-This Terms and Conditions page was generated by [App Privacy Policy Generator](https://app-privacy-policy-generator.nisrulz.com/)
+We try to keep the App working, but we do not guarantee it will always be available or error-free. Some features need an internet connection and may use mobile data. We may update the App or stop offering it; if we stop offering Pro, we will not renew active subscriptions.
+
+## 7. Apple
+
+If you downloaded the App from the App Store, the [Apple Standard EULA](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/) also applies. Apple is not responsible for the App or its support.
+
+## 8. Privacy
+
+How we handle your data is explained in the [Privacy Policy](/privacy-policy).
+
+## 9. Changes and law
+
+We may update these terms; we will publish the new version here with its date. These terms are governed by Spanish law, without prejudice to the mandatory consumer protections of your country of residence.
+
+## Contact
+
+[info@yapplic.com](mailto:info@yapplic.com)
 `,
   },
 };
