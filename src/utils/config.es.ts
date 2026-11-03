@@ -385,6 +385,7 @@ const esConfig: TemplateConfig = {
       title: "Política de privacidad - Rally Hud",
       description: "Política de privacidad de Rally Hud",
     },
+    // The "Analítica y fallos" section must go live together with the app version that ships the analytics toggle (Profile › Privacy).
     content: `# Política de privacidad
 
 **Última actualización:** 3 de noviembre de 2026
@@ -413,9 +414,29 @@ Rally Hud la desarrolla Jordi Toda (Yapplic), que es el responsable del tratamie
 
 **Notificaciones.** Si las permites, OneSignal recibe un identificador del dispositivo y tu identificador de usuario para enviarte avisos de la App.
 
-**Datos de uso y errores.** Firebase Analytics y Firebase Crashlytics recogen el modelo del dispositivo, el sistema operativo, la versión de la App, eventos de uso aproximados e informes de errores. *Finalidad:* corregir errores y mejorar la App. *Base legal:* interés legítimo.
+**Datos de uso y errores.** Firebase Analytics y Firebase Crashlytics recogen eventos de uso e informes de fallos. Consulta «Analítica y fallos» más abajo.
 
 **Contacto.** Si nos escribes, guardamos tu correo y tu mensaje para responderte.
+
+## Analítica y fallos
+
+La App usa **Google Firebase Analytics** y **Firebase Crashlytics**, prestados por Google Ireland Ltd. Los datos pueden transferirse a Google LLC en Estados Unidos, al amparo del Marco de Privacidad de Datos UE-EE. UU. y de las cláusulas contractuales tipo de la Comisión Europea.
+
+**Qué se recoge:**
+
+* Eventos de uso de la App: pantallas visitadas y funciones usadas, como las sesiones de HUD, las pasadas completadas o canceladas, los tramos creados (públicos o privados), los vehículos añadidos y los pasos de la pantalla de suscripción y de la compra.
+* Si eres usuario Pro y el tipo de plan.
+* Datos de fallos y diagnóstico: trazas de errores, modelo del dispositivo, sistema operativo y versión de la App.
+* El identificador de instancia de la App y un identificador de usuario seudónimo (el identificador interno de tu cuenta).
+* RevenueCat también puede enviar a Firebase eventos de la suscripción (como renovaciones y cancelaciones).
+
+**Qué no se envía nunca a estos servicios:** coordenadas GPS ni recorridos, nombres de tramos, tu correo, tu nombre, fotos ni matrículas. No usamos el identificador de publicidad, la App no muestra anuncios y no te seguimos a través de otras apps.
+
+*Finalidad:* entender cómo se usa la App, mejorarla, corregir errores y medir la suscripción. *Base legal:* interés legítimo (art. 6.1.f RGPD). Puedes oponerte en cualquier momento.
+
+**Cómo desactivarlo:** en la App, ve a **Perfil › Privacidad** y desactiva **«Compartir estadísticas de uso anónimas»** y **«Enviar informes de fallos»**. Ambos están activados por defecto.
+
+**Conservación:** los datos de eventos de Analytics se guardan 14 meses y los informes de fallos de Crashlytics, 90 días. Al eliminar tu cuenta se elimina el vínculo con tu identificador y los datos de Analytics y Crashlytics del dispositivo se restablecen.
 
 ## Proveedores
 
@@ -434,7 +455,7 @@ No vendemos tus datos y la App no tiene anuncios.
 
 ## Cuánto tiempo los guardamos
 
-Guardamos tus datos mientras tengas cuenta. Cuando la eliminas (ver abajo), borramos la cuenta, los vehículos, sus fotos y tus pasadas. Tus mejores tiempos siguen en los rankings y tus tramos públicos siguen disponibles, pero anonimizados como «Piloto eliminado», de forma que ya no se pueden vincular contigo. Los datos de errores y de uso se guardan durante el plazo que fija Firebase.
+Guardamos tus datos mientras tengas cuenta. Cuando la eliminas (ver abajo), borramos la cuenta, los vehículos, sus fotos y tus pasadas. Tus mejores tiempos siguen en los rankings y tus tramos públicos siguen disponibles, pero anonimizados como «Piloto eliminado», de forma que ya no se pueden vincular contigo. Los datos de uso y de fallos se guardan durante los plazos indicados en «Analítica y fallos», más arriba.
 
 ## Eliminar tu cuenta
 
