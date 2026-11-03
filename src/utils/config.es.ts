@@ -61,6 +61,32 @@ const esConfig: TemplateConfig = {
     appRedirect:
       "Te llevamos a la tienda de tu móvil. Si no pasa nada, te redirigiremos en unos segundos.",
     breadcrumbHome: "Inicio",
+    links: {
+      inviteTitle: "Te han invitado a un tramo privado",
+      inviteIntro:
+        "Alguien ha compartido contigo un tramo privado de Rally Hud. Únete para recorrerlo y ver su ranking. No necesitas ser Pro para unirte.",
+      codeLabel: "Código de invitación",
+      copy: "Copiar código",
+      copied: "Copiado",
+      inviteSteps: [
+        "Instala Rally Hud e inicia sesión.",
+        "Ve a Segmentos › Unirse con código.",
+        "Escribe el código de arriba.",
+      ],
+      inviteInvalid:
+        "Este enlace de invitación no está completo. Pide el código a quien te lo envió, o un enlace nuevo.",
+      rankingTitle: "Te han compartido un ranking",
+      rankingIntro:
+        "Alguien ha compartido su posición en un tramo de Rally Hud. Abre el enlace en un móvil con Rally Hud instalada para ver el ranking completo, o descarga la app e intenta batir el tiempo.",
+      rankingSteps: [
+        "Instala Rally Hud e inicia sesión.",
+        "Vuelve a abrir este enlace desde el móvil: se abrirá el ranking del tramo.",
+        "Si el tramo es privado, solo lo ven sus miembros.",
+      ],
+      getApp: "Descarga Rally Hud",
+      pageTitleInvite: "Unirse a un tramo privado — Rally Hud",
+      pageTitleRanking: "Ranking compartido — Rally Hud",
+    },
   },
   footer: {
     ...en.footer,

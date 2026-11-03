@@ -36,6 +36,22 @@ export type UiStrings = {
     };
     appRedirect: string;
     breadcrumbHome: string;
+    /** Pages for the links the app shares: /s/{code} and /r/{segmentId}. */
+    links: {
+        inviteTitle: string;
+        inviteIntro: string;
+        codeLabel: string;
+        copy: string;
+        copied: string;
+        inviteSteps: string[];
+        inviteInvalid: string;
+        rankingTitle: string;
+        rankingIntro: string;
+        rankingSteps: string[];
+        getApp: string;
+        pageTitleInvite: string;
+        pageTitleRanking: string;
+    };
 };
 
 export type TemplateConfig = {

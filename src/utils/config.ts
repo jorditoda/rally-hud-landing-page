@@ -39,6 +39,32 @@ const templateConfig: TemplateConfig = {
     },
     appRedirect: "We’re sending you to our app. If nothing happens, you’ll be redirected shortly.",
     breadcrumbHome: "Home",
+    links: {
+      inviteTitle: "You're invited to a private segment",
+      inviteIntro:
+        "Someone shared a private Rally Hud segment with you. Join it to drive it and see its ranking. You don't need Pro to join.",
+      codeLabel: "Invite code",
+      copy: "Copy code",
+      copied: "Copied",
+      inviteSteps: [
+        "Install Rally Hud and sign in.",
+        "Go to Segments › Join with code.",
+        "Enter the code above.",
+      ],
+      inviteInvalid:
+        "This invite link is not complete. Ask the person who sent it for the code, or for a new link.",
+      rankingTitle: "A ranking was shared with you",
+      rankingIntro:
+        "Someone shared their position on a Rally Hud segment. Open the link on a phone with Rally Hud installed to see the full ranking, or get the app and try to beat the time.",
+      rankingSteps: [
+        "Install Rally Hud and sign in.",
+        "Open this link again from your phone: it opens the segment's ranking.",
+        "If the segment is private, only its members can see it.",
+      ],
+      getApp: "Get Rally Hud",
+      pageTitleInvite: "Join a private segment — Rally Hud",
+      pageTitleRanking: "Shared ranking — Rally Hud",
+    },
   },
   seo: {
     title: "Rally Hud — Real-Time Speed & G-Force HUD App",
