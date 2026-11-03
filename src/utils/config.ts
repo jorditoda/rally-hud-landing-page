@@ -401,6 +401,7 @@ const templateConfig: TemplateConfig = {
       title: "Privacy Policy - Rally Hud",
       description: "Privacy Policy",
     },
+    // The "Analytics and crash reports" section must go live together with the app version that ships the analytics toggle (Profile › Privacy).
     content: `# Privacy Policy
 
 **Last updated:** 3 November 2026
@@ -429,9 +430,29 @@ Rally Hud is developed by Jordi Toda (Yapplic), who is the data controller. Cont
 
 **Notifications.** If you allow them, OneSignal receives a device token and your user ID so we can send you notifications about the App.
 
-**Usage and crash data.** Firebase Analytics and Firebase Crashlytics collect device model, operating system, app version, approximate usage events and crash reports. *Purpose:* to fix errors and improve the App. *Legal basis:* legitimate interest.
+**Usage and crash data.** Firebase Analytics and Firebase Crashlytics collect usage events and crash reports. See "Analytics and crash reports" below.
 
 **Contact.** If you write to us, we keep your email and message to answer you.
+
+## Analytics and crash reports
+
+The App uses **Google Firebase Analytics** and **Firebase Crashlytics**, provided by Google Ireland Ltd. Data may be transferred to Google LLC in the United States under the EU-US Data Privacy Framework and the European Commission's standard contractual clauses.
+
+**What is collected:**
+
+* App usage events: screens visited and features used, such as HUD sessions, runs completed or cancelled, segments created (public or private), vehicles added, and the steps of the subscription paywall and purchase.
+* Whether you are a Pro user and your plan type.
+* Crash and diagnostic data: error traces, device model, operating system and app version.
+* The app instance ID and a pseudonymous user identifier (your account's internal ID).
+* RevenueCat may also send subscription events (such as renewals and cancellations) to Firebase.
+
+**What is never sent to these services:** GPS coordinates or routes, segment names, your email, your name, photos or licence plates. We do not use the advertising ID, the App shows no ads and we do not track you across other apps.
+
+*Purpose:* to understand how the App is used, improve it, fix errors and measure the subscription. *Legal basis:* legitimate interest (art. 6.1.f GDPR). You can object at any time.
+
+**How to turn it off:** in the App, go to **Profile › Privacy** and switch off **"Share anonymous usage statistics"** and **"Send crash reports"**. Both are on by default.
+
+**Retention:** Analytics event data is kept for 14 months and Crashlytics crash reports for 90 days. When you delete your account, the link with your identifier is removed and the Analytics and Crashlytics data on the device is reset.
 
 ## Service providers
 
@@ -450,7 +471,7 @@ We do not sell your data and the App has no ads.
 
 ## How long we keep it
 
-We keep your data while you have an account. When you delete your account (see below), we delete your account, vehicles, vehicle photos and runs. Your best times stay in the rankings and your public segments stay available, but anonymised as "Deleted pilot", so they can no longer be linked to you. Crash and analytics data are kept for the period set by Firebase.
+We keep your data while you have an account. When you delete your account (see below), we delete your account, vehicles, vehicle photos and runs. Your best times stay in the rankings and your public segments stay available, but anonymised as "Deleted pilot", so they can no longer be linked to you. Analytics and crash data are kept for the periods described in "Analytics and crash reports" above.
 
 ## Deleting your account
 
