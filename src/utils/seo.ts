@@ -59,6 +59,7 @@ export function buildJsonLd({ config, url, faq, breadcrumb }: JsonLdOptions) {
         priceCurrency: "EUR",
         availability: "https://schema.org/InStock",
       },
+      inLanguage: config.lang,
       featureList: config.home.features?.cards.map((c) => c.title),
       screenshot: config.home.showcase?.items.map((i) => ({
         "@type": "ImageObject",
@@ -90,7 +91,7 @@ export function buildJsonLd({ config, url, faq, breadcrumb }: JsonLdOptions) {
       "@type": "BreadcrumbList",
       "@id": `${url}#breadcrumb`,
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: base },
+        { "@type": "ListItem", position: 1, name: config.ui.breadcrumbHome, item: base },
         ...breadcrumb.map((b, i) => ({
           "@type": "ListItem",
           position: i + 2,

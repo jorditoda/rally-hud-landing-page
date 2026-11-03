@@ -1,5 +1,50 @@
+export type Lang = "en" | "es";
+
+/** Interface strings that live in components, not in page content. */
+export type UiStrings = {
+    openMenu: string;
+    closeMenu: string;
+    toLightTheme: string;
+    toDarkTheme: string;
+    /** Label of the link to the other language, e.g. "ES". */
+    switchLanguage: string;
+    switchLanguageLabel: string;
+    googlePlayBadge: string;
+    appStoreBadge: string;
+    appScreenAlt: string;
+    footerNav: string;
+    terms: string;
+    privacy: string;
+    cookies: string;
+    rightsReserved: string;
+    notIncluded: string;
+    testimonials: {
+        prev: string;
+        next: string;
+        goTo: string;
+        slide: string;
+        rating: string;
+        pause: string;
+        play: string;
+        carousel: string;
+    };
+    notFound: {
+        title: string;
+        text: string;
+        home: string;
+        features: string;
+    };
+    appRedirect: string;
+    breadcrumbHome: string;
+};
+
 export type TemplateConfig = {
     name: string;
+    /** Page language. Spanish pages live under /es/. */
+    lang: Lang;
+    /** Path prefix for internal links: "" for English, "/es" for Spanish. */
+    basePath: string;
+    ui: UiStrings;
     seo: {
         title: string;
         description: string;

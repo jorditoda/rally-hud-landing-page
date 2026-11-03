@@ -17,6 +17,7 @@ function Pricing() {
     home: { pricing },
     googlePlayLink,
     appStoreLink,
+    ui,
   } = useContext(ConfigContext)!;
   if (!pricing) return null;
 
@@ -87,7 +88,7 @@ function Pricing() {
                       {feature.included ? "✓" : "—"}
                     </span>
                     <span>
-                      {feature.included ? "" : <span className="sr-only">Not included: </span>}
+                      {feature.included ? "" : <span className="sr-only">{ui.notIncluded} </span>}
                       {feature.text}
                     </span>
                   </li>
@@ -137,7 +138,7 @@ function Pricing() {
               <a href={googlePlayLink} target="_blank" rel="noopener">
                 <img
                   className="h-14"
-                  alt="Get it on Google Play"
+                  alt={ui.googlePlayBadge}
                   src="/stores/google-play.svg"
                   loading="lazy"
                   decoding="async"
@@ -148,7 +149,7 @@ function Pricing() {
               <a href={appStoreLink} target="_blank" rel="noopener">
                 <img
                   className="h-14"
-                  alt="Download on the App Store"
+                  alt={ui.appStoreBadge}
                   src="/stores/app-store.svg"
                   loading="lazy"
                   decoding="async"

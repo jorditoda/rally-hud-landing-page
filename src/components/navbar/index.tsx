@@ -28,7 +28,32 @@ function Navbar() {
     topNavbar,
     googlePlayLink,
     appStoreLink,
+    ui,
+    lang,
+    basePath,
   } = useContext(ConfigContext)!;
+
+  // Same page in the other language. Rendered with the home page and
+  // corrected after hydration with the real path (static build, no request).
+  const otherHome = lang === "es" ? "/" : "/es/";
+  const [langHref, setLangHref] = useState(otherHome);
+  useEffect(() => {
+    const path = window.location.pathname;
+    setLangHref(
+      lang === "es" ? path.replace(/^\/es(\/|$)/, "/") : `/es${path === "/" ? "/" : path}`
+    );
+  }, [lang]);
+  const langLink = (
+    <a
+      href={langHref}
+      hrefLang={lang === "es" ? "en" : "es"}
+      lang={lang === "es" ? "en" : "es"}
+      aria-label={ui.switchLanguageLabel}
+      className="btn btn-ghost btn-sm px-2 font-semibold"
+    >
+      {ui.switchLanguage}
+    </a>
+  );
 
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,7 +86,7 @@ function Navbar() {
         )}
       >
         <div className="navbar-start">
-          <a href="/" className="flex items-center gap-2">
+          <a href={`${basePath}/`} className="flex items-center gap-2">
             {/*
               App icon (v1.4), same artwork as the store icon. It carries its
               own dark background, so a plain <img> works in both themes.
@@ -81,13 +106,14 @@ function Navbar() {
         </div>
 
         <div className="navbar-end lg:hidden">
+          {langLink}
           {showThemeSwitch && <ThemeSwitcher />}
           <button
             type="button"
             onClick={() => setIsMobileNavVisible((v) => !v)}
             aria-expanded={isMobileNavVisible}
             aria-controls="mobile-menu"
-            aria-label={isMobileNavVisible ? "Cerrar menú" : "Abrir menú"}
+            aria-label={isMobileNavVisible ? ui.closeMenu : ui.openMenu}
             className="btn btn-ghost btn-sm px-2"
           >
             <MenuToggle isOpen={isMobileNavVisible} />
@@ -96,7 +122,8 @@ function Navbar() {
 
         <div className="navbar-end hidden font-semibold lg:flex">
           <ul className="flex gap-5 px-1 items-center list-none m-0">
-            {showThemeSwitch && <ThemeSwitcher />}
+            {langLink}
+          {showThemeSwitch && <ThemeSwitcher />}
             {topNavbar.links.map(({ title, href }) => (
               <li key={href} className="m-0">
                 <a
@@ -145,7 +172,7 @@ function Navbar() {
                 <img
                   className="h-12"
                   src="/stores/google-play.svg"
-                  alt="Get it on Google Play"
+                  alt={ui.googlePlayBadge}
                 />
               </a>
             </li>
@@ -156,7 +183,7 @@ function Navbar() {
                 <img
                   className="h-12"
                   src="/stores/app-store.svg"
-                  alt="Download on the App Store"
+                  alt={ui.appStoreBadge}
                 />
               </a>
             </li>

@@ -1,3 +1,5 @@
+import {useContext} from "react";
+import {ConfigContext} from "../../../../utils/configContext";
 import type {MotionValue} from "framer-motion";
 import {motion, transform, useTransform} from "framer-motion";
 
@@ -17,6 +19,7 @@ interface Props {
  * should go here.
  */
 function SingleScreenshot({ scrollYProgress, index, totalCount, src }: Props) {
+  const config = useContext(ConfigContext);
   const x = useTransform(scrollYProgress, (y) => {
     if (index > 0 && index % 2 === 0) {
       const i = totalCount - index;
@@ -42,7 +45,7 @@ function SingleScreenshot({ scrollYProgress, index, totalCount, src }: Props) {
   return (
     <motion.img
       src={src}
-      alt="Rally Hud app screen"
+      alt={config?.ui.appScreenAlt ?? ""}
       style={{ translateX: x, translateY: y }}
       className="absolute overflow-hidden w-full h-full object-cover"
     />

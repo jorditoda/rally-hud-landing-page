@@ -26,6 +26,7 @@ import {ConfigContext} from "../../../../utils/configContext";
 function Testimonials() {
   const {
     home: { testimonials },
+    ui,
   } = useContext(ConfigContext)!;
   const swiperRef = useRef<SwiperClass | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -75,10 +76,10 @@ function Testimonials() {
           grabCursor
           a11y={{
             enabled: true,
-            prevSlideMessage: "Previous testimonial",
-            nextSlideMessage: "Next testimonial",
-            paginationBulletMessage: "Go to testimonial {{index}}",
-            slideLabelMessage: "{{index}} of {{slidesLength}}",
+            prevSlideMessage: ui.testimonials.prev,
+            nextSlideMessage: ui.testimonials.next,
+            paginationBulletMessage: ui.testimonials.goTo,
+            slideLabelMessage: ui.testimonials.slide,
           }}
           breakpoints={{
             768: { slidesPerView: 2 },
@@ -93,7 +94,7 @@ function Testimonials() {
                 <div
                   className="flex mb-3 gap-0.5"
                   role="img"
-                  aria-label="5 out of 5"
+                  aria-label={ui.testimonials.rating}
                 >
                   {Array(5)
                     .fill(0)
@@ -125,8 +126,8 @@ function Testimonials() {
           aria-pressed={!isPlaying}
           className="btn btn-ghost btn-sm mt-4"
         >
-          {isPlaying ? "Pause" : "Play"}
-          <span className="sr-only"> the testimonials carousel</span>
+          {isPlaying ? ui.testimonials.pause : ui.testimonials.play}
+          <span className="sr-only"> {ui.testimonials.carousel}</span>
         </button>
       </motion.div>
     </section>

@@ -3,6 +3,43 @@ import {THEME_ALTERNATE, THEME_DEFAULT} from "./theme";
 
 const templateConfig: TemplateConfig = {
   name: "Rally Hud",
+  lang: "en",
+  basePath: "",
+  ui: {
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    toLightTheme: "Switch to light theme",
+    toDarkTheme: "Switch to dark theme",
+    switchLanguage: "ES",
+    switchLanguageLabel: "Ver en español",
+    googlePlayBadge: "Get it on Google Play",
+    appStoreBadge: "Download on the App Store",
+    appScreenAlt: "Rally Hud app screen",
+    footerNav: "Footer",
+    terms: "Terms & conditions",
+    privacy: "Privacy policy",
+    cookies: "Cookies policy",
+    rightsReserved: "All rights reserved",
+    notIncluded: "Not included:",
+    testimonials: {
+      prev: "Previous testimonial",
+      next: "Next testimonial",
+      goTo: "Go to testimonial {{index}}",
+      slide: "{{index}} of {{slidesLength}}",
+      rating: "5 out of 5",
+      pause: "Pause",
+      play: "Play",
+      carousel: "the testimonials carousel",
+    },
+    notFound: {
+      title: "This road is not on the map",
+      text: "The page you are looking for does not exist. It may have moved, or the link may be wrong.",
+      home: "Back to home",
+      features: "See the features",
+    },
+    appRedirect: "We’re sending you to our app. If nothing happens, you’ll be redirected shortly.",
+    breadcrumbHome: "Home",
+  },
   seo: {
     title: "Rally Hud — Real-Time Speed & G-Force HUD App",
     description:

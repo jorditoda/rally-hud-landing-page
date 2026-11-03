@@ -25,18 +25,17 @@ function NotFound({ config }: Props) {
             404
           </p>
           <h1 className="mt-0 mb-3 font-condensed font-bold text-4xl md:text-5xl">
-            This road is not on the map
+            {config.ui.notFound.title}
           </h1>
           <p className="opacity-70 max-w-md mb-8">
-            The page you are looking for does not exist. It may have moved, or
-            the link may be wrong.
+            {config.ui.notFound.text}
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="/" className="btn btn-primary px-6">
-              Back to home
+            <a href={`${config.basePath}/`} className="btn btn-primary px-6">
+              {config.ui.notFound.home}
             </a>
-            <a href="/#features" className="btn btn-outline px-6">
-              See the features
+            <a href={`${config.basePath}/#features`} className="btn btn-outline px-6">
+              {config.ui.notFound.features}
             </a>
           </div>
         </section>

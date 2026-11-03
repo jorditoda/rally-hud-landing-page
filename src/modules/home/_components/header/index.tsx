@@ -10,6 +10,7 @@ function Header() {
     googlePlayLink,
     appStoreLink,
     home: { header, partners },
+    ui,
   } = useContext(ConfigContext)!;
 
   const ref = useRef<HTMLDivElement>(null);
@@ -95,7 +96,7 @@ function Header() {
                     <a href={googlePlayLink}>
                       <img
                         className="h-14"
-                        alt="google play logo"
+                        alt={ui.googlePlayBadge}
                         src="/stores/google-play.svg"
                       />
                     </a>
@@ -106,7 +107,7 @@ function Header() {
                     <a href={appStoreLink}>
                       <img
                         className="h-14"
-                        alt="app store logo"
+                        alt={ui.appStoreBadge}
                         src="/stores/app-store.svg"
                       />
                     </a>
@@ -146,7 +147,8 @@ function Header() {
                 </div>
                 <img
                   src="/misc/iphone-frame.webp"
-                  alt="iphone-frame"
+                  alt=""
+                  aria-hidden="true"
                   className="relative z-10 h-full"
                 />
               </motion.div>

@@ -1,0 +1,10 @@
+---
+import HomePage from "@modules/home"
+import Layout from "Layout.astro"
+import defaultTemplateConfig from "utils/config.es"
+---
+
+<Layout {...defaultTemplateConfig}
+  config={defaultTemplateConfig} seo={defaultTemplateConfig.home.seo} withFaq>
+  <HomePage client:load config={defaultTemplateConfig} />
+</Layout>

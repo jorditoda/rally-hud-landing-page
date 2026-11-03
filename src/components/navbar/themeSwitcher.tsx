@@ -69,7 +69,7 @@ function ThemeSwitcher() {
         </svg>
       )}
       <span className="sr-only">
-        {isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
+        {isDark ? config?.ui.toLightTheme : config?.ui.toDarkTheme}
       </span>
     </button>
   );
