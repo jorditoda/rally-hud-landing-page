@@ -4,8 +4,9 @@ import en from "./config";
 /**
  * Spanish version of the site, served under /es/.
  *
- * Same structure as `config.ts`: only texts and internal links change. Images,
- * store links and theme come from the English config so both stay in sync.
+ * Same structure as `config.ts`: texts, internal links and screenshots change
+ * (Spanish UI in public/screens/board, English UI in public/screens/board-en).
+ * Store links and theme come from the English config so both stay in sync.
  * When you change a text in English, change it here too.
  */
 const B = "/es";
@@ -99,6 +100,11 @@ const esConfig: TemplateConfig = {
   },
   appBanner: {
     ...en.appBanner!,
+    screenshots: [
+      "/screens/board/App-Explorar.png",
+      "/screens/board/App-Tiempo.png",
+      "/screens/board/App-Garaje.png",
+    ],
     title: "Cronometra tu primer tramo",
     subtitle:
       "Gratis en Android e iOS, sin anuncios. Hazte Pro cuando quieras el análisis completo.",
@@ -259,6 +265,11 @@ const esConfig: TemplateConfig = {
     },
     header: {
       ...en.home.header,
+      screenshots: [
+        "/screens/board/App-Explorar.png",
+        "/screens/board/App-Tiempo.png",
+        "/screens/board/App-Ranking.png",
+      ],
       headline: "Tu conducción, medida",
       subtitle:
         "Un HUD para el parabrisas y una herramienta de cronometraje completa para tus carreteras favoritas.",

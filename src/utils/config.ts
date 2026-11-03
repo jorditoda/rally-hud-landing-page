@@ -121,9 +121,9 @@ const templateConfig: TemplateConfig = {
     subtitle:
       "Free on Android and iOS, with no ads. Go Pro when you want the full analysis.",
     screenshots: [
-      "/screens/board/App-Explorar.png",
-      "/screens/board/App-Tiempo.png",
-      "/screens/board/App-Garaje.png",
+      "/screens/board-en/App-Explorar.png",
+      "/screens/board-en/App-Tiempo.png",
+      "/screens/board-en/App-Garaje.png",
     ],
   },
   home: {
@@ -174,13 +174,13 @@ const templateConfig: TemplateConfig = {
           title: "Drive with the HUD",
           subtitle:
             "Mount the phone, open the HUD and keep your eyes on the road. Speed, lap time, next segment and G-force in a glance.",
-          image: "/screens/board/HUD-Conduccion.png",
+          image: "/screens/board-en/HUD-Conduccion.png",
         },
         {
           title: "Read your time",
           subtitle:
             "Get the speed trace, the G-forces and the delta against your best. Keep the run, or try again.",
-          image: "/screens/board/App-Tiempo.png",
+          image: "/screens/board-en/App-Tiempo.png",
         },
       ],
     },
@@ -285,9 +285,9 @@ const templateConfig: TemplateConfig = {
         "A HUD for the windscreen and a full timing tool for your favourite roads.",
       // The hero mobile mockup is vertical (292x632), so here only app screens 390x844 can fit. Inserting a HUD capture (844x390) stretched it vertically.
       screenshots: [
-        "/screens/board/App-Explorar.png",
-        "/screens/board/App-Tiempo.png",
-        "/screens/board/App-Ranking.png",
+        "/screens/board-en/App-Explorar.png",
+        "/screens/board-en/App-Tiempo.png",
+        "/screens/board-en/App-Ranking.png",
       ],
       usersDescription: "Join the early adopters",
       headlineMark: [2, 3],
@@ -298,22 +298,22 @@ const templateConfig: TemplateConfig = {
       subtitle: "The HUD while you drive, and the screens you use around it.",
       items: [
         {
-          image: "/screens/board/HUD-Conduccion.png",
+          image: "/screens/board-en/HUD-Conduccion.png",
           caption: "HUD · Driving",
           note: "Speed, trip timer, next segment and G-force in a single glance.",
         },
         {
-          image: "/screens/board/App-Tiempo.png",
+          image: "/screens/board-en/App-Tiempo.png",
           caption: "Times · Detail",
           note: "Speed trace, G-forces and your delta against your best run.",
         },
         {
-          image: "/screens/board/App-Ranking.png",
+          image: "/screens/board-en/App-Ranking.png",
           caption: "Ranking",
           note: "Your position on the segment and the gap to the times around you.",
         },
         {
-          image: "/screens/board/HUD-Instrumentos.png",
+          image: "/screens/board-en/HUD-Instrumentos.png",
           caption: "HUD · Instruments",
           note: "Heading, altitude and the last 60 seconds of speed.",
         },
