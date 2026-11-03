@@ -2,7 +2,8 @@
  * JSON-LD structured data — ROADMAP.md E2.0
  *
  * Data verified against the real store listings, NOT estimated:
- *   · version and minOS -> iTunes API (lookup?id=6739874068)
+ *   · minOS             -> iTunes API (lookup?id=6739874068). No softwareVersion:
+ *                          it went stale with every release.
  *   · price             -> `price: 0` on App Store and Google Play
  *   · genre             -> "Sports" / "Navigation"
  *
@@ -16,7 +17,6 @@ import type {TemplateConfig} from "./configType";
 
 export const APP = {
   name: "Rally Hud",
-  version: "1.2.0",
     /** From the App Store listing. */
   iosMin: "15.6",
     /** From the Google Play listing. */
@@ -50,7 +50,6 @@ export function buildJsonLd({ config, url, faq, breadcrumb }: JsonLdOptions) {
       description: config.seo.description,
       url: base,
       image,
-      softwareVersion: APP.version,
       downloadUrl: config.googlePlayLink,
       installUrl: config.appStoreLink,
       offers: {

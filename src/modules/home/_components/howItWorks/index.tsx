@@ -43,7 +43,9 @@ function HowItWorks() {
         )}
       </div>
 
-      <ol className="list-none p-0 m-0 flex flex-col gap-12 md:gap-16">
+      {/* overflow-x-clip: the slide-in offsets (±40px) pushed the page 24px
+          wider than the screen on mobile before the step came into view. */}
+      <ol className="list-none p-0 m-0 flex flex-col gap-12 md:gap-16 overflow-x-clip">
         {howItWorks.steps.map((step, index) => (
           <motion.li
             key={step.title}
