@@ -2,7 +2,8 @@
  * JSON-LD structured data — ROADMAP.md E2.0
  *
  * Data verified against the real store listings, NOT estimated:
- *   · version and minOS -> iTunes API (lookup?id=6739874068)
+ *   · minOS             -> iTunes API (lookup?id=6739874068). No softwareVersion:
+ *                          it went stale with every release.
  *   · price             -> `price: 0` on App Store and Google Play
  *   · genre             -> "Sports" / "Navigation"
  *
@@ -16,7 +17,6 @@ import type {TemplateConfig} from "./configType";
 
 export const APP = {
   name: "Rally Hud",
-  version: "1.2.0",
     /** From the App Store listing. */
   iosMin: "15.6",
     /** From the Google Play listing. */
@@ -50,7 +50,6 @@ export function buildJsonLd({ config, url, faq, breadcrumb }: JsonLdOptions) {
       description: config.seo.description,
       url: base,
       image,
-      softwareVersion: APP.version,
       downloadUrl: config.googlePlayLink,
       installUrl: config.appStoreLink,
       offers: {
@@ -59,6 +58,7 @@ export function buildJsonLd({ config, url, faq, breadcrumb }: JsonLdOptions) {
         priceCurrency: "EUR",
         availability: "https://schema.org/InStock",
       },
+      inLanguage: config.lang,
       featureList: config.home.features?.cards.map((c) => c.title),
       screenshot: config.home.showcase?.items.map((i) => ({
         "@type": "ImageObject",
@@ -90,7 +90,7 @@ export function buildJsonLd({ config, url, faq, breadcrumb }: JsonLdOptions) {
       "@type": "BreadcrumbList",
       "@id": `${url}#breadcrumb`,
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: base },
+        { "@type": "ListItem", position: 1, name: config.ui.breadcrumbHome, item: base },
         ...breadcrumb.map((b, i) => ({
           "@type": "ListItem",
           position: i + 2,

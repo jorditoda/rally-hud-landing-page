@@ -17,6 +17,8 @@ import {motion} from "framer-motion";
 function Footer() {
   const {
     footer: { links, legalLinks, socials },
+    ui,
+    basePath,
   } = useContext(ConfigContext)!;
 
   return (
@@ -27,7 +29,7 @@ function Footer() {
         viewport={{ once: true, amount: 0.3 }}
         className="max-w-screen-lg mx-auto"
       >
-        <nav aria-label="Footer">
+        <nav aria-label={ui.footerNav}>
           <ul className="flex flex-col items-start gap-3 list-none p-0 m-0">
             {links.map(({ title, href }, index) => (
               <motion.li
@@ -112,9 +114,9 @@ function Footer() {
                   }}
                   transition={{ delay: 0.2 }}
                   className="font-semibold opacity-70 hover:opacity-100 hover:text-primary transition-colors lg:whitespace-nowrap"
-                  href="/terms-and-conditions"
+                  href={`${basePath}/terms-and-conditions/`}
                 >
-                  Terms &amp; conditions
+                  {ui.terms}
                 </motion.a>
               </li>
             )}
@@ -127,9 +129,9 @@ function Footer() {
                   }}
                   transition={{ delay: 0.28 }}
                   className="font-semibold opacity-70 hover:opacity-100 hover:text-primary transition-colors lg:whitespace-nowrap"
-                  href="/privacy-policy"
+                  href={`${basePath}/privacy-policy/`}
                 >
-                  Privacy policy
+                  {ui.privacy}
                 </motion.a>
               </li>
             )}
@@ -142,9 +144,9 @@ function Footer() {
                   }}
                   transition={{ delay: 0.36 }}
                   className="font-semibold opacity-70 hover:opacity-100 hover:text-primary transition-colors lg:whitespace-nowrap"
-                  href="/cookies-policy"
+                  href={`${basePath}/cookies-policy/`}
                 >
-                  Cookies policy
+                  {ui.cookies}
                 </motion.a>
               </li>
             )}
@@ -158,7 +160,7 @@ function Footer() {
             transition={{ delay: 0.44 }}
             className="mt-0 md:ml-4 md:whitespace-nowrap opacity-70"
           >
-            All rights reserved © {new Date().getFullYear()}
+            {ui.rightsReserved} © {new Date().getFullYear()}
           </motion.p>
         </div>
       </motion.div>

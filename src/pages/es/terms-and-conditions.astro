@@ -1,0 +1,13 @@
+---
+import TermsAndConditionsPage from "@modules/termsAndConditions";
+import Layout from "Layout.astro";
+import defaultTemplateConfig from "utils/config.es";
+---
+
+<Layout
+  {...defaultTemplateConfig}
+  config={defaultTemplateConfig}
+  seo={defaultTemplateConfig.termsAndConditions?.seo}
+ breadcrumb={{ name: "Términos y condiciones" }}>
+  <TermsAndConditionsPage client:load config={defaultTemplateConfig} />
+</Layout>

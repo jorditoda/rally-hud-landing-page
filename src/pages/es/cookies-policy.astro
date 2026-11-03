@@ -1,0 +1,13 @@
+---
+import CookiesPolicyPage from "@modules/cookiesPolicy";
+import Layout from "Layout.astro";
+import defaultTemplateConfig from "utils/config.es";
+---
+
+<Layout
+  {...defaultTemplateConfig}
+  config={defaultTemplateConfig}
+  seo={defaultTemplateConfig.cookiesPolicy?.seo}
+ breadcrumb={{ name: "Política de cookies" }}>
+  <CookiesPolicyPage client:load config={defaultTemplateConfig} />
+</Layout>

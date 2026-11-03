@@ -5,25 +5,19 @@ import {useContext} from "react";
 import {ConfigContext} from "../../../../utils/configContext";
 
 /**
- * "Free forever" block — ROADMAP.md E2.6
+ * Pricing block: Free vs Pro (v1.4, Rally HUD Pro).
  *
- * Before it was a price table with a single "Free Plan": an orphan card 1/3
- * wide lost in a sea of white, with an infinite `animate-ping` on each bullet
- * and a 3D wallet from the template.
- *
- * The real price is 0 on both stores (verified against the iTunes API and the
- * Google Play listing), so a comparison table says nothing the title doesn't
- * already say. Now it is the three guarantees that make "free" mean something,
- * which is the real sales pitch.
- *
- * This also fixes the E9.0 bug: `planImages` and `planBGs` were hardcoded
- * outside the config, so adding a fourth plan broke.
+ * Until v1.3 the app was free with no plans, so this block was three "free"
+ * guarantees (`promises`, still supported). With the Pro subscription it shows
+ * two cards from `pricing.plans`. Prices and trial must match the stores
+ * (rally_hud docs/PRO_CONFIG_TIENDAS.md).
  */
 function Pricing() {
   const {
     home: { pricing },
     googlePlayLink,
     appStoreLink,
+    ui,
   } = useContext(ConfigContext)!;
   if (!pricing) return null;
 
@@ -48,6 +42,70 @@ function Pricing() {
         )}
       </div>
 
+      {pricing.plans && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto">
+          {pricing.plans.map((plan, index) => (
+            <motion.div
+              key={plan.name}
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: index * 0.08 }}
+              className={`surface-card bg-base-200 p-6 md:p-8 flex flex-col relative ${
+                plan.highlight ? "!border-2 !border-primary" : ""
+              }`}
+            >
+              {plan.badge && (
+                <span className="badge badge-primary absolute top-4 right-4 font-semibold">
+                  {plan.badge}
+                </span>
+              )}
+              <h3 className="font-condensed font-bold text-2xl m-0 mb-2">
+                {plan.name}
+              </h3>
+              <p className="m-0 mb-6">
+                <span className="font-condensed font-bold text-4xl">
+                  {plan.price}
+                </span>
+                {plan.priceNote && (
+                  <span className="opacity-70 ml-2">{plan.priceNote}</span>
+                )}
+              </p>
+              <ul className="list-none p-0 m-0 flex flex-col gap-3">
+                {plan.features.map((feature) => (
+                  <li
+                    key={feature.text}
+                    className={`flex items-start gap-3 leading-snug ${
+                      feature.included ? "" : "opacity-50"
+                    }`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`shrink-0 font-bold ${
+                        feature.included ? "text-primary" : ""
+                      }`}
+                    >
+                      {feature.included ? "✓" : "—"}
+                    </span>
+                    <span>
+                      {feature.included ? "" : <span className="sr-only">{ui.notIncluded} </span>}
+                      {feature.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      )}
+
+      {pricing.footnote && (
+        <p className="text-sm opacity-60 text-center max-w-2xl mx-auto mt-6 mb-0">
+          {pricing.footnote}
+        </p>
+      )}
+
+      {pricing.promises && (
       <ul className="list-none p-0 m-0 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {pricing.promises?.map((promise, index) => (
           <motion.li
@@ -66,6 +124,7 @@ function Pricing() {
           </motion.li>
         ))}
       </ul>
+      )}
 
       {pricing.actionText && (
         <motion.div
@@ -79,7 +138,7 @@ function Pricing() {
               <a href={googlePlayLink} target="_blank" rel="noopener">
                 <img
                   className="h-14"
-                  alt="Get it on Google Play"
+                  alt={ui.googlePlayBadge}
                   src="/stores/google-play.svg"
                   loading="lazy"
                   decoding="async"
@@ -90,7 +149,7 @@ function Pricing() {
               <a href={appStoreLink} target="_blank" rel="noopener">
                 <img
                   className="h-14"
-                  alt="Download on the App Store"
+                  alt={ui.appStoreBadge}
                   src="/stores/app-store.svg"
                   loading="lazy"
                   decoding="async"

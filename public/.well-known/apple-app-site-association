@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["5TBPWQQX3G.com.stormfkrs.rallyHud"],
+        "components": [
+          { "/": "/s/*", "comment": "Private segment invites" },
+          { "/": "/r/*", "comment": "Shared ranking position" }
+        ]
+      }
+    ]
+  }
+}

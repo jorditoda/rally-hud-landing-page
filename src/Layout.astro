@@ -9,8 +9,10 @@ type Seo = TemplateConfig["seo"];
 
 interface Props extends Pick<
   TemplateConfig,
-  "backgroundGrid" | "logo" | "ogImage" | "theme" | "forceTheme" | "name"
+  "backgroundGrid" | "logo" | "ogImage" | "theme" | "forceTheme" | "name" | "lang"
 > {
+  /** Page config, for the JSON-LD. Defaults to the English one. */
+  config?: TemplateConfig;
   seo: Seo;
   /** Marks the page as no indexable (redirect pages, etc.). */
   noindex?: boolean;
@@ -30,22 +32,35 @@ const {
   noindex = false,
   withFaq = false,
   breadcrumb,
+  lang = "en",
+  config = defaultConfig,
 } = Astro.props;
+
+// The same page in both languages: Spanish lives under /es/.
+const pathname = Astro.url.pathname;
+const enPath = pathname.replace(/^\/es(\/|$)/, "/");
+const esPath = enPath === "/" ? "/es/" : `/es${enPath}`;
+const site = Astro.site ?? Astro.url;
+const alternates = [
+  { hreflang: "en", href: new URL(enPath, site).href },
+  { hreflang: "es", href: new URL(esPath, site).href },
+  { hreflang: "x-default", href: new URL(enPath, site).href },
+];
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 const socialImage = new URL(ogImage, Astro.site ?? Astro.url);
 
 // ROADMAP.md E2.0
 const jsonLd = buildJsonLd({
-  config: defaultConfig,
+  config,
   url: canonical.href,
-  faq: withFaq ? defaultConfig.home.faq : undefined,
+  faq: withFaq ? config.home.faq : undefined,
   breadcrumb: breadcrumb ? [breadcrumb] : undefined,
 });
 ---
 
 <!doctype html>
-<html lang="en" data-theme={theme}>
+<html lang={lang} data-theme={theme}>
   <head>
     <!-- Global Metadata -->
     <meta charset="utf-8" />
@@ -70,18 +85,22 @@ const jsonLd = buildJsonLd({
     <meta name="description" content={seo.description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
+    {!noindex && alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+    ))}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={name} />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
+    <meta property="og:locale:alternate" content={lang === "es" ? "en_US" : "es_ES"} />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Rally Hud — speed and G-force HUD for Android and iOS" />
+    <meta property="og:image:alt" content={seo.title} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />

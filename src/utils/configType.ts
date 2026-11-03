@@ -1,5 +1,66 @@
+export type Lang = "en" | "es";
+
+/** Interface strings that live in components, not in page content. */
+export type UiStrings = {
+    openMenu: string;
+    closeMenu: string;
+    toLightTheme: string;
+    toDarkTheme: string;
+    /** Label of the link to the other language, e.g. "ES". */
+    switchLanguage: string;
+    switchLanguageLabel: string;
+    googlePlayBadge: string;
+    appStoreBadge: string;
+    appScreenAlt: string;
+    footerNav: string;
+    terms: string;
+    privacy: string;
+    cookies: string;
+    rightsReserved: string;
+    notIncluded: string;
+    testimonials: {
+        prev: string;
+        next: string;
+        goTo: string;
+        slide: string;
+        rating: string;
+        pause: string;
+        play: string;
+        carousel: string;
+    };
+    notFound: {
+        title: string;
+        text: string;
+        home: string;
+        features: string;
+    };
+    appRedirect: string;
+    breadcrumbHome: string;
+    /** Pages for the links the app shares: /s/{code} and /r/{segmentId}. */
+    links: {
+        inviteTitle: string;
+        inviteIntro: string;
+        codeLabel: string;
+        copy: string;
+        copied: string;
+        inviteSteps: string[];
+        inviteInvalid: string;
+        rankingTitle: string;
+        rankingIntro: string;
+        rankingSteps: string[];
+        getApp: string;
+        pageTitleInvite: string;
+        pageTitleRanking: string;
+    };
+};
+
 export type TemplateConfig = {
     name: string;
+    /** Page language. Spanish pages live under /es/. */
+    lang: Lang;
+    /** Path prefix for internal links: "" for English, "/es" for Spanish. */
+    basePath: string;
+    ui: UiStrings;
     seo: {
         title: string;
         description: string;
@@ -168,6 +229,17 @@ export type TemplateConfig = {
                 title: string;
                 subtitle: string;
             }[] | undefined;
+            /** Free vs Pro plans (v1.4). If present, rendered as two cards. */
+            plans?: {
+                name: string;
+                price: string;
+                priceNote?: string | undefined;
+                highlight?: boolean | undefined;
+                badge?: string | undefined;
+                features: { text: string; included: boolean }[];
+            }[] | undefined;
+            /** Small print under the plans (trial, cancellation, store billing). */
+            footnote?: string | undefined;
         } | undefined;
     };
 }

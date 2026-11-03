@@ -15,7 +15,7 @@ import {motion} from "framer-motion";
  * reserved for what is actionable, as the system mandates.
  */
 function AppBanner() {
-  const { googlePlayLink, appStoreLink, appBanner } = useContext(ConfigContext)!;
+  const { googlePlayLink, appStoreLink, appBanner, ui } = useContext(ConfigContext)!;
 
   if (!appBanner) return null;
   return (
@@ -65,7 +65,7 @@ function AppBanner() {
                 <a href={googlePlayLink} target="_blank" rel="noopener">
                   <img
                     className="h-14"
-                    alt="Get it on Google Play"
+                    alt={ui.googlePlayBadge}
                     src="/stores/google-play.svg"
                     loading="lazy"
                     decoding="async"
@@ -78,7 +78,7 @@ function AppBanner() {
                 <a href={appStoreLink} target="_blank" rel="noopener">
                   <img
                     className="h-14"
-                    alt="Download on the App Store"
+                    alt={ui.appStoreBadge}
                     src="/stores/app-store.svg"
                     loading="lazy"
                     decoding="async"

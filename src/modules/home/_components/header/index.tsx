@@ -10,6 +10,7 @@ function Header() {
     googlePlayLink,
     appStoreLink,
     home: { header, partners },
+    ui,
   } = useContext(ConfigContext)!;
 
   const ref = useRef<HTMLDivElement>(null);
@@ -21,7 +22,7 @@ function Header() {
     <section id={header.id} className="relative pb-8 md:pb-4">
       <div className="max-w-screen-lg mx-auto py-4 px-4 md:py-16">
         <div className="flex flex-col md:flex-row">
-          <div className="flex flex-1 items-center md:items-start md:h-[300vh]">
+          <div className="flex flex-1 items-center md:items-start">
             <div className="static top-40 flex flex-col prose justify-center py-8 md:sticky md:h-[648px]">
               <div className="flex flex-col gap-2 my-4 3xs:flex-row">
                 {header.rewards?.map((reward, index) => (
@@ -95,7 +96,7 @@ function Header() {
                     <a href={googlePlayLink}>
                       <img
                         className="h-14"
-                        alt="google play logo"
+                        alt={ui.googlePlayBadge}
                         src="/stores/google-play.svg"
                       />
                     </a>
@@ -106,7 +107,7 @@ function Header() {
                     <a href={appStoreLink}>
                       <img
                         className="h-14"
-                        alt="app store logo"
+                        alt={ui.appStoreBadge}
                         src="/stores/app-store.svg"
                       />
                     </a>
@@ -146,7 +147,8 @@ function Header() {
                 </div>
                 <img
                   src="/misc/iphone-frame.webp"
-                  alt="iphone-frame"
+                  alt=""
+                  aria-hidden="true"
                   className="relative z-10 h-full"
                 />
               </motion.div>

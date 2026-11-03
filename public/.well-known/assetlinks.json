@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.stormfkrs.rally_hud",
+      "sha256_cert_fingerprints": [
+        "DA:DF:FA:CA:2D:F0:23:CD:70:B4:3F:E2:B6:EB:7A:C1:EB:FA:B2:D8:0F:B2:D3:CC:8E:3D:05:AD:A1:D3:C6:92"
+      ]
+    }
+  }
+]

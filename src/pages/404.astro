@@ -2,6 +2,7 @@
 import Layout from "Layout.astro";
 import NotFoundPage from "@modules/notFound";
 import defaultTemplateConfig from "utils/config";
+import esTemplateConfig from "utils/config.es";
 ---
 
 <Layout
@@ -12,5 +13,15 @@ import defaultTemplateConfig from "utils/config";
   }}
   noindex
 >
-  <NotFoundPage client:load config={defaultTemplateConfig} />
+  <!-- Shared app links (/s/{code}, /r/{id}) are served by this page: hide the
+       "not found" text until React renders the right content. -->
+  <script is:inline>
+    if (/^\/(?:es\/)?(?:s|r)\/[^/]+\/?$/.test(location.pathname)) {
+      document.documentElement.classList.add("shared-link");
+    }
+  </script>
+  <style is:global>
+    html.shared-link .not-found { visibility: hidden; }
+  </style>
+  <NotFoundPage client:load config={defaultTemplateConfig} configEs={esTemplateConfig} />
 </Layout>

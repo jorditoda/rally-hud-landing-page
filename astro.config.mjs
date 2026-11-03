@@ -25,6 +25,10 @@ export default defineConfig({
   integrations: [
     react(),
     tailwind(),
-    sitemap({ filter: (page) => !page.endsWith("/app/") }),
+    sitemap({
+      filter: (page) => !page.endsWith("/app/"),
+      // English at the root, Spanish under /es/: adds hreflang to the sitemap.
+      i18n: { defaultLocale: "en", locales: { en: "en", es: "es" } },
+    }),
   ],
 });
