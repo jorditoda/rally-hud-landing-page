@@ -74,6 +74,10 @@ jobs:
         with:
           # Upload dist repository
           path: ./dist
+          # Without this the action drops every dot path, so
+          # /.well-known/apple-app-site-association and assetlinks.json
+          # (app links) would never be published.
+          include-hidden-files: true
 
       - name: Deploy to GitHub Pages
         id: deployment
