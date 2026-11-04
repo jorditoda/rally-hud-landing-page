@@ -23,9 +23,9 @@ const esConfig: TemplateConfig = {
   lang: "es",
   basePath: B,
   seo: {
-    title: "Rally Hud — HUD de velocidad y fuerzas G en tiempo real",
+    title: "Rally HUD — Cronómetro de tramos y rankings",
     description:
-      "Proyecta tu velocidad, las fuerzas G y tus tiempos en el parabrisas. Funciona sin conexión en Android e iOS. Gratis, con un plan Pro opcional.",
+      "Haz el tramo, ten tu tiempo por GPS y mira tu posición en el ranking. HUD en directo para trackdays, subidas y tramos cerrados. Gratis en iOS y Android.",
   },
   ui: {
     openMenu: "Abrir menú",
@@ -112,9 +112,9 @@ const esConfig: TemplateConfig = {
   home: {
     ...en.home,
     seo: {
-      title: "Rally Hud — HUD de velocidad y fuerzas G para Android e iOS",
+      title: "Rally HUD — Cronómetro GPS de tramos, tiempos y rankings",
       description:
-        "Velocidad, fuerzas G y telemetría en tiempo real en el parabrisas. Pensada para rallies, circuito y conducción nocturna. Gratis en Android e iOS, con un plan Pro opcional.",
+        "Cronometra tus tramos por GPS, compárate en el ranking y analiza cada pasada. Para rally, subidas, slalom y trackdays. Gratis en iOS y Android.",
     },
     testimonials: {
       ...en.home.testimonials!,
@@ -272,7 +272,7 @@ const esConfig: TemplateConfig = {
       ],
       headline: "Tu conducción, medida",
       subtitle:
-        "Un HUD para el parabrisas y una herramienta de cronometraje completa para tus carreteras favoritas.",
+        "Un HUD para el parabrisas y una herramienta de cronometraje completa para tus tramos y circuitos favoritos.",
       usersDescription: "Únete a los primeros pilotos",
       headlineMark: [2, 3],
     },

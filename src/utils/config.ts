@@ -67,9 +67,9 @@ const templateConfig: TemplateConfig = {
     },
   },
   seo: {
-    title: "Rally Hud — Real-Time Speed & G-Force HUD App",
+    title: "Rally HUD — Stage Timer & Leaderboards for Drivers",
     description:
-      "Project your speed, G-forces and lap data onto your windscreen. Works offline on Android and iOS. Free to use, with an optional Pro plan.",
+      "Drive a stage, get your time by GPS and see where you rank. Live HUD for trackdays, hillclimbs and closed roads. Free on iOS and Android.",
   },
   // Technical background grid, very thin (uses the ln system token). ROADMAP.md E2.12
   backgroundGrid: true,
@@ -128,9 +128,9 @@ const templateConfig: TemplateConfig = {
   },
   home: {
     seo: {
-      title: "Rally Hud — Speed & G-Force HUD for Android and iOS",
+      title: "Rally HUD — GPS Stage Timer with Leaderboards",
       description:
-        "Real-time speed, G-force and telemetry projected onto your windscreen. Built for rally, track and night driving. Free on Android and iOS, with an optional Pro plan.",
+        "Time your stages by GPS, compare on the leaderboard and analyse every run. For rally, hillclimbs, slalom and trackdays. Free on iOS and Android.",
     },
     testimonials: {
       id: "testimonials",
@@ -282,7 +282,7 @@ const templateConfig: TemplateConfig = {
     header: {
       headline: "Your driving, measured",
       subtitle:
-        "A HUD for the windscreen and a full timing tool for your favourite roads.",
+        "A HUD for the windscreen and a full timing tool for your favourite stages and tracks.",
       // The hero mobile mockup is vertical (292x632), so here only app screens 390x844 can fit. Inserting a HUD capture (844x390) stretched it vertically.
       screenshots: [
         "/screens/board-en/App-Explorar.png",
