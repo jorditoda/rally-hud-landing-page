@@ -128,9 +128,9 @@ const templateConfig: TemplateConfig = {
   },
   home: {
     seo: {
-      title: "Rally HUD — GPS Stage Timer, Lap Times & Rankings",
+      title: "Rally HUD — GPS Stage Timer with Leaderboards",
       description:
-        "Time stages and laps by GPS, compare on the leaderboard and analyse every run. For rally, hillclimbs, slalom and trackdays. Free on iOS and Android.",
+        "Time your stages by GPS, compare on the leaderboard and analyse every run. For rally, hillclimbs, slalom and trackdays. Free on iOS and Android.",
     },
     testimonials: {
       id: "testimonials",

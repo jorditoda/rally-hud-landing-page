@@ -114,7 +114,7 @@ const esConfig: TemplateConfig = {
     seo: {
       title: "Rally HUD — Cronómetro GPS de tramos, tiempos y rankings",
       description:
-        "Cronometra tramos y vueltas por GPS, compárate en el ranking y analiza cada pasada. Para rally, subidas, slalom y trackdays. Gratis en iOS y Android.",
+        "Cronometra tus tramos por GPS, compárate en el ranking y analiza cada pasada. Para rally, subidas, slalom y trackdays. Gratis en iOS y Android.",
     },
     testimonials: {
       ...en.home.testimonials!,
