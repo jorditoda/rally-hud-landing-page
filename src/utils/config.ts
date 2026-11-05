@@ -61,9 +61,18 @@ const templateConfig: TemplateConfig = {
         "Open this link again from your phone: it opens the segment's ranking.",
         "If the segment is private, only its members can see it.",
       ],
+      segmentTitle: "A segment was shared with you",
+      segmentIntro:
+        "Someone shared a Rally Hud segment with you. Open the link on a phone with Rally Hud installed to see the route and the ranking, then drive it and try to beat the best time.",
+      segmentSteps: [
+        "Install Rally Hud (driving public segments is free).",
+        "Open this link again from your phone: it opens the segment.",
+        "Tap Drive this segment and go for the best time.",
+      ],
       getApp: "Get Rally Hud",
       pageTitleInvite: "Join a private segment — Rally Hud",
       pageTitleRanking: "Shared ranking — Rally Hud",
+      pageTitleSegment: "Shared segment — Rally Hud",
     },
   },
   seo: {

@@ -2,7 +2,7 @@ import Footer from "@components/footer";
 import type {TemplateConfig} from "utils/configType";
 import {ConfigContext} from "utils/configContext";
 import {useEffect, useState} from "react";
-import LinkLanding, {parseSharedLink, type SharedLink} from "@modules/linkLanding";
+import LinkLanding, {parseSharedLink, SHARED_LINK_RE, type SharedLink} from "@modules/linkLanding";
 
 /**
  * 404 page — ROADMAP.md E2.14
@@ -12,7 +12,8 @@ import LinkLanding, {parseSharedLink, type SharedLink} from "@modules/linkLandin
  * `<ConfigContext.Provider>` written directly in the `.astro` does not render,
  * because Astro only mounts component islands, not providers.
  *
- * It also serves the links the app shares (/s/{code}, /r/{segmentId}): GitHub
+ * It also serves the links the app shares (/s/{code}, /r/{segmentId},
+ * /seg/{segmentId}): GitHub
  * Pages has no rewrites, so every unknown path lands here. An inline script in
  * pages/404.astro marks those paths with `html.shared-link` so the "not found"
  * text never flashes before React takes over.
@@ -33,7 +34,7 @@ function NotFound({ config: en, configEs }: Props) {
     const path = window.location.pathname;
     const es =
       /^\/es(\/|$)/.test(path) ||
-      (!/^\/(s|r)\//.test(path) ? false : navigator.language?.toLowerCase().startsWith("es"));
+      (!SHARED_LINK_RE.test(path) ? false : navigator.language?.toLowerCase().startsWith("es"));
     const cfg = es ? configEs : en;
     setConfig(cfg);
     document.documentElement.lang = cfg.lang;
@@ -41,7 +42,11 @@ function NotFound({ config: en, configEs }: Props) {
     setLink(shared);
     if (shared) {
       document.title =
-        shared.kind === "invite" ? cfg.ui.links.pageTitleInvite : cfg.ui.links.pageTitleRanking;
+        shared.kind === "invite"
+          ? cfg.ui.links.pageTitleInvite
+          : shared.kind === "segment"
+            ? cfg.ui.links.pageTitleSegment
+            : cfg.ui.links.pageTitleRanking;
     }
     document.documentElement.classList.remove("shared-link");
   }, [en, configEs]);

@@ -5,7 +5,11 @@
         "appIDs": ["5TBPWQQX3G.com.stormfkrs.rallyHud"],
         "components": [
           { "/": "/s/*", "comment": "Private segment invites" },
-          { "/": "/r/*", "comment": "Shared ranking position" }
+          { "/": "/r/*", "comment": "Shared ranking position" },
+          { "/": "/seg/*", "comment": "Shared public segment" },
+          { "/": "/es/s/*", "comment": "Private segment invites (Spanish page)" },
+          { "/": "/es/r/*", "comment": "Shared ranking position (Spanish page)" },
+          { "/": "/es/seg/*", "comment": "Shared public segment (Spanish page)" }
         ]
       }
     ]

@@ -48,9 +48,13 @@ export type UiStrings = {
         rankingTitle: string;
         rankingIntro: string;
         rankingSteps: string[];
+        segmentTitle: string;
+        segmentIntro: string;
+        segmentSteps: string[];
         getApp: string;
         pageTitleInvite: string;
         pageTitleRanking: string;
+        pageTitleSegment: string;
     };
 };
 

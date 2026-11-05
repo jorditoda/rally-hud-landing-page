@@ -13,10 +13,10 @@ import esTemplateConfig from "utils/config.es";
   }}
   noindex
 >
-  <!-- Shared app links (/s/{code}, /r/{id}) are served by this page: hide the
+  <!-- Shared app links (/s/{code}, /r/{id}, /seg/{id}) are served by this page: hide the
        "not found" text until React renders the right content. -->
   <script is:inline>
-    if (/^\/(?:es\/)?(?:s|r)\/[^/]+\/?$/.test(location.pathname)) {
+    if (/^\/(?:es\/)?(?:s|r|seg)\/[^/]+\/?$/.test(location.pathname)) {
       document.documentElement.classList.add("shared-link");
     }
   </script>
