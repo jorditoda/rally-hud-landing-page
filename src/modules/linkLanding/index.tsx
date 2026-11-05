@@ -6,6 +6,7 @@ import {ConfigContext} from "../../utils/configContext";
  * posición"):
  *   · /s/{code}       → invite to a private segment
  *   · /r/{segmentId}  → shared ranking position
+ *   · /seg/{segmentId} → shared public segment
  *
  * GitHub Pages has no rewrites, so these paths are served by 404.html, which
  * detects them and renders this component instead of the "not found" page.
@@ -18,14 +19,25 @@ const CODE_RE = /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8}$/;
 
 export type SharedLink =
   | { kind: "invite"; code: string }
-  | { kind: "ranking"; segmentId: string };
+  | { kind: "ranking"; segmentId: string }
+  | { kind: "segment"; segmentId: string };
 
-/** Reads /s/{code} or /r/{id} (optionally under /es/). Null otherwise. */
+/** Paths the app shares; keep in sync with pages/404.astro and notFound. */
+export const SHARED_LINK_RE = /^\/(?:es\/)?(s|r|seg)\/([^/?#]+)\/?$/;
+
+/** Reads /s/{code}, /r/{id} or /seg/{id} (optionally under /es/). Null otherwise. */
 export function parseSharedLink(pathname: string): SharedLink | null {
-  const m = pathname.match(/^\/(?:es\/)?(s|r)\/([^/?#]+)\/?$/);
+  const m = pathname.match(SHARED_LINK_RE);
   if (!m) return null;
-  const value = decodeURIComponent(m[2]).trim();
+  let value: string;
+  try {
+    value = decodeURIComponent(m[2]).trim();
+  } catch {
+    return null;
+  }
+  if (!value) return null;
   if (m[1] === "s") return { kind: "invite", code: value.toUpperCase() };
+  if (m[1] === "seg") return { kind: "segment", segmentId: value };
   return { kind: "ranking", segmentId: value };
 }
 
@@ -62,15 +74,16 @@ function LinkLanding({ link }: { link: SharedLink }) {
   const t = ui.links;
   const [copied, setCopied] = useState(false);
 
-  if (link.kind === "ranking") {
+  if (link.kind === "ranking" || link.kind === "segment") {
+    const segment = link.kind === "segment";
     return (
       <section className="section-y max-w-screen-sm mx-auto px-4 w-full">
         <img src="/logo.svg" alt="" aria-hidden="true" className="h-14 w-14 mb-6" />
         <h1 className="mt-0 mb-3 font-condensed font-bold text-4xl md:text-5xl">
-          {t.rankingTitle}
+          {segment ? t.segmentTitle : t.rankingTitle}
         </h1>
-        <p className="opacity-70 mb-6">{t.rankingIntro}</p>
-        <Steps steps={t.rankingSteps} />
+        <p className="opacity-70 mb-6">{segment ? t.segmentIntro : t.rankingIntro}</p>
+        <Steps steps={segment ? t.segmentSteps : t.rankingSteps} />
         <StoreBadges />
       </section>
     );

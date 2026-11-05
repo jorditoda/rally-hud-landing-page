@@ -84,9 +84,18 @@ const esConfig: TemplateConfig = {
         "Vuelve a abrir este enlace desde el móvil: se abrirá el ranking del tramo.",
         "Si el tramo es privado, solo lo ven sus miembros.",
       ],
+      segmentTitle: "Te han compartido un tramo",
+      segmentIntro:
+        "Alguien ha compartido contigo un tramo de Rally Hud. Abre el enlace en un móvil con Rally Hud instalada para ver el recorrido y el ranking, y luego recórrelo e intenta batir el mejor tiempo.",
+      segmentSteps: [
+        "Instala Rally Hud (los tramos públicos son gratis).",
+        "Vuelve a abrir este enlace desde el móvil: se abrirá el tramo.",
+        "Toca Conducir este segmento y ve a por el mejor tiempo.",
+      ],
       getApp: "Descarga Rally Hud",
       pageTitleInvite: "Unirse a un tramo privado — Rally Hud",
       pageTitleRanking: "Ranking compartido — Rally Hud",
+      pageTitleSegment: "Tramo compartido — Rally Hud",
     },
   },
   footer: {
