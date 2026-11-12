@@ -69,10 +69,19 @@ const templateConfig: TemplateConfig = {
         "Open this link again from your phone: it opens the segment.",
         "Tap Drive this segment and go for the best time.",
       ],
+      rallyInviteTitle: "You're invited to a rally",
+      rallyInviteIntro:
+        "Someone invited you to a Rally Hud rally: a set of stages driven in order, with times per stage and an overall classification. You don't need Pro to take part.",
+      rallyInviteSteps: [
+        "Install Rally Hud and sign in.",
+        "Go to Segments › Rallies › I have a code.",
+        "Enter the code above, then activate the rally in the HUD before you start.",
+      ],
       getApp: "Get Rally Hud",
       pageTitleInvite: "Join a private segment — Rally Hud",
       pageTitleRanking: "Shared ranking — Rally Hud",
       pageTitleSegment: "Shared segment — Rally Hud",
+      pageTitleRallyInvite: "Join a rally — Rally Hud",
     },
   },
   seo: {

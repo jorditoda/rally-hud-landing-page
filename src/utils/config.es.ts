@@ -92,10 +92,19 @@ const esConfig: TemplateConfig = {
         "Vuelve a abrir este enlace desde el móvil: se abrirá el tramo.",
         "Toca Conducir este segmento y ve a por el mejor tiempo.",
       ],
+      rallyInviteTitle: "Te han invitado a un rally",
+      rallyInviteIntro:
+        "Alguien te ha invitado a un rally de Rally Hud: varios tramos que se recorren en orden, con tiempos por tramo y clasificación general. No necesitas ser Pro para participar.",
+      rallyInviteSteps: [
+        "Instala Rally Hud e inicia sesión.",
+        "Ve a Segmentos › Rallies › Tengo un código.",
+        "Escribe el código de arriba y activa el rally en la HUD antes de salir.",
+      ],
       getApp: "Descarga Rally Hud",
       pageTitleInvite: "Unirse a un tramo privado — Rally Hud",
       pageTitleRanking: "Ranking compartido — Rally Hud",
       pageTitleSegment: "Tramo compartido — Rally Hud",
+      pageTitleRallyInvite: "Unirse a un rally — Rally Hud",
     },
   },
   footer: {

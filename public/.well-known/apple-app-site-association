@@ -7,9 +7,11 @@
           { "/": "/s/*", "comment": "Private segment invites" },
           { "/": "/r/*", "comment": "Shared ranking position" },
           { "/": "/seg/*", "comment": "Shared public segment" },
+          { "/": "/rally/*", "comment": "Rally invites" },
           { "/": "/es/s/*", "comment": "Private segment invites (Spanish page)" },
           { "/": "/es/r/*", "comment": "Shared ranking position (Spanish page)" },
-          { "/": "/es/seg/*", "comment": "Shared public segment (Spanish page)" }
+          { "/": "/es/seg/*", "comment": "Shared public segment (Spanish page)" },
+          { "/": "/es/rally/*", "comment": "Rally invites (Spanish page)" }
         ]
       }
     ]

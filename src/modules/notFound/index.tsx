@@ -13,7 +13,7 @@ import LinkLanding, {parseSharedLink, SHARED_LINK_RE, type SharedLink} from "@mo
  * because Astro only mounts component islands, not providers.
  *
  * It also serves the links the app shares (/s/{code}, /r/{segmentId},
- * /seg/{segmentId}): GitHub
+ * /seg/{segmentId}, /rally/{code}): GitHub
  * Pages has no rewrites, so every unknown path lands here. An inline script in
  * pages/404.astro marks those paths with `html.shared-link` so the "not found"
  * text never flashes before React takes over.
@@ -44,7 +44,9 @@ function NotFound({ config: en, configEs }: Props) {
       document.title =
         shared.kind === "invite"
           ? cfg.ui.links.pageTitleInvite
-          : shared.kind === "segment"
+          : shared.kind === "rallyInvite"
+            ? cfg.ui.links.pageTitleRallyInvite
+            : shared.kind === "segment"
             ? cfg.ui.links.pageTitleSegment
             : cfg.ui.links.pageTitleRanking;
     }
