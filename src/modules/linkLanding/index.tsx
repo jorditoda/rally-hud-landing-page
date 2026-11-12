@@ -7,6 +7,7 @@ import {ConfigContext} from "../../utils/configContext";
  *   · /s/{code}       → invite to a private segment
  *   · /r/{segmentId}  → shared ranking position
  *   · /seg/{segmentId} → shared public segment
+ *   · /rally/{code}   → invite to a rally (rally mode)
  *
  * GitHub Pages has no rewrites, so these paths are served by 404.html, which
  * detects them and renders this component instead of the "not found" page.
@@ -14,18 +15,19 @@ import {ConfigContext} from "../../utils/configContext";
  * (universal links / app links, see public/.well-known).
  */
 
-/** Same alphabet and length as functions/src/lib/segmentSharing.ts. */
+/** Same alphabet and length as functions/src/lib/segmentSharing.ts (rally invites reuse it). */
 const CODE_RE = /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8}$/;
 
 export type SharedLink =
   | { kind: "invite"; code: string }
   | { kind: "ranking"; segmentId: string }
-  | { kind: "segment"; segmentId: string };
+  | { kind: "segment"; segmentId: string }
+  | { kind: "rallyInvite"; code: string };
 
 /** Paths the app shares; keep in sync with pages/404.astro and notFound. */
-export const SHARED_LINK_RE = /^\/(?:es\/)?(s|r|seg)\/([^/?#]+)\/?$/;
+export const SHARED_LINK_RE = /^\/(?:es\/)?(s|r|seg|rally)\/([^/?#]+)\/?$/;
 
-/** Reads /s/{code}, /r/{id} or /seg/{id} (optionally under /es/). Null otherwise. */
+/** Reads /s/{code}, /r/{id}, /seg/{id} or /rally/{code} (optionally under /es/). Null otherwise. */
 export function parseSharedLink(pathname: string): SharedLink | null {
   const m = pathname.match(SHARED_LINK_RE);
   if (!m) return null;
@@ -37,6 +39,7 @@ export function parseSharedLink(pathname: string): SharedLink | null {
   }
   if (!value) return null;
   if (m[1] === "s") return { kind: "invite", code: value.toUpperCase() };
+  if (m[1] === "rally") return { kind: "rallyInvite", code: value.toUpperCase() };
   if (m[1] === "seg") return { kind: "segment", segmentId: value };
   return { kind: "ranking", segmentId: value };
 }
@@ -89,6 +92,7 @@ function LinkLanding({ link }: { link: SharedLink }) {
     );
   }
 
+  const rally = link.kind === "rallyInvite";
   const code = link.code;
   const valid = CODE_RE.test(code);
 
@@ -106,9 +110,9 @@ function LinkLanding({ link }: { link: SharedLink }) {
     <section className="section-y max-w-screen-sm mx-auto px-4 w-full">
       <img src="/logo.svg" alt="" aria-hidden="true" className="h-14 w-14 mb-6" />
       <h1 className="mt-0 mb-3 font-condensed font-bold text-4xl md:text-5xl">
-        {t.inviteTitle}
+        {rally ? t.rallyInviteTitle : t.inviteTitle}
       </h1>
-      <p className="opacity-70 mb-6">{t.inviteIntro}</p>
+      <p className="opacity-70 mb-6">{rally ? t.rallyInviteIntro : t.inviteIntro}</p>
 
       {valid ? (
         <div className="surface-card bg-base-200 p-6 mb-8 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
@@ -126,7 +130,7 @@ function LinkLanding({ link }: { link: SharedLink }) {
         <p className="surface-card bg-base-200 p-6 mb-8">{t.inviteInvalid}</p>
       )}
 
-      <Steps steps={t.inviteSteps} />
+      <Steps steps={rally ? t.rallyInviteSteps : t.inviteSteps} />
       <StoreBadges />
     </section>
   );

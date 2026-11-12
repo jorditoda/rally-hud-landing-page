@@ -36,7 +36,7 @@ export type UiStrings = {
     };
     appRedirect: string;
     breadcrumbHome: string;
-    /** Pages for the links the app shares: /s/{code} and /r/{segmentId}. */
+    /** Pages for the links the app shares: /s/{code}, /r/{segmentId}, /seg/{segmentId} and /rally/{code}. */
     links: {
         inviteTitle: string;
         inviteIntro: string;
@@ -51,10 +51,14 @@ export type UiStrings = {
         segmentTitle: string;
         segmentIntro: string;
         segmentSteps: string[];
+        rallyInviteTitle: string;
+        rallyInviteIntro: string;
+        rallyInviteSteps: string[];
         getApp: string;
         pageTitleInvite: string;
         pageTitleRanking: string;
         pageTitleSegment: string;
+        pageTitleRallyInvite: string;
     };
 };
 
